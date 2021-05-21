@@ -32,7 +32,7 @@ angular.module('neo-visualizer', ['ng', 'ngResource'])
                 else if ($scope.segment.irregularlysampledsignals.length > 0) {
                     $scope.block.segments[$scope.currentSegmentId].irregularlysampledsignals[$scope.currentAnalogSignalId] = $scope.signal;
                 }
-                console.log("** channel size " + data.values.length);
+                // console.log("** channel size " + data.values.length);
                 var graph_data = [];
 		var xs = data.times_dimensionality;
                 var ys = data.values_units;    
@@ -88,7 +88,7 @@ angular.module('neo-visualizer', ['ng', 'ngResource'])
         }
         if (cache_block[id]['graph'] == undefined)  {
             $scope.dataLoading = true;
-            console.log("Signal id: " + id);
+            // console.log("Signal id: " + id);
             var sig_promises = [];
 	    var xs = null;
             var ys = null;
@@ -107,7 +107,7 @@ angular.module('neo-visualizer', ['ng', 'ngResource'])
 
             $q.all(sig_promises).then(
                 function(signals) {
-                    console.log("* SIGNALS count " + signals.length);
+                    // console.log("* SIGNALS count " + signals.length);
                     var graph_data = [];
 		    xs = signals[0].times_dimensionality;
                     ys = signals[0].values_units;
@@ -159,7 +159,7 @@ angular.module('neo-visualizer', ['ng', 'ngResource'])
             }
             else
             {
-                console.log("Switching to cached block signals of signal #" + id);
+                // console.log("Switching to cached block signals of signal #" + id);
                 $scope.block_data = cache_block[id]['graph'];
 		var layout = cache_block["layout"];
                 Plotly.newPlot($scope.divid, $scope.block_data, layout, {displaylogo: false});
@@ -211,7 +211,7 @@ angular.module('neo-visualizer', ['ng', 'ngResource'])
 
                 $q.all(promises).then(
                     function(signals) {
-                        console.log("SIGNALS count " + signals.length);
+                        // console.log("SIGNALS count " + signals.length);
                         var graph_data = [];
 			xs = signals[0].times_dimensionality;
                         ys = signals[0].values_units;    
@@ -262,7 +262,7 @@ angular.module('neo-visualizer', ['ng', 'ngResource'])
                   });
               }
               else {
-                    console.log("Switching to cached signals in segment #" + $scope.currentSegmentId);
+                    // console.log("Switching to cached signals in segment #" + $scope.currentSegmentId);
                     $scope.segment_data = cache_seg[$scope.currentSegmentId]['graph'];
                     var layout = cache_seg[$scope.currentSegmentId]['layout'];
                     Plotly.newPlot($scope.divid, $scope.segment_data, layout, {displaylogo: false});
@@ -279,7 +279,7 @@ angular.module('neo-visualizer', ['ng', 'ngResource'])
         $scope.currentAnalogSignalId = null
     };
 
-    console.log($scope.source);
+    // console.log($scope.source);
     if (!$scope.height) {
         $scope.height = 600;
     }
@@ -287,7 +287,7 @@ angular.module('neo-visualizer', ['ng', 'ngResource'])
     $scope.showAnnotations = false;
 
     var init = function() {
-        console.log("Loading data from " + $scope.source);
+        // console.log("Loading data from " + $scope.source);
         $scope.block = null;
         $scope.segment = null;
 	$scope.divid = "graph-" + Math.round(Math.random() * 1000);    
@@ -297,9 +297,9 @@ angular.module('neo-visualizer', ['ng', 'ngResource'])
                 $scope.error = null;
                 $scope.block = data.block[0];
                 $scope.file_name = $scope.block.file_name;
-                console.log(data.block[0]);
+                // console.log(data.block[0]);
                 if($scope.segmentid){
-                    console.log("segment id: " + $scope.segmentid);
+                    // console.log("segment id: " + $scope.segmentid);
                     $scope.currentSegmentId = $scope.segmentid;
                 }
                 else {
@@ -332,7 +332,7 @@ angular.module('neo-visualizer', ['ng', 'ngResource'])
         $scope.segmentCheck = false;
         if ($scope.block.segments[$scope.currentSegmentId].analogsignals[0] == undefined ||
             $scope.block.segments[$scope.currentSegmentId].spiketrains[0] == undefined) {
-            console.log("Fetching data for segment #" + $scope.currentSegmentId + " in file " + $scope.source);
+            // console.log("Fetching data for segment #" + $scope.currentSegmentId + " in file " + $scope.source);
             cache[$scope.currentSegmentId] = [];
             SegmentData.get({url: $scope.source,
                              segment_id: $scope.currentSegmentId,
@@ -341,14 +341,14 @@ angular.module('neo-visualizer', ['ng', 'ngResource'])
                 function(data) {
                     $scope.segment = data;
                     $scope.block.segments[$scope.currentSegmentId] = $scope.segment;
-                    console.log(data);
+                    // console.log(data);
                     if($scope.segment.spiketrains.length > 0 && (!$scope.signalid || $scope.spiketrainselect)) {
-                        console.log("length of spike trains " + $scope.segment.spiketrains.length);
+                        // console.log("length of spike trains " + $scope.segment.spiketrains.length);
                         $scope.spiketrains = {};
                         $scope.switchSpikeTrain();
                     }
                     if($scope.signalid && ($scope.segment.analogsignals[$scope.signalid] !== undefined)){
-                        console.log("signal id: " +  $scope.signalid);
+                        // console.log("signal id: " +  $scope.signalid);
                         $scope.currentAnalogSignalId = $scope.signalid;
                         $scope.switchAnalogSignal();
                     }
@@ -360,7 +360,7 @@ angular.module('neo-visualizer', ['ng', 'ngResource'])
             );
         }
         else {
-            console.log("Switching to cached segment #" + $scope.currentSegmentId);
+            // console.log("Switching to cached segment #" + $scope.currentSegmentId);
             $scope.segment = $scope.block.segments[$scope.currentSegmentId];
             if($scope.segment.spiketrains[0] !== undefined) {
                 $scope.switchSpikeTrain();
@@ -377,10 +377,10 @@ angular.module('neo-visualizer', ['ng', 'ngResource'])
         $scope.signalid = null;
         if (($scope.segment.analogsignals.length > 0 && $scope.segment.analogsignals[$scope.currentAnalogSignalId].values == undefined) ||
             ($scope.segment.irregularlysampledsignals.length > 0 && $scope.segment.irregularlysampledsignals[$scope.currentAnalogSignalId].values == undefined)) {
-            console.log("Fetching data for analog signal #" + $scope.currentAnalogSignalId + " in segment #" + $scope.currentSegmentId + " in file " + $scope.source);
+            // console.log("Fetching data for analog signal #" + $scope.currentAnalogSignalId + " in segment #" + $scope.currentSegmentId + " in file " + $scope.source);
             cache[$scope.currentSegmentId][$scope.currentAnalogSignalId] = [];
             if ($scope.block.channels == 'multi'){
-                console.log("Signal has multiple channels");
+                // console.log("Signal has multiple channels");
                 $scope.showMultiChannelSignal();
             }
             else {
@@ -397,7 +397,7 @@ angular.module('neo-visualizer', ['ng', 'ngResource'])
                             $scope.block.segments[$scope.currentSegmentId].analogsignals[$scope.currentAnalogSignalId] = $scope.signal;
                             }
                         else if ($scope.segment.irregularlysampledsignals.length > 0) {
-                            console.log("Segment has irregularly sampled signals");
+                            // console.log("Segment has irregularly sampled signals");
                             $scope.block.segments[$scope.currentSegmentId].irregularlysampledsignals[$scope.currentAnalogSignalId] = $scope.signal;
                         }
                         //console.log(data);
@@ -441,7 +441,7 @@ angular.module('neo-visualizer', ['ng', 'ngResource'])
             }
 
         } else {
-            console.log("Switching to cached signal #" + $scope.currentAnalogSignalId + " in segment #" + $scope.currentSegmentId);
+            // console.log("Switching to cached signal #" + $scope.currentAnalogSignalId + " in segment #" + $scope.currentSegmentId);
             if ($scope.segment.analogsignals.length > 0) {
                 $scope.signal = $scope.block.segments[$scope.currentSegmentId].analogsignals[$scope.currentAnalogSignalId];
                 }
@@ -459,7 +459,7 @@ angular.module('neo-visualizer', ['ng', 'ngResource'])
         $scope.dataLoading = true;
         $scope.graphType = "spiketrains";
         if ($scope.block.segments[$scope.currentSegmentId].spiketrains[0].times == undefined) {
-            console.log("Fetching data for spike trains in segment #" + $scope.currentSegmentId + " in file " + $scope.source);
+            // console.log("Fetching data for spike trains in segment #" + $scope.currentSegmentId + " in file " + $scope.source);
             cache_spiketrains[$scope.currentSegmentId] = [];
             SpikeTrainData.get({url: $scope.source,
                                   segment_id: $scope.currentSegmentId,
@@ -516,7 +516,7 @@ angular.module('neo-visualizer', ['ng', 'ngResource'])
                  $scope.dataLoading = false;
                 });
         } else {
-            console.log("Switching to cached spike train  in segment #" + $scope.currentSegmentId);
+            // console.log("Switching to cached spike train  in segment #" + $scope.currentSegmentId);
             $scope.spiketrains = $scope.block.segments[$scope.currentSegmentId].spiketrains;
             $scope.spiketrains_data = cache_spiketrains[$scope.currentSegmentId]['graph'];
             var layout = cache_spiketrains[$scope.currentSegmentId]['layout'];
@@ -539,7 +539,7 @@ angular.module('neo-visualizer', ['ng', 'ngResource'])
 
         //graphs functions
         var initGraph = function(raw_data) {
-            console.log("initGraph");
+            // console.log("initGraph");
             return new Promise(function(resolve, reject) {
                 if (typeof raw_data.times === "undefined") {
                     raw_data.times = get_graph_times(raw_data);
