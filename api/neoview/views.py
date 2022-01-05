@@ -1,134 +1,88 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 import os.path
-import hashlib
-import logging
-from time import sleep
-from urllib.request import urlopen, urlretrieve, HTTPError
-from urllib.parse import urlparse, urlunparse
-
 from django.http import JsonResponse
-from django.utils.datastructures import MultiValueDictKeyError
-from django.conf import settings
 from rest_framework.views import APIView
-from rest_framework import status
-
 from neo.io import get_io
-import neo
+from neo import io
+from rest_framework import status
+from os.path import basename
+try:
+    from urllib import urlretrieve, HTTPError
+except ImportError:
+    from urllib.request import urlretrieve, HTTPError
+try:
+    from urllib.request import urlopen
+except ImportError:
+    from urllib2 import urlopen
+try:
+    unicode
+except NameError:
+    unicode = str
+# import logging
+from time import sleep
 
-
-logger = logging.getLogger(__name__)
-
-
-def custom_get_io(filename):
-    try:
-        io = get_io(filename)
-    except AssertionError as err:
-        if "try_signal_grouping" in str(err):
-            io = neo.io.Spike2IO(filename, try_signal_grouping=False)
-        else:
-            raise
-    return io
-
-
-def _get_cache_path(url):
-    """
-    For caching, we store files in a flat directory structure, where the directory name is
-    based on the URL, but files in the same directory on the original server end up in the
-    same directory in our cache.
-    """
-    url_parts = urlparse(url)
-    base_url = urlunparse((url_parts.scheme, url_parts.netloc, os.path.dirname(url_parts.path), "", "", ""))
-    dir_name = hashlib.sha1(base_url.encode('utf-8')).hexdigest()
-    dir_path = os.path.join(getattr(settings, "DOWNLOADED_FILE_CACHE_DIR", ""),
-                            dir_name)
-    os.makedirs(dir_path, exist_ok=True)
-    return os.path.join(dir_path, os.path.basename(url_parts.path))
+# logger = logging.getLogger(__name__)
 
 
 def _get_file_from_url(request):
     url = request.GET.get('url')
+    if url:
+        response = urlopen(url)
+        filename = basename(response.url)
+        if not os.path.isfile(filename):
+            urlretrieve(url, filename)
+        # todo: wrap previous line in try..except so we can return a 404 if the file is not found
+        #       or a 500 if the local disk is full
 
-    # we first open the url to resolve any redirects
-    response = urlopen(url)
-    resolved_url = response.geturl()
+        # if we have a text file, try to download the accompanying json file
+        name, ext = os.path.splitext(filename)
+        if ext[1:] in io.AsciiSignalIO.extensions:  # ext has a leading '.'
+            metadata_filename = filename.replace(ext, "_about.json")
+            metadata_url = url.replace(ext, "_about.json")
+            try:
+                urlretrieve(metadata_url, metadata_filename)
+            except HTTPError:
+                pass
 
-    filename = _get_cache_path(resolved_url)
-    if not os.path.isfile(filename):
-        urlretrieve(resolved_url, filename)
-    # todo: wrap previous line in try..except so we can return a 404 if the file is not found
-    #       or a 500 if the local disk is full
-
-    # if we have a text file, try to download the accompanying json file
-    name, ext = os.path.splitext(filename)
-    if ext[1:] in neo.io.AsciiSignalIO.extensions:  # ext has a leading '.'
-        metadata_filename = filename.replace(ext, "_about.json")
-        metadata_url = resolved_url.replace(ext, "_about.json")
-        try:
-            urlretrieve(metadata_url, metadata_filename)
-        except HTTPError:
-            pass
-
-    return filename
+        return filename
+    else:
+        return JsonResponse({'error': 'URL parameter is missing', 'message': ''},
+                             status=status.HTTP_400_BAD_REQUEST)
 
 
 def _handle_dict(ob):
-    return {k: str(v) for k, v in ob.items()}
-
-
-class NeoViewError(Exception):
-
-    def __init__(self, message, status, detail=""):
-        self.message = message
-        self.status = status
-        self.detail = detail
-
-    def __str__(self):
-        return f"{self.__class__.name}: {self.message} {self.detail} status={self.status}"
-
-
-def get_block(request):
-    if not request.GET.get('url'):
-        raise NeoViewError('URL parameter is missing', status.HTTP_400_BAD_REQUEST)
-
-    lazy = False
-    na_file = _get_file_from_url(request)
-
-    if 'type' in request.GET and request.GET.get('type'):
-        iotype = request.GET.get('type')
-        method = getattr(neo.io, iotype)
-        r = method(filename=na_file)
-        if r.support_lazy:
-            block = r.read_block(lazy=True)
-            lazy = True
-        else:
-            block = r.read_block()
-    else:
-        neo_io = custom_get_io(na_file)
-        try:
-            if neo_io.support_lazy:
-                block = neo_io.read_block(lazy=True)
-                lazy = True
-            else:
-                block = neo_io.read_block()
-
-        except IOError as err:
-            # todo: need to be more fine grained. There could be other reasons
-            #       for an IOError
-            raise NeoViewError('incorrect file type',
-                               status.HTTP_415_UNSUPPORTED_MEDIA_TYPE,
-                               str(err))
-    return block, na_file, lazy
+    return {k: unicode(v) for k, v in ob.items()}
 
 
 class Block(APIView):
 
     def get(self, request, format=None, **kwargs):
-        try:
-            block, na_file, lazy =  get_block(request)
-        except NeoViewError as err:
-            return JsonResponse({'error': err.message, 'message': err.detail},
-                                status=err.status)
+        lazy = False
+        na_file = _get_file_from_url(request)
+        neo_io = get_io(na_file)
+        if 'type' in request.GET and request.GET.get('type'):
+            iotype = request.GET.get('type')
+            method = getattr(io, iotype)
+            r = method(filename=na_file)
+            if r.support_lazy:
+                block = r.read_block(lazy=True)
+                lazy = True
+            else:
+                block = r.read_block()
+        else:
+            try:
+                if neo_io.support_lazy:
+                    block = neo_io.read_block(lazy=True)
+                    lazy = True
+                else:
+                    block = neo_io.read_block()
+
+            except IOError as err:
+                # todo: need to be more fine grained. There could be other reasons
+                #       for an IOError
+                return JsonResponse({'error': 'incorrect file type', 'message': str(err)},
+                                    status=status.HTTP_415_UNSUPPORTED_MEDIA_TYPE)
 
         block_data = {'block': [{
             'annotations': _handle_dict(block.annotations),
@@ -196,29 +150,18 @@ class Block(APIView):
 class Segment(APIView):
 
     def get(self, request, format=None, **kwargs):
-
-        # parameter for segment
-        # url        --- string
-        # semgent_id --- int
-
-        try:
-            block, na_file, lazy =  get_block(request)
-        except NeoViewError as err:
-            return JsonResponse({'error': err.message, 'message': err.detail},
-                                status=err.status)
-
-        # check for missing semgent_id parameter
-        try:
-            id_segment = int(request.GET['segment_id'])
-        except MultiValueDictKeyError:
-            return JsonResponse({'error': 'segment_id parameter is missing', 'message': ''},
-                                status=status.HTTP_400_BAD_REQUEST)
-        # check for indexerror on segment_id
-        try:
-            segment = block.segments[id_segment]
-        except IndexError:
-             return JsonResponse({'error': 'IndexError on segment_id', 'message': ''},
-                                status=status.HTTP_400_BAD_REQUEST)
+        lazy = False
+        na_file = _get_file_from_url(request)
+        neo_io = get_io(na_file)
+        if neo_io.support_lazy:
+            block = neo_io.read_block(lazy=True)
+            lazy = True
+        else:
+            block = neo_io.read_block()
+        id_segment = int(request.GET['segment_id'])
+        # todo, catch MultiValueDictKeyError in case segment_id isn't given, and return a 400 Bad Request response
+        segment = block.segments[id_segment]
+        # todo, catch IndexError, and return a 404 response
 
         seg_data_test = {
                     'name': "segment 1",
@@ -269,42 +212,25 @@ class Segment(APIView):
 class AnalogSignal(APIView):
 
     def get(self, request, format=None, **kwargs):
-        # parameter for analogsignal
-        # url --- string
-        # check for missing segment_id p
-        # analog_signal_id --- int
+        lazy = False
+        na_file = _get_file_from_url(request)
+        while True:  # todo, find better solution
+            try: 
+                neo_io = get_io(na_file)
+                break
+            except OSError:
+                sleep(5)
 
-        try:
-            block, na_file, lazy =  get_block(request)
-        except NeoViewError as err:
-            return JsonResponse({'error': err.message, 'message': err.detail},
-                                status=err.status)
+        if neo_io.support_lazy:
+            block = neo_io.read_block(lazy=True)
+            lazy = True
+        else:
+            block = neo_io.read_block()
+        id_segment = int(request.GET['segment_id'])
+        id_analog_signal = int(request.GET['analog_signal_id'])
+        # todo, catch MultiValueDictKeyError in case segment_id or analog_signal_id aren't given, and return a 400 Bad Request response
+        segment = block.segments[id_segment]
 
-        # check for missing segment_id parameter
-        try:
-            id_segment = int(request.GET['segment_id'])
-        except MultiValueDictKeyError:
-            return JsonResponse({'error': 'segment_id parameter is missing', 'message': ''},
-                                status=status.HTTP_400_BAD_REQUEST)
-
-        # check for missing analog_signal_id parameter
-        try:
-            id_analog_signal = int(request.GET['analog_signal_id'])
-        except MultiValueDictKeyError:
-            return JsonResponse({'error': 'analog_signal_id parameter is missing', 'message': ''},
-                                status=status.HTTP_400_BAD_REQUEST)
-
-        # check for index error on segment_id
-        try:
-            segment = block.segments[id_segment]
-        except IndexError:
-            return JsonResponse({'error': 'IndexError on segment_id' , 'message': ''},
-                                status=status.HTTP_400_BAD_REQUEST)
-
-        try:
-            down_sample_factor = int(request.GET.get('down_sample_factor', 1))
-        except ValueError:
-            down_sample_factor = 1
         graph_data = {}
         analogsignal = None
         if len(segment.analogsignals) > 0:
@@ -314,9 +240,8 @@ class AnalogSignal(APIView):
                 analogsignal = segment.analogsignals[id_analog_signal]
             graph_data["t_start"] = analogsignal.t_start.item()
             graph_data["t_stop"] = analogsignal.t_stop.item()
-
-            if down_sample_factor > 1:
-                graph_data["sampling_period"] = analogsignal.sampling_period.item() * down_sample_factor
+            if request.GET['down_sample_factor']:
+                graph_data["sampling_period"] = analogsignal.sampling_period.item() * int(request.GET['down_sample_factor'])
             else:
                 graph_data["sampling_period"] = analogsignal.sampling_period.item()
         elif len(segment.irregularlysampledsignals) > 0:
@@ -328,22 +253,22 @@ class AnalogSignal(APIView):
 
         # todo, catch any IndexErrors, and return a 404 response
 
-        if analogsignal is None:
-            return JsonResponse({})
-
         analog_signal_values = []
+
         if analogsignal.shape[1] > 1:
             # multiple channels
-            if not len(segment.irregularlysampledsignals) > 0 and down_sample_factor > 1:
+            if not len(segment.irregularlysampledsignals) > 0 and request.GET['down_sample_factor']:
+                dsf = int(request.GET['down_sample_factor'])
                 for i in range(0, len(analogsignal[0])):
-                    analog_signal_values.append(analogsignal[::down_sample_factor, i].magnitude[:, 0].tolist())
+                    analog_signal_values.append(analogsignal[::dsf, i].magnitude[:, 0].tolist())
             else:
                 for i in range(0, len(analogsignal[0])):
                     analog_signal_values.append(analogsignal[::, i].magnitude[:, 0].tolist())
         else:
             # single channel
-            if not len(segment.irregularlysampledsignals) > 0 and down_sample_factor > 1:
-                analog_signal_values = analogsignal[::down_sample_factor, 0].magnitude[:, 0].tolist()
+            if not len(segment.irregularlysampledsignals) > 0 and request.GET['down_sample_factor']:
+                dsf = int(request.GET['down_sample_factor'])
+                analog_signal_values = analogsignal[::dsf, 0].magnitude[:, 0].tolist()
             else:
                 analog_signal_values = analogsignal.magnitude[:, 0].tolist()
 
@@ -358,28 +283,25 @@ class AnalogSignal(APIView):
 class SpikeTrain(APIView):
 
     def get(self, request, format=None, **kwargs):
+        lazy = False
+        na_file = _get_file_from_url(request)
+        while True:
+            try:
+                neo_io = get_io(na_file)
+                break
+            except OSError:
+                sleep(5)
 
-        try:
-            block, na_file, lazy =  get_block(request)
-        except NeoViewError as err:
-            return JsonResponse({'error': err.message, 'message': err.detail},
-                                status=err.status)
-
-        # check for missing segment_id parameter
-        try:
-            id_segment = int(request.GET['segment_id'])
-        except MultiValueDictKeyError:
-            return JsonResponse({'error': 'segment_id parameter is missing', 'message': ''},
-                                status=status.HTTP_400_BAD_REQUEST)
-        #check for index error
-        try:
-            segment = block.segments[id_segment]
-        except IndexError:
-            return JsonResponse({'error': 'IndexError on segment_id', 'message': ''},
-                                status=status.HTTP_400_BAD_REQUEST)
+        if neo_io.support_lazy:
+            block = neo_io.read_block(lazy=True)
+            lazy = True
+        else:
+            block = neo_io.read_block()
+        id_segment = int(request.GET['segment_id'])
+        segment = block.segments[id_segment]
 
         if lazy:
-            spiketrains = [st.load() for st in segment.spiketrains]
+            spiketrains = segment.spiketrains.load()
         else:
             spiketrains = segment.spiketrains
 

@@ -11,8 +11,8 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.5/angular-resource.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/1.51.1/plotly.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/apdavison/neural-activity-visualizer@master/js/src/visualizer.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/apdavison/neural-activity-visualizer@master/js/src/services.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/apdavison/neural-activity-visualizer@a18e9cd/js/src/visualizer.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/apdavison/neural-activity-visualizer@a18e9cd/js/src/services.js"></script>
 </head>
 
 <body>
@@ -118,7 +118,31 @@
             <h2 id="example_spike_trains">Example with spike trains</h2>
             <div>
                 <visualizer-view
-                    source="https://object.cscs.ch/v1/AUTH_c0a333ecf7c045809321ce9d9ecdfdea/test/spiketrainsx2a.nix"
+                    source="https://drive.humanbrainproject.eu/f/076de9c19e0c4447a95e/?dl=1"
+                    height=300>
+                </visualizer-view>
+            </div>
+            <h2>Example with tag attributes</h2>
+            <b>downsamplefactor</b> for down sampling the signal by specified positive integral value (default = 1, i.e. no down sampling);
+            <b>segmentid</b> for auto displaying specified segment; <b>signalid</b> for auto displaying specified signal; <b>spiketrainselect</b>
+            for displaying spike trains of segment.
+            <pre>
+&lt;visualizer-view
+    source="https://drive.humanbrainproject.eu/f/01927e7e3cff4010a98a/?dl=1"
+    downsamplefactor=4
+    segmentid="1"
+    signalid="0"
+    spiketrainselect="true"
+    height=300&gt;
+&lt;/visualizer-view&gt;
+            </pre>
+            <div>
+                <visualizer-view
+                    source="https://drive.humanbrainproject.eu/f/01927e7e3cff4010a98a/?dl=1"
+                    downsamplefactor=4
+                    segmentid="1"
+                    signalid="0"
+                    spiketrainselect="true"
                     height=300>
                 </visualizer-view>
             </div>

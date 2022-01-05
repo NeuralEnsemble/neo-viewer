@@ -156,11 +156,6 @@ LOGGING = {
             'level': 'DEBUG',
             'propagate': True,
         },
-         'django': {
-            'handlers': ['file'],
-            'level': 'INFO',
-        },
     },
 }
 
-DOWNLOADED_FILE_CACHE_DIR = os.path.join(BASE_DIR, "download_cache")
