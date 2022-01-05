@@ -1,0 +1,61 @@
+<html>
+
+<head>
+    <title>Neo Visualizer example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules/nvd3/build/nv.d3.css">
+
+    <script type="text/javascript" src="node_modules/angular/angular.js"></script>
+    <script type="text/javascript" src="node_modules/angular-resource/angular-resource.min.js"></script>
+    <script type="text/javascript" src="node_modules/d3/d3.js"></script>
+    <script type="text/javascript" src="node_modules/nvd3/build/nv.d3.js"></script>
+    <script type="text/javascript" src="node_modules/angular-nvd3/dist/angular-nvd3.js"></script>
+    <script type="text/javascript" src="src/visualizer.js"></script>
+    <script type="text/javascript" src="src/services.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row" ng-app="neo-visualizer">
+            <h1>Example with static data file URL</h1>
+            <visualizer-view
+                source="https://object.cscs.ch/v1/AUTH_c0a333ecf7c045809321ce9d9ecdfdea/Migliore_2018_CA1/exp_data/abf-int-bAC/Ivy_960711AHP3/96711008.abf"
+                height=300>
+            </visualizer-view>
+            <h1>Example with manual entry of data file URL</h1>
+            <pre ng-non-bindable>
+                    &lt;div ng-controller="URLFormController"&gt;
+                        &lt;form class="form-inline"&gt;
+                            &lt;div class="form-group"&gt;
+                                &lt;label for="dataFileURL"&gt;URL of data file:&lt;/label&gt;
+                                &lt;input type="text" class="form-control" ng-model="dataFileURL" id="dataFileURL" placeholder="enter data file URL here" style="width: 600px;"&gt;
+                            &lt;/div&gt;
+                            &lt;/form&gt;
+                            
+                        &lt;visualizer-view ng-if="dataFileURL"
+                            source="{{dataFileURL}}"
+                            height=300&gt;
+                        &lt;/visualizer-view&gt;
+                    &lt;/div&gt;
+            </pre>
+            <div ng-controller="URLFormController">
+            <form class="form-inline">
+                <div class="form-group">
+                  <label for="dataFileURL">URL of data file:</label>
+                  <input type="text" class="form-control" ng-model="dataFileURL" id="dataFileURL" placeholder="enter data file URL here" style="width: 600px;">
+                </div>
+              </form>
+              
+            <visualizer-view ng-if="dataFileURL"
+                source="{{dataFileURL}}"
+                height=300>
+            </visualizer-view>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

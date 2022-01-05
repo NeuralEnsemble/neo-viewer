@@ -1,0 +1,13 @@
+import json
+from django.test import TestCase
+from neoview.views import Block
+from rest_framework.test import APIRequestFactory
+URL = "https://object.cscs.ch/v1/AUTH_c0a333ecf7c045809321ce9d9ecdfdea/Migliore_2018_CA1/exp_data/abf-int-bAC/Ivy_960711AHP3/96711008.abf"
+factory = APIRequestFactory()
+request = factory.get('blockdata/', {"url": URL}, format='json')
+
+class test_block(TestCase):
+    def test_get_block(self):
+        response = Block().get(request)
+        breakpoint()
+        self.assertEqual(json.loads(response.content), {})

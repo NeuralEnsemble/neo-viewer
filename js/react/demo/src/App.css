@@ -1,0 +1,94 @@
+.container {
+  width: 75%;
+  margin: auto;
+}
+
+.rounded-box {
+  background: #ffd180;
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+  height: 210px;
+  padding: 0px 10px 0px 10px;
+}
+
+.title-container {
+  justify-content: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.title-style {
+  font-family: "Roboto", "Helvetica", "Arial", "sans-serif";
+  font-size: 2.125rem;
+  color: #000000;
+  font-weight: 900;
+}
+
+.subtitle-style {
+  font-family: "Roboto", "Helvetica", "Arial", "sans-serif";
+  font-size: 1.5rem;
+  color: #000000;
+  font-weight: 400;
+}
+
+.message-box {
+  width: 80%;
+  margin: auto;
+}
+
+.note-rounded {
+  border-radius: 5px 0 5px 5px;
+  background-color: #FFF8E1;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 1em 1.5em;
+}
+
+.text {
+  line-height: 1.75;
+  font-size: 16;
+  text-align: justify;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
+}
+
+/* For HBP rainbow footer */
+.rainbow-row {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  margin: 10px auto 10px auto;
+}
+
+.rainbow-row.rr-small > div {
+  height: 3px;
+}
+.rainbow-row > div {
+  width: 12.5%;
+  display: table-cell;
+  height: 10px;
+}
+.rainbow-row > div:nth-child(1) {
+  background: #ef5450;
+}
+.rainbow-row > div:nth-child(2) {
+  background: #f47716;
+}
+.rainbow-row > div:nth-child(3) {
+  background: #fbb535;
+}
+.rainbow-row > div:nth-child(4) {
+  background: #fbcb3f;
+}
+.rainbow-row > div:nth-child(5) {
+  background: #33aabb;
+}
+.rainbow-row > div:nth-child(6) {
+  background: #2d8eb3;
+}
+.rainbow-row > div:nth-child(7) {
+  background: #2070a8;
+}
+.rainbow-row > div:nth-child(8) {
+  background: #164e75;
+}
