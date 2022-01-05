@@ -5,7 +5,7 @@ from any file format supported by [Neo](http://neuralensemble.org/neo) and expos
 
 ## API Documentation
 
-TODO
+See [here](https://neo-viewer.brainsimulation.eu/#api_docs).
 
 ## Deployment
 

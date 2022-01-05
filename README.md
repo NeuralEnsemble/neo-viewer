@@ -57,11 +57,11 @@ Instructions for doing this are [here](https://github.com/NeuralEnsemble/neo-vie
 
 ## Reference: the file server REST API
 
-See [here](https://github.com/NeuralEnsemble/neo-viewer/blob/master/api/README.mdhttps://github.com/NeuralEnsemble/neo-viewer/blob/master/api/README.md#api-documentation).
+See [here](https://neo-viewer.brainsimulation.eu/#api_docs).
 
 
 <div><img src="https://raw.githubusercontent.com/HumanBrainProject/hbp-validation-client/master/eu_logo.jpg" alt="EU Logo" width="15%" align="right"></div>
 
 
 ## Acknowledgements
-This open source software code was developed in part or in whole in the Human Brain Project, funded from the European Union's Horizon 2020 Framework Programme for Research and Innovation under Specific Grant Agreements No. 720270 and No. 785907 (Human Brain Project SGA1 and SGA2).
+This open source software code was developed in part or in whole in the Human Brain Project, funded from the European Union's Horizon 2020 Framework Programme for Research and Innovation under Specific Grant Agreements No. 720270, No. 785907 and No. 945539 (Human Brain Project SGA1, SGA2 and SGA3).

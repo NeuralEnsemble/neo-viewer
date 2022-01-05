@@ -45,13 +45,13 @@
 
             <p>
                 This project has received funding from the European Union’s Horizon 2020 Framework Programme
-                for Research and Innovation under the Specific Grant Agreement No. 785907 (Human Brain Project SGA2).
+                for Research and Innovation under Specific Grant Agreements No. 720270, No. 785907 and No. 945539 (Human Brain Project SGA1, SGA2 and SGA3).
             </p>
 
         </div>
 
         <div class="row" ng-app="neo-visualizer">
-            <h2>Example</h2>
+            <h2 id="example_static_source">Example</h2>
             <pre>
 &lt;head&gt;
     ...
@@ -86,7 +86,7 @@
             </visualizer-view>
             </div>
 
-            <h2>Example with dynamic source</h2>
+            <h2 id="example_dynamic_source">Example with dynamic source</h2>
             <pre ng-non-bindable>
 &lt;div ng-controller="URLFormController"&gt;
     &lt;form class="form-inline"&gt;
@@ -115,7 +115,7 @@
                     height=300>
                 </visualizer-view>
             </div>
-            <h2>Example with spike trains</h2>
+            <h2 id="example_spike_trains">Example with spike trains</h2>
             <div>
                 <visualizer-view
                     source="https://drive.humanbrainproject.eu/f/076de9c19e0c4447a95e/?dl=1"
@@ -149,7 +149,7 @@
         </div>
 
         <div class="row">
-            <h2>API Documentation</h2>
+            <h2 id="api_docs">API Documentation</h2>
 
             <p>
                 The API follows the Neo container structure: the outermost container is the <strong>Block</strong>,
@@ -167,7 +167,7 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">/blockdata/</h3>
+                    <h3 id="api_blockdata" class="panel-title">/blockdata/</h3>
                     <p>Return a list of all the <strong>Blocks</strong> in the file.</p>
                 </div>
                 <div class="panel-body">
@@ -250,7 +250,7 @@
 
             <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">/segmentdata/</h3>
+                        <h3 id="api_segmentdata" class="panel-title">/segmentdata/</h3>
                         <p>Return information about an individual <strong>Segment</strong>,
                         including metadata about the signals contained in the segment,
                         but not the signal data themselves.</p>
@@ -320,7 +320,7 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">/analogsignaldata/</h3>
+                    <h3 id="api_analogsignaldata" class="panel-title">/analogsignaldata/</h3>
                     <p>Return an individual <strong>AnalogSignal</strong>,
                        both metadata and the data array.</p>
                 </div>
