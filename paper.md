@@ -59,7 +59,7 @@ NeoViewer builds on the Neo software, which has support for reading a wide varie
 
 Neo defines various types of neural activity data as illustrated in Fig. \\autoref{fig:neo}. 
 
-![Illustration of different types of data objects handled by Neo{fig:neo}](https://drive.ebrains.eu/lib/cd7e38e1-0bb7-452a-bdd2-574a2bca1641/file/images/auto-upload/image-1641827963349.png?raw=1)
+![Illustration of different types of data objects handled by Neo{fig:neo}](neo-2.png)
 _Illustration of different types of data objects handled by Neo._
 
 NeoViewer currently supports the following subset of these: 
@@ -70,10 +70,10 @@ NeoViewer currently supports the following subset of these:
 * **AnalogSignals**: continuous signal data with a fixed sampling interval (e.g. membrane potentials); see \\autoref{fig:ss_analog}
 * **IrregularlySampledSignal**: analog signal with a varying sampling interval (e.g. recordings from simulations using a variable-time-step integration method)
 
-![Screenshot of spike trains being plotted using the AngularJS implementation of the tool{fig:ss_spiketrain}](https://drive.ebrains.eu/lib/cd7e38e1-0bb7-452a-bdd2-574a2bca1641/file/images/auto-upload/image-1641828062737.png?raw=1)
+![Screenshot of spike trains being plotted using the AngularJS implementation of the tool{fig:ss_spiketrain}]()
 _Screenshot of spike trains being plotted using the AngularJS implementation of the tool._
 
-![Screenshot of all analog signals in a segment being plotted simultaneously using the ReactJS implementation of the tool{fig:ss_analog}](https://drive.ebrains.eu/lib/cd7e38e1-0bb7-452a-bdd2-574a2bca1641/file/images/auto-upload/image-1641828074143.png?raw=1)
+![Screenshot of all analog signals in a segment being plotted simultaneously using the ReactJS implementation of the tool{fig:ss_analog}](SS_react_analog.png)
 _Screenshot of all analog signals in a segment being plotted simultaneously using the ReactJS implementation of the tool_
 
 Support for other types, such as  'Events' (e.g. triggers during behavioural experiments) and 'Epochs' (e.g. the time during which a stimulus is presented) is planned. Another upcoming feature will be to support visualising the newly implemented 'ImageSequence' type which is used for data produced by functional microscopy such as calcium imaging or voltage-sensitive dye imaging.
