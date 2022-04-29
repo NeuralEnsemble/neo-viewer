@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 import os.path
 import hashlib
 import logging
-from time import sleep
+# from time import sleep
 from urllib.request import urlopen, urlretrieve, HTTPError
 from urllib.parse import urlparse, urlunparse
 
@@ -120,6 +120,7 @@ def get_block(request):
             raise NeoViewError('incorrect file type',
                                status.HTTP_415_UNSUPPORTED_MEDIA_TYPE,
                                str(err))
+
     return block, na_file, lazy
 
 
@@ -137,11 +138,14 @@ class Block(APIView):
             # 'channel_indexes': block.channel_indexes,
             'description': block.description or "",
             # 'file_datetime': block.file_datetime,
-            'file_origin': block.file_origin or "",
+            # 'file_origin': block.file_origin or "",
+            'file_origin': request.GET.get('url'),
             # 'index': block.index,
             'name': block.name or "",
             'rec_datetime': block.rec_datetime,
-            'file_name': na_file,
+            # 'source': request.GET.get('url'),
+            # 'file_name': na_file,
+            'file_name': os.path.basename(urlparse(request.GET.get('url')).path),
             'segments': [
                 {
                     'name': s.name or "",
@@ -153,7 +157,8 @@ class Block(APIView):
                     'rec_datetime': s.rec_datetime,
                     'irregularlysampledsignals': [],
                     # 'index': s.index,
-                    'file_origin': s.file_origin or "",
+                    # 'file_origin': s.file_origin or "",
+                    'file_origin': request.GET.get('url'),
                     # 'block': s.block,
                     'analogsignals': [],
                 }
@@ -233,7 +238,8 @@ class Segment(APIView):
         seg_data = {
                     'name': segment.name or "",
                     'description': segment.description or "",
-                    'file_origin': segment.file_origin or "",
+                    # 'file_origin': segment.file_origin or "",
+                    'file_origin': request.GET.get('url'),
                     'annotations': _handle_dict(segment.annotations),
                     'spiketrains': [{} for s in segment.spiketrains],
                     'analogsignals': [{} for a in segment.analogsignals],

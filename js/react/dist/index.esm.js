@@ -1023,7 +1023,12 @@ function Visualizer(props) {
       updateGraphData(currentSegmentId, currentSignalId, currentShowSignals, currentShowSpikeTrains);
     }).catch(function (err) {
       console.log("Error after initializing datastore: ".concat(err));
-      setErrorMessage("There was a problem reading data from the data file (".concat(err, ")"));
+
+      if (!props.source) {
+        setErrorMessage("Source data file has not been specified!");
+      } else {
+        setErrorMessage("There was a problem reading data from the data file (".concat(err, ")"));
+      }
     });
   }, []);
 
@@ -1042,6 +1047,10 @@ function Visualizer(props) {
     } else if (newSegmentId === "all") {
       if (showSignals) {
         datastore.current.getSignalsFromAllSegments(0, newSignalId, props.downSampleFactor).then(function (results) {
+          if (res && Object.keys(res).length === 0 && Object.getPrototypeOf(res) === Object.prototype) {
+            throw "empty";
+          }
+
           setLabels(datastore.current.getLabels(0));
           var formattedData = [];
 
@@ -1050,8 +1059,8 @@ function Visualizer(props) {
 
           try {
             for (_iterator.s(); !(_step = _iterator.n()).done;) {
-              var res = _step.value;
-              formattedData = [].concat(_toConsumableArray(formattedData), _toConsumableArray(formatSignalData(res)));
+              var _res = _step.value;
+              formattedData = [].concat(_toConsumableArray(formattedData), _toConsumableArray(formatSignalData(_res)));
             }
           } catch (err) {
             _iterator.e(err);
@@ -1066,7 +1075,12 @@ function Visualizer(props) {
           });
           setLoading(false);
         }).catch(function (err) {
-          setErrorMessage("There was a problem loading signal #".concat(newSignalId, " from all segments (").concat(err, ")"));
+          if (err === "empty") {
+            setErrorMessage("The specified file does not contain analog signal data!");
+          } else {
+            setErrorMessage("There was a problem loading signal #".concat(newSignalId, " from all segments (").concat(err, ")"));
+          }
+
           setLoading(false);
         });
       } // todo: handle get spike trains from all segments
@@ -1074,6 +1088,10 @@ function Visualizer(props) {
     } else {
       if (showSignals) {
         datastore.current.getSignal(0, newSegmentId, newSignalId, props.downSampleFactor).then(function (res) {
+          if (res && Object.keys(res).length === 0 && Object.getPrototypeOf(res) === Object.prototype) {
+            throw "empty";
+          }
+
           setLabels(datastore.current.getLabels(0));
           setSignalData(formatSignalData(res));
           setAxisLabels({
@@ -1082,13 +1100,22 @@ function Visualizer(props) {
           });
           setLoading(false);
         }).catch(function (err) {
-          setErrorMessage("There was a problem loading signal #".concat(newSignalId, " from segment #").concat(newSegmentId, " (").concat(err, ")"));
+          if (err === "empty") {
+            setErrorMessage("The specified file does not contain analog signal data!");
+          } else {
+            setErrorMessage("There was a problem loading signal #".concat(newSignalId, " from segment #").concat(newSegmentId, " (").concat(err, ")"));
+          }
+
           setLoading(false);
         });
       }
 
       if (showSpikeTrains) {
         datastore.current.getSpikeTrains(0, newSegmentId).then(function (res) {
+          if (res && Object.keys(res).length === 0 && Object.getPrototypeOf(res) === Object.prototype) {
+            throw "empty";
+          }
+
           setSpikeData(transformSpikeData(res));
           setSpikeTrainAxisLabels({
             x: "ms"
@@ -1096,7 +1123,12 @@ function Visualizer(props) {
 
           setLoading(false);
         }).catch(function (err) {
-          setErrorMessage("There was a problem loading spiketrains from segment #".concat(newSegmentId, " (").concat(err, ")"));
+          if (err === "empty") {
+            setErrorMessage("The specified file does not contain spike train data!");
+          } else {
+            setErrorMessage("There was a problem loading spiketrains from segment #".concat(newSegmentId, " (").concat(err, ")"));
+          }
+
           setLoading(false);
         });
       }

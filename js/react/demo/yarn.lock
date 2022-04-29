@@ -574,7 +574,7 @@
 
 "neural-activity-visualizer-react@file:..":
   "resolved" "file:.."
-  "version" "1.0.0"
+  "version" "1.0.2"
   dependencies:
     "react-scripts" "3.4.3"
 

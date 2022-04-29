@@ -7,7 +7,8 @@ build_api_image_prod:
     refs:
       - main
   script:
-    - docker build -f api/deployment/Dockerfile.prod -t docker-registry.ebrains.eu/neuralactivity/neo-viewer:prod .
+    - cd api
+    - docker build -f deployment/Dockerfile.prod -t docker-registry.ebrains.eu/neuralactivity/neo-viewer:prod .
     - docker login -u $DOCKER_REGISTRY_USER -p $DOCKER_REGISTRY_SECRET docker-registry.ebrains.eu
     - docker push docker-registry.ebrains.eu/neuralactivity/neo-viewer:prod
   tags:
@@ -20,7 +21,8 @@ build_api_image_staging:
     refs:
       - staging
   script:
-    - docker build -f api/deployment/Dockerfile.staging -t docker-registry.ebrains.eu/neuralactivity/neo-viewer:staging .
+    - cd api
+    - docker build -f deployment/Dockerfile.staging -t docker-registry.ebrains.eu/neuralactivity/neo-viewer:staging .
     - docker login -u $DOCKER_REGISTRY_USER -p $DOCKER_REGISTRY_SECRET docker-registry.ebrains.eu
     - docker push docker-registry.ebrains.eu/neuralactivity/neo-viewer:staging
   tags:
@@ -33,7 +35,8 @@ build_api_image_dev:
     refs:
       - development
   script:
-    - docker build -f api/deployment/Dockerfile.dev -t docker-registry.ebrains.eu/neuralactivity/neo-viewer:dev .
+    - cd api
+    - docker build -f deployment/Dockerfile.dev -t docker-registry.ebrains.eu/neuralactivity/neo-viewer:dev .
     - docker login -u $DOCKER_REGISTRY_USER -p $DOCKER_REGISTRY_SECRET docker-registry.ebrains.eu
     - docker push docker-registry.ebrains.eu/neuralactivity/neo-viewer:dev
   tags:

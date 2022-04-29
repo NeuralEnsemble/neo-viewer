@@ -1,0 +1,280 @@
+/* Font size for different sections  */
+.intro-text {
+    font-size: 1.2em;
+}
+
+/* Justify text */
+.just-text {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+/* Obtain smaller sized materialize CSS buttons (if needed) */
+.btn-small {
+    border: none;
+    border-radius: 2px;
+    display: inline-block;
+    height: 32px;
+    line-height: 32px;
+    padding-left: 16px;
+    padding-right: 16px;
+    text-transform: uppercase;
+    max-font-size: 13pt;
+    vertical-align: middle;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* For using materialize CSS tabs (if needed) */
+.tabs .tab {
+    text-transform: none;
+}
+
+.tabs .tab a.active {
+    background-color: #ffb74d;
+    color: #000;
+}
+
+/* Text align center */
+.ta-center {
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* HBP icon style */
+.hbp-icon {
+    height: 30px;
+    width: 30px;
+    margin-right: 20px;
+}
+
+/* HBP icon style */
+.hbp-icon-small {
+    height: 22px;
+    width: 22px;
+}
+
+.hbp-icon-big {
+    height: 42px;
+    width: 42px;
+}
+
+.section-title {
+    background: #fff8e1;
+    padding: 6px;
+    margin-top: 50px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+}
+
+.title-style {
+    font-family: 'Merriweather', 'serif';
+    line-height: 1.5;
+    font-size: 28px;
+}
+
+.subtitle {
+    font-size: 15px;
+}
+
+/* For journal title header */
+.box {
+    position: relative;
+    width: 100%;
+    padding: 1em 1.5em;
+    margin: 2em auto;
+    color: #000;
+    background: #ffd180;
+    overflow: hidden;
+}
+
+.box.rounded {
+    -moz-border-radius: 10px 10px 10px 10px;
+    border-radius: 10px 10px 10px 10px;
+}
+
+.box.rounded.centered {
+    text-align: center;
+}
+
+/* For abstract box with folder corner */
+.note {
+    position: relative;
+    width: 100%;
+    padding: 1em 1.5em;
+    margin: 2em auto;
+    color: #000;
+    background: #fff8e1;
+    overflow: hidden;
+}
+
+.note:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-width: 0 16px 16px 0;
+    border-style: solid;
+    border-color: #fff #fff #658E15 #658E15;
+    background: #ffca28;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), -1px 1px 1px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), -1px 1px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), -1px 1px 1px rgba(0, 0, 0, 0.2);
+    /* Firefox 3.0 damage limitation */
+    display: block;
+    width: 0;
+}
+
+.note.rounded {
+    -moz-border-radius: 5px 0 5px 5px;
+    border-radius: 5px 0 5px 5px;
+}
+
+.note.rounded:before {
+    border-width: 8px;
+    border-color: #fff #fff transparent transparent;
+    -moz-border-radius: 0 0 0 5px;
+    border-radius: 0 0 0 5px;
+}
+
+/* For HBP rainbow footer */
+.rainbow-row {
+    display: table;
+    table-layout: fixed;
+    width: 100%
+}
+
+.rainbow-row.rr-small>div {
+    height: 3px;
+}
+
+.rainbow-row>div {
+    width: 12.5%;
+    display: table-cell;
+    height: 10px
+}
+
+.rainbow-row>div:nth-child(1) {
+    background: #EF5450
+}
+
+.rainbow-row>div:nth-child(2) {
+    background: #F47716
+}
+
+.rainbow-row>div:nth-child(3) {
+    background: #FBB535
+}
+
+.rainbow-row>div:nth-child(4) {
+    background: #FBCB3F
+}
+
+.rainbow-row>div:nth-child(5) {
+    background: #33AABB
+}
+
+.rainbow-row>div:nth-child(6) {
+    background: #2D8EB3
+}
+
+.rainbow-row>div:nth-child(7) {
+    background: #2070A8
+}
+
+.rainbow-row>div:nth-child(8) {
+    background: #164E75
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+        monospace;
+}
+
+.container {
+    width: 75%;
+    margin: auto;
+}
+
+.rounded-box {
+    background: #ffd180;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    height: 210px;
+    padding: 0px 10px 0px 10px;
+}
+
+.title-container {
+    justify-content: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+/* .title-style {
+font-family: "Roboto", "Helvetica", "Arial", "sans-serif";
+font-size: 2.125rem;
+color: #000000;
+font-weight: 900;
+}
+
+.subtitle-style {
+font-family: "Roboto", "Helvetica", "Arial", "sans-serif";
+font-size: 1.5rem;
+color: #000000;
+font-weight: 400;
+} */
+
+.message-box {
+    width: 80%;
+    margin: auto;
+}
+
+.text {
+    line-height: 1.75;
+    font-size: 16px;
+    text-align: justify;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+input {
+    border-bottom: 0 !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+}
+
+.btn-round {
+    border: solid 1px;
+    border-color: #000000;
+    color: #000000;
+    font-weight: bolder;
+    font-size: 15px;
+    overflow: hidden;
+    margin: 1rem;
+    /* vertical-align: middle; */
+    /* text-transform: uppercase; */
+    width: 175px;
+    height: 45px;
+    padding-top: 3px;
+    border-radius: 10em;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 1px -2px, rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 1px 5px 0px;
+    
+}
+
+.hr-flex-distribute {
+    display: flex;
+    justify-content: space-evenly;
+    height: 100px;
+}
+
+.orange {
+    background-color:#ff9800;
+}

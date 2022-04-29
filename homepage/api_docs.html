@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <meta name="viewport" content="width = device-width, initial-scale = 1">
+    <link rel="icon" href="favicon/Favicon_32x32.png">
+    <link rel="apple-touch-icon" href="favicon/Favicon_32x32.png">
+    <title>Neural Activity Visualizer - API Docs</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./css/styles.css">
+    <link rel="stylesheet" type="text/css" href="./css/api_docs.css">
+</head>
+
+<body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root">
+        <div class="container"><br>
+            <div class="box rounded centered" style="margin-top: 5px; padding-top: 0.75em; padding-bottom: 0.75em;"><a
+                    href="https://ebrains.eu/" target="_blank" rel="noopener noreferrer"
+                    class="waves-effect waves-light" style="text-align: center; color: black;">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td style="padding-top: 0px; padding-bottom: 0px;"><img class="ebrains-icon-small"
+                                        src="./imgs/ebrains_logo.svg" alt="EBRAINS logo" style="height: 60px;"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </a>
+                <h5 class="title-style">Neural Activity Visualizer</h5>
+            </div>
+
+            <h5 style="text-align: center; line-height: 2; font-weight: bolder;">API Documentation</h5>
+            
+            <div class="text" style="margin: 15px 35px 15px 35px">
+                The API follows the Neo container structure: the outermost container is the <strong>Block</strong>,
+                which contains one or more <strong>Segments</strong> (a continuous recording period, corresponding
+                for example to one trial or one stimulus presentation).
+                Each segment contains one or more <strong>AnalogSignals</strong>, each of which may be multi-channel.
+            </div>
+            <div class="text"
+                style="margin: 15px 35px 15px 35px; background-color: #fcf8e3; border:solid 1px; border-color: #faebcc; color: #8a6d3b; padding: 10px">
+                <strong>Spiketrains</strong>, <strong>Events</strong> and <strong>Epochs</strong> are not yet supported,
+                but are coming soon!
+            </div>
+            <div class="text" style="margin: 15px 35px 25px 35px">
+                <strong>Note: </strong>All endpoints support only GET requests.
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title h3_api">/blockdata/</h3>
+                    <p>Return a list of all the <strong>Blocks</strong> in the file.</p>
+                </div>
+                <div class="panel-body">
+                    <h4 class="h4_api">URL Params</h4>
+
+                    <h5 class="h5_api">Required:</h5>
+                    <dl class="dl-horizontal">
+                        <dt>url=[URL]</dt>
+                        <dd>Location of data file to be viewed</dd>
+                    </dl>
+
+                    <h4 class="h4_api">Success Response:</h4>
+                    <dl class="dl-horizontal">
+                        <dt>Code:</dt>
+                        <dd>200 OK</dd>
+                        <dt>Content:</dt>
+                        <dd>
+                            <pre>{
+    "block": [
+        {
+            "annotations": {
+                "key1": "value1",
+                "key2": "value2"
+            },
+            "name": "Name of data block",
+            "description": "Description of data block",
+            "file_origin": "original_file_name.dat",
+            "rec_datetime": "2018-04-01T12:00:00",
+            "segments": [
+                {
+                    "name": "Name of data segment",
+                    "annotations": {
+                        "key3": "value3",
+                        "key4": "value4"
+                    },
+                    "description": "Description of data segment",
+                    "rec_datetime": "2018-04-01T12:00:00",
+                    "file_origin": "original_file_name.dat",
+                    "analogsignals": [],
+                },
+                {
+                    ...
+                },
+                ...
+            ]
+        },
+        {
+            ...
+        },
+        ...
+    ]
+}
+                                </pre>
+                        </dd>
+                    </dl>
+
+                    <h4 class="h4_api">Error Responses:</h4>
+                    <dl class="dl-horizontal">
+                        <dt>Code:</dt>
+                        <dd>404 Not Found</dd>
+                        <dt>Content:</dt>
+                        <dd>
+                            <code>
+                            {
+                                error : "File doesn't exist at this URL"
+                            }
+                            </code>
+                        </dd>
+                        <dt>Code:</dt>
+                        <dd>415 Unsupported Media Type</dd>
+                        <dt>Content:</dt>
+                        <dd>
+                            <code>
+                            {
+                                error : "Neo is unable to read this file"
+                            }
+                            </code>
+                        </dd>
+                    </dl>
+
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title h3_api">/segmentdata/</h3>
+                    <p>Return information about an individual <strong>Segment</strong>,
+                        including metadata about the signals contained in the segment,
+                        but not the signal data themselves.</p>
+                </div>
+                <div class="panel-body">
+                    <h4 class="h4_api">URL Params</h4>
+
+                    <h5 class="h5_api">Required:</h5>
+                    <dl class="dl-horizontal">
+                        <dt>url=[URL]</dt>
+                        <dd>Location of data file to be viewed</dd>
+                    </dl>
+
+                    <h5 class="h5_api">Optional:</h5>
+                    <dl class="dl-horizontal">
+                        <dt>segment_id=[integer]</dt>
+                        <dd>ID of the segment to be viewed</dd>
+                    </dl>
+
+                    <h4 class="h4_api">Success Response:</h4>
+                    <dl class="dl-horizontal">
+                        <dt>Code:</dt>
+                        <dd>200 OK</dd>
+                        <dt>Content:</dt>
+                        <dd>
+                            <pre>{
+"name": "Name of the segment",
+"description": "Description of the segment",
+"file_origin": "original_file_name.dat",
+"annotations": {
+    "key3": "value3",
+    "key4": "value4"
+}
+"analogsignals": [{}, {}, ...],
+"as_prop": [
+    {"size": 1000, "name": "signal1_name"},
+    {"size": 500, "name": "signal2_name"},
+    ...
+]
+}
+                                </pre>
+                        </dd>
+                    </dl>
+
+                    <h4 class="h4_api">Error Responses:</h4>
+                    <dl class="dl-horizontal">
+                        <dt>Code:</dt>
+                        <dd>404 Not Found</dd>
+                        <dt>Content:</dt>
+                        <dd>
+                            <code>
+                            {
+                                error : "File doesn't exist at this URL"
+                            }
+                            </code>
+                        </dd>
+                        <dt>Code:</dt>
+                        <dd>415 Unsupported Media Type</dd>
+                        <dt>Content:</dt>
+                        <dd>
+                            <code>
+                            {
+                                error : "Neo is unable to read this file"
+                            }
+                            </code>
+                        </dd>
+                    </dl>
+
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title h3_api">/analogsignaldata/</h3>
+                    <p>Return an individual <strong>AnalogSignal</strong>,
+                        both metadata and the data array.</p>
+                </div>
+                <div class="panel-body">
+                    <h4 class="h4_api">URL Params</h4>
+
+                    <h5 class="h5_api">Required:</h5>
+                    <dl class="dl-horizontal">
+                        <dt>url=[URL]</dt>
+                        <dd>Location of data file to be viewed</dd>
+                    </dl>
+
+                    <h5 class="h5_api">Optional:</h5>
+                    <dl class="dl-horizontal">
+                        <dt>segment_id=[integer]</dt>
+                        <dd>ID of the segment containing the signal</dd>
+                        <dt>analog_signal_id=[integer]</dt>
+                        <dd>ID of the signal to be viewed</dd>
+                    </dl>
+
+                    <h4 class="h4_api">Success Response:</h4>
+                    <dl class="dl-horizontal">
+                        <dt>Code:</dt>
+                        <dd>200 OK</dd>
+                        <dt>Content:</dt>
+                        <dd>
+                            <pre>{
+    "name": "Name of the signal",
+    "values": [-71.0, -72.0, -71.5, -71.5, -71.5, -71.0, -72.0, -71.0, -71.5, -71.0, -71.0, -72.0, ...],
+    "values_units": "mV",
+    "times": [0.0, 0.0001, 0.0002, 0.0003, 0.0004, 0.0005, 0.0006, 0.0007, 0.0008, 0.0009, 0.001, ...],
+    "times_dimensionality": "ms",
+    "t_start": 0.0,
+    "t_stop": 1000.0,
+    "sampling_rate": 10.0,
+    "sampling_rate_units": "kHz"
+}
+                                </pre>
+                        </dd>
+                    </dl>
+
+                    <h4 class="h4_api">Error Responses:</h4>
+                    <dl class="dl-horizontal">
+                        <dt>Code:</dt>
+                        <dd>404 Not Found</dd>
+                        <dt>Content:</dt>
+                        <dd>
+                            <code>
+                            {
+                                error : "File doesn't exist at this URL"
+                            }
+                            </code>
+                        </dd>
+                        <dt>Code:</dt>
+                        <dd>415 Unsupported Media Type</dd>
+                        <dt>Content:</dt>
+                        <dd>
+                            <code>
+                            {
+                                error : "Neo is unable to read this file"
+                            }
+                            </code>
+                        </dd>
+                    </dl>
+
+                </div>
+            </div>
+            <br>
+            <div class="rainbow-row">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <p class="text" style="margin: 25px 10px 10px 10px;">This project has received funding from the European Union’s
+                Horizon 2020 Framework Programme for Research and Innovation under the Specific Grant Agreements No.
+                785907 and
+                No. 945539 (Human Brain Project SGA2 and SGA3).</p>
+            <p class="text" style="margin: 10px 10px 40px 10px;">If you encounter any problems, <a
+                    href="https://github.com/NeuralEnsemble/neo-viewer/issues/new" target="_blank"
+                    rel="noopener noreferrer">please let us know.</a></p>
+        </div>
+    </div>
+</body>
+
+</html>

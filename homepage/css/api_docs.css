@@ -1,0 +1,256 @@
+.panel { 
+    margin-bottom: 20px; 
+    background-color: rgb(255, 255, 255); 
+    border: 1px solid transparent; 
+    border-radius: 4px; 
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05); 
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 1px; 
+    border-top-width: 1px; 
+    border-right-width: 1px; 
+    border-bottom-width: 1px; 
+    border-left-width: 1px; 
+    border-top-style: solid; 
+    border-right-style: solid; 
+    border-bottom-style: solid; 
+    border-left-style: solid; 
+    border-top-color: transparent; 
+    border-right-color: transparent; 
+    border-bottom-color: transparent; 
+    border-left-color: transparent; 
+    border-image-source: initial; 
+    border-image-slice: initial; 
+    border-image-width: initial; 
+    border-image-outset: initial; 
+    border-image-repeat: initial; 
+    border-top-left-radius: 4px; 
+    border-top-right-radius: 4px; 
+    border-bottom-right-radius: 4px; 
+    border-bottom-left-radius: 4px;
+} 
+
+.panel-default { 
+    border-color: #ddd; 
+    border-top-color: rgb(221, 221, 221); 
+    border-right-color: rgb(221, 221, 221); 
+    border-bottom-color: rgb(221, 221, 221); 
+    border-left-color: rgb(221, 221, 221);
+} 
+
+:after,:before { 
+    -webkit-box-sizing: border-box; 
+    -moz-box-sizing: border-box; 
+    box-sizing: border-box;
+} 
+
+.panel-heading { 
+    padding: 10px 15px; 
+    border-bottom: 1px solid transparent; 
+    border-top-left-radius: 3px; 
+    border-top-right-radius: 3px; 
+    padding-top: 10px; 
+    padding-right: 15px; 
+    padding-bottom: 10px; 
+    padding-left: 15px; 
+    border-bottom-width: 1px; 
+    border-bottom-style: solid; 
+    border-bottom-color: transparent;
+} 
+
+.panel-default .panel-heading  { 
+    color: rgb(51, 51, 51); 
+    background-color: rgb(245, 245, 245); 
+    border-color: #ddd; 
+    border-top-color: rgb(221, 221, 221); 
+    border-right-color: rgb(221, 221, 221); 
+    border-bottom-color: rgb(221, 221, 221); 
+    border-left-color: rgb(221, 221, 221);
+} 
+
+.panel-body { 
+    padding: 15px; 
+    padding-top: 15px; 
+    padding-right: 15px; 
+    padding-bottom: 15px; 
+    padding-left: 15px;
+} 
+
+.btn-group:after ,.btn-group:before ,.btn-toolbar:after,.btn-toolbar:before,.clearfix:after,.clearfix:before,.container-fluid:after,.container-fluid:before,.container:after,.container:before,.dl-horizontal dd:after ,.dl-horizontal dd:before ,.form-group:after ,.form-group:before ,.modal-footer:after,.modal-footer:before,.modal-header:after,.modal-header:before,.nav:after,.nav:before,.navbar-collapse:after,.navbar-collapse:before,.navbar-header:after,.navbar-header:before,.navbar:after,.navbar:before,.pager:after,.pager:before,.panel-body:after,.panel-body:before,.row:after,.row:before { 
+    display: table; 
+    content: " ";
+} 
+
+.btn-group:after ,.btn-toolbar:after,.clearfix:after,.container-fluid:after,.container:after,.dl-horizontal dd:after ,.form-group:after ,.modal-footer:after,.modal-header:after,.nav:after,.navbar-collapse:after,.navbar-header:after,.navbar:after,.pager:after,.panel-body:after,.row:after { 
+    clear: both;
+} 
+
+.panel-title { 
+    margin-top: 0px; 
+    margin-bottom: 0px; 
+    font-size: 16px; 
+    color: inherit;
+} 
+
+p { 
+    margin: 0 0 10px; 
+    margin-top: 0px; 
+    margin-right: 0px; 
+    margin-bottom: 10px; 
+    margin-left: 0px;
+} 
+
+h3.h3_api { 
+    font-family: inherit; 
+    font-weight: 500; 
+    line-height: 1.1; 
+    color: inherit;
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+} 
+
+h4.h4_api { 
+    font-family: inherit; 
+    font-weight: 500; 
+    line-height: 1.1; 
+    color: inherit;
+    font-size: 18px;
+} 
+
+h5.h5_api { 
+    font-family: inherit; 
+    font-weight: 500; 
+    line-height: 1.1; 
+    color: inherit;
+    font-size: 14px;
+} 
+
+dl { 
+    margin-top: 0px; 
+    margin-bottom: 20px;
+} 
+
+strong { 
+    font-weight: 700;
+} 
+
+dt { 
+    line-height: 1.42857;
+} 
+
+dt { 
+    font-weight: 700;
+} 
+
+@media (min-width: 768px){ 
+  .dl-horizontal dt  { 
+    float: left; 
+    width: 160px; 
+    overflow: hidden; 
+    clear: left; 
+    text-align: right; 
+    text-overflow: ellipsis; 
+    white-space: nowrap; 
+    overflow-x: hidden; 
+    overflow-y: hidden;
+  } 
+}     
+
+dd { 
+    line-height: 1.42857;
+} 
+
+dd { 
+    margin-left: 0px;
+} 
+
+@media (min-width: 768px){ 
+  .dl-horizontal dd  { 
+    margin-left: 180px;
+  } 
+}     
+
+pre { 
+    overflow: auto; 
+    overflow-x: auto; 
+    overflow-y: auto;
+} 
+
+pre { 
+    font-family: monospace, monospace; 
+    font-size: 1em;
+} 
+
+pre { 
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+} 
+
+pre { 
+    display: block; 
+    padding: 9.5px; 
+    margin: 0 0 10px; 
+    font-size: 13px; 
+    line-height: 1.42857; 
+    color: rgb(51, 51, 51); 
+    word-break: break-all; 
+    word-wrap: break-word; 
+    background-color: rgb(245, 245, 245); 
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
+    padding-top: 9.5px; 
+    padding-right: 9.5px; 
+    padding-bottom: 9.5px; 
+    padding-left: 9.5px; 
+    margin-top: 0px; 
+    margin-right: 0px; 
+    margin-bottom: 10px; 
+    margin-left: 0px; 
+    overflow-wrap: break-word; 
+    border-top-width: 1px; 
+    border-right-width: 1px; 
+    border-bottom-width: 1px; 
+    border-left-width: 1px; 
+    border-top-style: solid; 
+    border-right-style: solid; 
+    border-bottom-style: solid; 
+    border-left-style: solid; 
+    border-top-color: rgb(204, 204, 204); 
+    border-right-color: rgb(204, 204, 204); 
+    border-bottom-color: rgb(204, 204, 204); 
+    border-left-color: rgb(204, 204, 204); 
+    border-image-source: initial; 
+    border-image-slice: initial; 
+    border-image-width: initial; 
+    border-image-outset: initial; 
+    border-image-repeat: initial; 
+    border-top-left-radius: 4px; 
+    border-top-right-radius: 4px; 
+    border-bottom-right-radius: 4px; 
+    border-bottom-left-radius: 4px;
+} 
+
+code { 
+    font-family: monospace, monospace; 
+    font-size: 1em;
+} 
+
+code { 
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+} 
+
+code { 
+    padding: 2px 4px; 
+    font-size: 90%; 
+    color: rgb(199, 37, 78); 
+    background-color: rgb(249, 242, 244); 
+    border-radius: 4px; 
+    padding-top: 2px; 
+    padding-right: 4px; 
+    padding-bottom: 2px; 
+    padding-left: 4px; 
+    border-top-left-radius: 4px; 
+    border-top-right-radius: 4px; 
+    border-bottom-right-radius: 4px; 
+    border-bottom-left-radius: 4px;
+} 
+
+

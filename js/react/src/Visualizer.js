@@ -122,9 +122,15 @@ export default function Visualizer(props) {
             })
             .catch((err) => {
                 console.log(`Error after initializing datastore: ${err}`);
-                setErrorMessage(
-                    `There was a problem reading data from the data file (${err})`
-                );
+                if (!props.source) {
+                    setErrorMessage(
+                        `Source data file has not been specified!`
+                    );
+                } else{
+                    setErrorMessage(
+                        `There was a problem reading data from the data file (${err})`
+                    );
+                }
             });
     }, []);
 
@@ -155,6 +161,11 @@ export default function Visualizer(props) {
                         props.downSampleFactor
                     )
                     .then((results) => {
+                        if (res
+                            && Object.keys(res).length === 0
+                            && Object.getPrototypeOf(res) === Object.prototype) {
+                            throw "empty"
+                        }
                         setLabels(datastore.current.getLabels(0));
                         let formattedData = [];
                         for (const res of results) {
@@ -171,9 +182,15 @@ export default function Visualizer(props) {
                         setLoading(false);
                     })
                     .catch((err) => {
-                        setErrorMessage(
-                            `There was a problem loading signal #${newSignalId} from all segments (${err})`
-                        );
+                        if (err === "empty") {
+                            setErrorMessage(
+                                `The specified file does not contain analog signal data!`
+                            );
+                        } else {
+                            setErrorMessage(
+                                `There was a problem loading signal #${newSignalId} from all segments (${err})`
+                            );
+                        }
                         setLoading(false);
                     });
             }
@@ -188,6 +205,11 @@ export default function Visualizer(props) {
                         props.downSampleFactor
                     )
                     .then((res) => {
+                        if (res
+                            && Object.keys(res).length === 0
+                            && Object.getPrototypeOf(res) === Object.prototype) {
+                            throw "empty"
+                        }
                         setLabels(datastore.current.getLabels(0));
                         setSignalData(formatSignalData(res));
                         setAxisLabels({
@@ -197,9 +219,15 @@ export default function Visualizer(props) {
                         setLoading(false);
                     })
                     .catch((err) => {
-                        setErrorMessage(
-                            `There was a problem loading signal #${newSignalId} from segment #${newSegmentId} (${err})`
-                        );
+                        if (err === "empty") {
+                            setErrorMessage(
+                                `The specified file does not contain analog signal data!`
+                            );
+                        } else {
+                            setErrorMessage(
+                                `There was a problem loading signal #${newSignalId} from segment #${newSegmentId} (${err})`
+                            );
+                        }
                         setLoading(false);
                     });
             }
@@ -207,14 +235,25 @@ export default function Visualizer(props) {
                 datastore.current
                     .getSpikeTrains(0, newSegmentId)
                     .then((res) => {
+                        if (res
+                            && Object.keys(res).length === 0
+                            && Object.getPrototypeOf(res) === Object.prototype) {
+                            throw "empty"
+                        }
                         setSpikeData(transformSpikeData(res));
                         setSpikeTrainAxisLabels({ x: "ms" }); // todo: use 'units' from data
                         setLoading(false);
                     })
                     .catch((err) => {
-                        setErrorMessage(
-                            `There was a problem loading spiketrains from segment #${newSegmentId} (${err})`
-                        );
+                        if (err === "empty") {
+                            setErrorMessage(
+                                `The specified file does not contain spike train data!`
+                            );
+                        } else {
+                            setErrorMessage(
+                                `There was a problem loading spiketrains from segment #${newSegmentId} (${err})`
+                            );
+                        }
                         setLoading(false);
                     });
             }

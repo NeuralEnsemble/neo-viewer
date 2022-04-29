@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <meta name="viewport" content="width = device-width, initial-scale = 1">
+    <link rel="icon" href="favicon/Favicon_32x32.png">
+    <link rel="apple-touch-icon" href="favicon/Favicon_32x32.png">
+    <title>Neural Activity Visualizer - API Docs</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./css/styles.css">
+</head>
+
+<body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root">
+        <div class="container"><br>
+            <div class="box rounded centered" style="margin-top: 5px; padding-top: 0.75em; padding-bottom: 0.75em;"><a
+                    href="https://ebrains.eu/" target="_blank" rel="noopener noreferrer"
+                    class="waves-effect waves-light" style="text-align: center; color: black;">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td style="padding-top: 0px; padding-bottom: 0px;"><img class="ebrains-icon-small"
+                                        src="./imgs/ebrains_logo.svg" alt="EBRAINS logo" style="height: 60px;"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </a>
+                <h5 class="title-style">Neural Activity Visualizer</h5>
+            </div>
+            <div class="text" style="margin: 35px 35px 25px 35px;">
+                The neural-activity-visualizer Javascript app, enables web-browser
+                visualisation of electrophysiology datafiles in any format supported by the Neo library. It makes use of
+                the <a href="https://neo-viewer.brainsimulation.eu/api_docs" target="_blank"
+                    rel="noopener noreferrer">Neo Viewer
+                    REST API</a>.
+            </div>
+
+            <h5 style="text-align: center; line-height: 2; font-weight: bolder;">Quick Overview</h5>
+            <div class="text" style="margin: 15px 35px 25px 35px;">
+                The component was developed to produce graphical representations of neural activity data based on the
+                Neo object model.
+                <a href="http://neuralensemble.org/neo" target="_blank" rel="noopener noreferrer">Neo</a>
+                is an open source API implemented in Python supporting many file formats, including
+                several proprietary formats (e.g. AlphaOmega, Plexon, NeuroExplorer), open formats (e.g. Neurodata
+                Without
+                Borders, Klustakwik, Elan) and generic file formats (e.g. MATLAB, ASCII, HDF5). Neo loads this data into
+                a
+                common object model with the aim of increasing interoperability of various software tools used in
+                electrophysiology and thus facilitating sharing of data between different projects. Neo's focus is
+                solely
+                on the structure of the data, with separate tools being required for their analysis. Our compoment comes
+                in
+                at this stage by enabling interactive visualization of data. It makes use of the open source
+                <a href="https://www.djangoproject.com/" target="_blank" rel="noopener noreferrer">Plotly</a>
+                library
+                for visualisation, owing to its efficiency in handling large data, and
+                <a href="https://plotly.com/javascript/" target="_blank" rel="noopener noreferrer">Django</a>
+                Python web framework for the backend.
+            </div>
+            <hr style="color: #CCCCCC">
+            <h5 style="text-align: center; line-height: 2; font-weight: bolder;">Resources</h5>
+
+            <div class="hr-flex-distribute">
+                <a class="waves-effect waves-light btn btn-round orange"
+                    href="https://github.com/NeuralEnsemble/neo-viewer"
+                    target="_blank" rel="noopener noreferrer">GitHub Repo</a>
+                <a class="waves-effect waves-light btn btn-round orange"
+                    href="https://neo-viewer.brainsimulation.eu/api_docs"
+                    target="_blank" rel="noopener noreferrer">API Docs</a>
+                <a class="waves-effect waves-light btn btn-round orange"
+                    href="https://neo-viewer.brainsimulation.eu/react"
+                    target="_blank" rel="noopener noreferrer">React Demo</a>
+                <a class="waves-effect waves-light btn btn-round orange"
+                    href="https://neo-viewer.brainsimulation.eu/angularjs"
+                    target="_blank" rel="noopener noreferrer">Angular Demo</a>
+            </div>
+
+            <br>
+            <div class="rainbow-row">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <p class="text" style="margin: 25px 10px 10px 10px;">This project has received funding from the European
+                Union’s
+                Horizon 2020 Framework Programme for Research and Innovation under the Specific Grant Agreements No.
+                785907 and
+                No. 945539 (Human Brain Project SGA2 and SGA3).</p>
+            <p class="text" style="margin: 10px 10px 40px 10px;">If you encounter any problems, <a
+                    href="https://github.com/NeuralEnsemble/neo-viewer/issues/new" target="_blank"
+                    rel="noopener noreferrer">please let us know.</a></p>
+        </div>
+    </div>
+</body>
+
+</html>

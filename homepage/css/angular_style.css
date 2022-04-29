@@ -1,0 +1,578 @@
+@charset "UTF-8";
+
+@font-face { 
+    font-family:'Glyphicons Halflings';
+    src:url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.eot);
+    src:url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.eot?#iefix) format('embedded-opentype'),url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.woff2) format('woff2'),url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.woff) format('woff'),url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.ttf) format('truetype'),url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular) format('svg');
+  } 
+
+.angular-container * {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.angular-container .row {
+	margin-right: -15px;
+	margin-left: -15px;
+}
+
+.angular-container .container {
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+@media (min-width: 768px) {
+	.angular-container .container {
+		width: 750px;
+	}
+}
+
+@media (min-width: 992px) {
+	.angular-container .container {
+		width: 970px;
+	}
+}
+
+@media (min-width: 1200px) {
+	.angular-container .container {
+		width: 1170px;
+	}
+}
+
+.angular-container body {
+	margin: 0;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+}
+
+.angular-container body {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	line-height: 1.42857;
+	color: #333333;
+	background-color: white;
+}
+
+.angular-container html {
+	font-family: sans-serif;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+	text-size-adjust: 100%;
+}
+
+.angular-container html {
+	font-size: 10px;
+	-webkit-tap-highlight-color: transparent;
+}
+
+.angular-container .panel {
+	margin-bottom: 20px;
+	background-color: white;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+	box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 1px;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: transparent;
+	border-right-color: transparent;
+	border-bottom-color: transparent;
+	border-left-color: transparent;
+	border-image-source: initial;
+	border-image-slice: initial;
+	border-image-width: initial;
+	border-image-outset: initial;
+	border-image-repeat: initial;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+	border-bottom-left-radius: 4px;
+}
+
+.angular-container .panel-default {
+	border-color: #ddd;
+	border-top-color: #dddddd;
+	border-right-color: #dddddd;
+	border-bottom-color: #dddddd;
+	border-left-color: #dddddd;
+}
+
+.angular-container :after, .angular-container :before {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.angular-container .panel-heading {
+	padding: 10px 15px;
+	border-bottom: 1px solid transparent;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	padding-top: 10px;
+	padding-right: 15px;
+	padding-bottom: 10px;
+	padding-left: 15px;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: transparent;
+}
+
+.angular-container .panel-default .panel-heading {
+	color: #333333;
+	background-color: whitesmoke;
+	border-color: #ddd;
+	border-top-color: #dddddd;
+	border-right-color: #dddddd;
+	border-bottom-color: #dddddd;
+	border-left-color: #dddddd;
+}
+
+.angular-container p {
+	margin: 0 0 10px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 10px;
+	margin-left: 0px;
+}
+
+.angular-container .ng-hide:not(.ng-hide-animate) {
+	display: none !important;
+}
+
+.angular-container button {
+	margin: 0;
+	font: inherit;
+	color: inherit;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	font-style: inherit;
+	font-variant-ligatures: inherit;
+	font-variant-caps: inherit;
+	font-variant-numeric: inherit;
+	font-variant-east-asian: inherit;
+	font-weight: inherit;
+	font-stretch: inherit;
+	font-size: inherit;
+	line-height: inherit;
+	font-family: inherit;
+}
+
+.angular-container button {
+	overflow: visible;
+	overflow-x: visible;
+	overflow-y: visible;
+}
+
+.angular-container button {
+	text-transform: none;
+}
+
+.angular-container button {
+	-webkit-appearance: button;
+	cursor: pointer;
+	appearance: button;
+}
+
+.angular-container button {
+	font-family: inherit;
+	font-size: inherit;
+	line-height: inherit;
+}
+
+.angular-container .btn {
+	display: inline-block;
+	padding: 6px 12px;
+	margin-bottom: 0px;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 1.42857;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	-ms-touch-action: manipulation;
+	touch-action: manipulation;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	background-image: none;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	padding-top: 6px;
+	padding-right: 12px;
+	padding-bottom: 6px;
+	padding-left: 12px;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: transparent;
+	border-right-color: transparent;
+	border-bottom-color: transparent;
+	border-left-color: transparent;
+	border-image-source: initial;
+	border-image-slice: initial;
+	border-image-width: initial;
+	border-image-outset: initial;
+	border-image-repeat: initial;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+	border-bottom-left-radius: 4px;
+}
+
+.angular-container .btn-link {
+	font-weight: 400;
+	color: #337ab7;
+	border-radius: 0;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 0px;
+	border-bottom-left-radius: 0px;
+}
+
+.angular-container .btn-link {
+	background-color: transparent;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+.angular-container .btn-link {
+	border-color: transparent;
+	border-top-color: transparent;
+	border-right-color: transparent;
+	border-bottom-color: transparent;
+	border-left-color: transparent;
+}
+
+.angular-container .btn:hover {
+	color: #333333;
+	text-decoration: none;
+	text-decoration-line: none;
+	text-decoration-thickness: initial;
+	text-decoration-style: initial;
+	text-decoration-color: initial;
+}
+
+.angular-container .btn-link, .angular-container .btn-link:active, .angular-container .btn-link:hover {
+	border-color: transparent;
+	border-top-color: transparent;
+	border-right-color: transparent;
+	border-bottom-color: transparent;
+	border-left-color: transparent;
+}
+
+.angular-container .btn-link:hover {
+	color: #23527c;
+	text-decoration: underline;
+	background-color: transparent;
+	text-decoration-line: underline;
+	text-decoration-thickness: initial;
+	text-decoration-style: initial;
+	text-decoration-color: initial;
+}
+
+.angular-container a {
+	background-color: transparent;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.angular-container a {
+	color: #337ab7;
+	text-decoration: none;
+	text-decoration-line: none;
+	text-decoration-thickness: initial;
+	text-decoration-style: initial;
+	text-decoration-color: initial;
+}
+
+.angular-container a:active, .angular-container a:hover {
+	outline: 0;
+	outline-color: initial;
+	outline-style: initial;
+	outline-width: 0px;
+    background-color: transparent;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.angular-container a:hover {
+	color: #23527c;
+	text-decoration: underline;
+	text-decoration-line: underline;
+	text-decoration-thickness: initial;
+	text-decoration-style: initial;
+	text-decoration-color: initial;
+}
+
+.angular-container small {
+	font-size: 80%;
+}
+
+.angular-container small {
+	font-size: 85%;
+}
+
+.angular-container .glyphicon {
+	position: relative;
+	top: 1px;
+	display: inline-block;
+	font-family: "Glyphicons Halflings";
+	font-style: normal;
+	font-weight: 400;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.angular-container .glyphicon-info-sign:before {
+	content: "";
+}
+
+.angular-container .glyphicon-download-alt:before {
+	content: "";
+}
+
+.angular-container table {
+	border-spacing: 0;
+	border-collapse: collapse;
+	-webkit-border-horizontal-spacing: 0px;
+	-webkit-border-vertical-spacing: 0px;
+}
+
+.angular-container table {
+	background-color: transparent;
+}
+
+.angular-container .table {
+	width: 100%;
+	max-width: 100%;
+	margin-bottom: 20px;
+}
+
+.angular-container label {
+	display: inline-block;
+	max-width: 100%;
+	margin-bottom: 5px;
+	font-weight: 700;
+	font-size: 15px;
+    /* color: #000000; */
+}
+
+.angular-container select {
+	margin: 0;
+	font: inherit;
+	color: inherit;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	font-style: inherit;
+	font-variant-ligatures: inherit;
+	font-variant-caps: inherit;
+	font-variant-numeric: inherit;
+	font-variant-east-asian: inherit;
+	font-weight: inherit;
+	font-stretch: inherit;
+	font-size: inherit;
+	line-height: inherit;
+	font-family: inherit;
+}
+
+.angular-container select {
+	text-transform: none;
+}
+
+.angular-container select {
+	font-family: inherit;
+	font-size: inherit;
+	line-height: inherit;
+}
+
+.angular-container .form-control {
+	display: block;
+	width: 100%;
+	height: 34px;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.42857;
+	color: #555555;
+	background-color: white;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	box-shadow: rgba(0, 0, 0, 0.075) 0px 1px 1px inset;
+	-webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+	-o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+	transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+	padding-top: 6px;
+	padding-right: 12px;
+	padding-bottom: 6px;
+	padding-left: 12px;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: #cccccc;
+	border-right-color: #cccccc;
+	border-bottom-color: #cccccc;
+	border-left-color: #cccccc;
+	border-image-source: initial;
+	border-image-slice: initial;
+	border-image-width: initial;
+	border-image-outset: initial;
+	border-image-repeat: initial;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+	border-bottom-left-radius: 4px;
+	transition-duration: 0.15s, 0.15s;
+	transition-timing-function: ease-in-out, ease-in-out;
+	transition-delay: 0s, 0s;
+	transition-property: border-color, box-shadow;
+}
+
+@media (min-width: 768px) {
+	.angular-container .form-inline .form-control {
+		display: inline-block;
+		width: auto;
+		vertical-align: middle;
+	}
+}
+
+.angular-container input {
+	margin: 0;
+	font: inherit;
+	color: inherit;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	font-style: inherit;
+	font-variant-ligatures: inherit;
+	font-variant-caps: inherit;
+	font-variant-numeric: inherit;
+	font-variant-east-asian: inherit;
+	font-weight: inherit;
+	font-stretch: inherit;
+	font-size: inherit;
+	line-height: inherit;
+	font-family: inherit;
+}
+
+.angular-container ::placeholder {
+	color: gray;
+	opacity: 0.75; /* Firefox */
+}
+
+.angular-container input {
+	line-height: normal;
+}
+
+.angular-container input {
+	font-family: inherit;
+	font-size: inherit;
+	line-height: inherit;
+}
+
+.angular-container input[type="checkbox"] {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 0;
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+}
+
+.angular-container input[type="checkbox"] {
+	margin: 4px 0 0;
+	margin-top: 4px;
+	line-height: normal;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+}
+
+.angular-container input[type="radio"] {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 0;
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+}
+
+.angular-container input[type="radio"] {
+	margin: 4px 0 0;
+	margin-top: 4px;
+	line-height: normal;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+}
+
+.angular-container b {
+	font-weight: 700;
+}
+
+.angular-container .table-striped > tbody > tr:nth-of-type(2n + 1) {
+	background-color: #f9f9f9;
+}
+
+.angular-container td {
+	padding: 0;
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+}
+
+.angular-container .table > tbody > tr > td {
+	padding: 8px;
+	line-height: 1.42857;
+	vertical-align: top;
+	border-top: 1px solid #ddd;
+	padding-top: 8px;
+	padding-right: 8px;
+	padding-bottom: 8px;
+	padding-left: 8px;
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: #dddddd;
+}
+
+.angular-container .table-condensed > tbody > tr > td {
+	padding: 5px;
+	padding-top: 5px;
+	padding-right: 5px;
+	padding-bottom: 5px;
+	padding-left: 5px;
+}

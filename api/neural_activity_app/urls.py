@@ -15,9 +15,4 @@ urlpatterns = [
     url(r'^segmentdata/$', Segment.as_view()),
     url(r'^analogsignaldata/$', AnalogSignal.as_view()),
     url(r'^spiketraindata/$', SpikeTrain.as_view()),
-    # Optional homepage, customize by editing index.html
-    # url(r'^$',  TemplateView.as_view(template_name='index.html'), name="home"),
-    url(r'^$',  TemplateView.as_view(template_name='hbp.html'), name="home"),
-    url(r'^dev$',  TemplateView.as_view(template_name='hbp-dev.html'), name="dev"),
-    url(r'^example2/$',  TemplateView.as_view(template_name='example2.html'), name="example2"),
 ]
