@@ -24,7 +24,7 @@ authors:
 * name: Corentin Fragnaud
   orcid: 0000-0002-5232-1143
   affiliation: 1
-* name: Andrew P. Davison^\[corresponding author]
+* name: Andrew P. Davison^[corresponding author]
   orcid: 0000-0002-4793-7541
   affiliation: 1
 
