@@ -70,7 +70,7 @@ NeoViewer currently supports the following subset of these:
 * **AnalogSignals**: continuous signal data with a fixed sampling interval (e.g. membrane potentials); see \\autoref{fig:ss_analog}
 * **IrregularlySampledSignal**: analog signal with a varying sampling interval (e.g. recordings from simulations using a variable-time-step integration method)
 
-![Screenshot of spike trains being plotted using the AngularJS implementation of the tool{fig:ss_spiketrain}]()
+![Screenshot of spike trains being plotted using the AngularJS implementation of the tool{fig:ss_spiketrain}](spiketrains2.png)
 _Screenshot of spike trains being plotted using the AngularJS implementation of the tool._
 
 ![Screenshot of all analog signals in a segment being plotted simultaneously using the ReactJS implementation of the tool{fig:ss_analog}](SS_react_analog.png)
