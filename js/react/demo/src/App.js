@@ -118,12 +118,12 @@ function App() {
 
             <h5 style={{textAlign:"center", lineHeight: "2", fontWeight: "bolder"}}>ReactJS Component</h5>
 
-            <div class="text" style={{margin: "15px 35px 15px 35px"}}>
+            <div className="text" style={{margin: "15px 35px 15px 35px"}}>
                 The neural-activity-visualizer Javascript app, enables
                 web-browser visualisation of electrophysiology datafiles in any
                 format supported by the Neo library. It makes use of the{" "}
                 <a
-                    href="https://neo-viewer.brainsimulation.eu/api_docs"
+                    href="/api-docs"
                     target="_blank"
                     rel="noopener noreferrer"
                 >

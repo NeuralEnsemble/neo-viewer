@@ -2,6 +2,7 @@
   "name": "demo",
   "version": "0.1.0",
   "private": true,
+  "homepage": "/react",
   "dependencies": {
     "@material-ui/core": "file:../node_modules/@material-ui/core",
     "@material-ui/icons": "file:../node_modules/@material-ui/icons",

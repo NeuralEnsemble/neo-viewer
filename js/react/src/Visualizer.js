@@ -5,7 +5,7 @@ import GraphPanel from "./GraphPanel";
 import SpikeTrainPanel from "./SpikeTrainPanel";
 import ErrorPanel from "./ErrorPanel";
 
-const defaultBaseUrl = "https://neo-viewer.brainsimulation.eu";
+const defaultBaseUrl = "https://neo-viewer.brainsimulation.eu/api";
 
 function generateTimes(n, tStart, samplingPeriod) {
     const times = Array(n);
@@ -161,9 +161,9 @@ export default function Visualizer(props) {
                         props.downSampleFactor
                     )
                     .then((results) => {
-                        if (res
-                            && Object.keys(res).length === 0
-                            && Object.getPrototypeOf(res) === Object.prototype) {
+                        if (results
+                            && Object.keys(results).length === 0
+                            && Object.getPrototypeOf(results) === Object.prototype) {
                             throw "empty"
                         }
                         setLabels(datastore.current.getLabels(0));

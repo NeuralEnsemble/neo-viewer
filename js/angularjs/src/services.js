@@ -2,7 +2,7 @@
 
 angular.module('neo-visualizer')
 
-.value('baseURL', 'https://neo-viewer.brainsimulation.eu/')
+.value('baseURL', 'https://neo-viewer.brainsimulation.eu/api/')
 
 .factory('BlockData', ['$resource', 'baseURL',
     function($resource, baseURL) {

@@ -38,7 +38,7 @@ Instructions for doing this are [here](/api/README.md#deployment).
 
 ## Reference: the file server REST API
 
-See [here](https://neo-viewer.brainsimulation.eu/api_docs).
+See [here](https://neo-viewer.brainsimulation.eu/api-docs).
 
 
 <div><img src="eu_logo.jpg" alt="EU Logo" width="15%" align="right"></div>

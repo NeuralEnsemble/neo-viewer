@@ -8,11 +8,21 @@
 #  docker run -d -p 443 neo-viewer
 #
 
+FROM node:16-alpine as build
+
+WORKDIR /js/react
+ENV PATH /js/react/node_modules/.bin:$PATH
+COPY js/react ./
+RUN npm run ci-all
+RUN npm run build-lib
+RUN node --max-old-space-size=4096 `which npm` run build-demo
+
+
 FROM debian:buster-slim
-MAINTAINER Andrew Davison <andrew.davison@unic.cnrs-gif.fr>
+MAINTAINER Andrew Davison <andrew.davison@cnrs.fr>
 
 ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update --fix-missing; apt-get -y -q install python3-pip sqlite3 supervisor nginx-extras npm git
+RUN apt-get update --fix-missing; apt-get -y -q install python3-pip sqlite3 supervisor nginx-extras git
 RUN unset DEBIAN_FRONTEND
 
 RUN pip3 install uwsgi
@@ -20,17 +30,17 @@ RUN pip3 install uwsgi
 ENV BASEDIR /home/docker
 ENV SITEDIR $BASEDIR/site
 
-COPY requirements.txt $BASEDIR/requirements.txt
+COPY api/requirements.txt $BASEDIR/requirements.txt
 RUN pip3 install -r $BASEDIR/requirements.txt
 RUN pip3 install axographio  # setup.py requires numpy, so have to install separately
 ENV PYTHONPATH  /home/docker:/home/docker/site:/usr/local/lib/python3.6/dist-packages:/usr/lib/python3.6/dist-packages
 RUN pip3 freeze
 
-COPY neural_activity_app $SITEDIR/neural_activity_app
-COPY neoview $SITEDIR/neoview
-COPY manage.py $SITEDIR/manage.py
+COPY api $SITEDIR/api
+COPY homepage $SITEDIR/homepage
+COPY --from=build /js/react/demo/build $SITEDIR/react
 
-WORKDIR $SITEDIR
+WORKDIR $SITEDIR/api
 RUN if [ -f $SITEDIR/db.sqlite3 ]; then rm $SITEDIR/db.sqlite3; fi
 RUN python3 manage.py check
 RUN python3 manage.py migrate
@@ -40,7 +50,7 @@ RUN unset PYTHONPATH
 COPY deployment $BASEDIR/deployment
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 RUN rm /etc/nginx/sites-enabled/default
-RUN ln -s $BASEDIR/deployment/nginx-app-staging.conf /etc/nginx/sites-enabled/nginx-app.conf
+RUN ln -s $BASEDIR/deployment/nginx-app.conf /etc/nginx/sites-enabled/
 RUN ln -s $BASEDIR/deployment/supervisor-app.conf /etc/supervisor/conf.d/
 RUN ln -sf /dev/stdout /var/log/nginx/access.log
 RUN ln -sf /dev/stderr /var/log/nginx/error.log
