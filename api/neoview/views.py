@@ -95,8 +95,6 @@ def get_block(request):
 
     lazy = False
     na_file = _get_file_from_url(request)
-    neo_io = None
-    r = None
 
     if 'type' in request.GET and request.GET.get('type'):
         iotype = request.GET.get('type')
@@ -122,10 +120,7 @@ def get_block(request):
             raise NeoViewError('incorrect file type',
                                status.HTTP_415_UNSUPPORTED_MEDIA_TYPE,
                                str(err))
-    if neo_io and hasattr(neo_io, 'close'):
-        neo_io.close()
-    if r and hasattr(r, 'close'):
-        r.close()
+
     return block, na_file, lazy
 
 
