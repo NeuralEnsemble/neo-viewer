@@ -147,27 +147,35 @@
      display:table-cell;
      height:10px
 }
- .rainbow-row>div:nth-child(1){
-     background:#EF5450
+
+.rainbow-row > div:nth-child(1) {
+    background: #00a595;
 }
- .rainbow-row>div:nth-child(2){
-     background:#F47716
+
+.rainbow-row > div:nth-child(2) {
+    background: #13ac8b;
 }
- .rainbow-row>div:nth-child(3){
-     background:#FBB535
+
+.rainbow-row > div:nth-child(3) {
+    background: #29b480;
 }
- .rainbow-row>div:nth-child(4){
-     background:#FBCB3F
+
+.rainbow-row > div:nth-child(4) {
+    background: #39ba78;
 }
- .rainbow-row>div:nth-child(5){
-     background:#33AABB
+
+.rainbow-row > div:nth-child(5) {
+    background: #4dc26d;
 }
- .rainbow-row>div:nth-child(6){
-     background:#2D8EB3
+
+.rainbow-row > div:nth-child(6) {
+    background: #61ca62;
 }
- .rainbow-row>div:nth-child(7){
-     background:#2070A8
+
+.rainbow-row > div:nth-child(7) {
+    background: #77d256;
 }
- .rainbow-row>div:nth-child(8){
-     background:#164E75
+
+.rainbow-row > div:nth-child(8) {
+    background: #9ce142;
 }
