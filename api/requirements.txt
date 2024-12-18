@@ -5,9 +5,8 @@ pydantic==2.3.0
 starlette==0.27.0
 uvicorn==0.23.2
 numpy==1.25.2
-quantities==0.14.1
-#neo==0.13.0
-git+https://github.com/NeuralEnsemble/python-neo@master#egg=neo
+quantities==0.15.0
+neo==0.13.3
 h5py==3.9.0
 nixio==1.5.3
 igor2==0.5.3
