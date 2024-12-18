@@ -7,7 +7,7 @@ It is implemented with [FastAPI](https://fastapi.tiangolo.com/).
 
 ## API Documentation
 
-See [here](https://neo-viewer.brainsimulation.eu/api/docs).
+See [here](https://neoviewer.apps.ebrains.eu/api/docs).
 
 ## Deployment
 

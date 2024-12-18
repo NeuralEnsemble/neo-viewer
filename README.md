@@ -6,7 +6,7 @@ spike trains etc.) stored in any of the file formats supported by the
 both AngularJS and ReactJS.
 
 Homepage:
-https://neo-viewer.brainsimulation.eu/
+https://neoviewer.apps.ebrains.eu/
 
 ## Quick overview
 
@@ -16,7 +16,7 @@ The component was developed to produce graphical representations of neural activ
 ## AngularJS (v1) component
 
 Live demo:
-https://neo-viewer.brainsimulation.eu/angularjs
+https://neoviewer.apps.ebrains.eu/angularjs
 
 
 For more details, see [here](/js/angularjs/README.md).
@@ -25,20 +25,20 @@ For more details, see [here](/js/angularjs/README.md).
 ## ReactJS component
 
 Live demo:
-https://neo-viewer.brainsimulation.eu/react
+https://neoviewer.apps.ebrains.eu/react
 
 For more details, see [here](/js/react/README.md).
 
 
 ## Deploying the file server
 
-By default, the visualizer uses the Neo file server at https://neo-viewer.brainsimulation.eu/. This is fine for testing and light use, but for better performance you may wish to deploy your own server on a more powerful machine.
+By default, the visualizer uses the Neo file server at https://neoviewer.apps.ebrains.eu/. This is fine for testing and light use, but for better performance you may wish to deploy your own server on a more powerful machine.
 Instructions for doing this are [here](/api/README.md#deployment).
 
 
 ## Reference: the file server REST API
 
-See [here](https://neo-viewer.brainsimulation.eu/api/docs).
+See [here](https://neoviewer.apps.ebrains.eu/api/docs).
 
 
 <div><img src="eu_logo.jpg" alt="EU Logo" width="15%" align="right"></div>

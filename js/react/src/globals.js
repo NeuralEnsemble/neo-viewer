@@ -1,1 +1,1 @@
-export const defaultBaseUrl = "https://neo-viewer.brainsimulation.eu/api";
+export const defaultBaseUrl = "https://neoviewer.apps.ebrains.eu/api";

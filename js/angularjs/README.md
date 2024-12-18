@@ -13,7 +13,7 @@ the [Neo](http://neuralensemble.org/neo) library.
 </div>
 ```
 
-For an example of the visualizer in action, see https://neo-viewer.brainsimulation.eu
+For an example of the visualizer in action, see https://neoviewer.apps.ebrains.eu
 
 ## Using the visualizer component
 
@@ -36,8 +36,8 @@ In the `<body>` block, add `<div ng-app="neo-visualizer">...</div` around the pa
 
 You can have multiple visualizers on a single page. Wherever you want to have a visualizer, include
 ```
-<visualizer-view 
-    source="https://example.com/my_data_file.abf" 
+<visualizer-view
+    source="https://example.com/my_data_file.abf"
     height=300>
 </visualizer-view>
 ```
@@ -46,7 +46,7 @@ where `source` should be the URL of a publicly available data file you want to v
 
 ## Deploying the file server
 
-By default, the visualizer uses the Neo file server at https://neo-viewer.brainsimulation.eu/. This is fine for testing and light use, but for better performance you may
+By default, the visualizer uses the Neo file server at https://neoviewer.apps.ebrains.eu/. This is fine for testing and light use, but for better performance you may
 wish to deploy your own server on a more powerful machine.
 
 Instructions for doing this are [here](https://github.com/NeuralEnsemble/neo-viewer/blob/master/api/README.md#deployment).
@@ -54,7 +54,7 @@ Instructions for doing this are [here](https://github.com/NeuralEnsemble/neo-vie
 
 ## Reference: the file server REST API
 
-See [here](https://neo-viewer.brainsimulation.eu/api/docs).
+See [here](https://neoviewer.apps.ebrains.eu/api/docs).
 
 
 <div><img src="../../eu_logo.jpg" alt="EU Logo" width="15%" align="right"></div>
