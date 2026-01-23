@@ -53,6 +53,7 @@ dist
 cover
 env
 api/download_cache
+.venv
 
 # OS generated files #
 ######################

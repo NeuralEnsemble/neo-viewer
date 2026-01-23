@@ -18,7 +18,7 @@ import React from 'react';
 import Visualizer from 'neural-activity-visualizer-react';
 
 function Example {
-  const source = "https://object.cscs.ch/v1/AUTH_c0a333ecf7c045809321ce9d9ecdfdea/Migliore_2018_CA1/exp_data/abf-int-bAC/Ivy_960711AHP3/96711008.abf";
+  const source = "https://data-proxy.ebrains.eu/api/v1/buckets/pc0a33-Migliore_2018_CA1/exp_data/abf-int-bAC/Ivy_960711AHP3/96711008.abf";
 
   return (
     <Visualizer source={source} />

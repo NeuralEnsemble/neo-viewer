@@ -28,7 +28,7 @@ class TestGetData:
         assert obj["name"] == ""
 
     def test_get_block_data_no_type(self):
-        test_file = "https://object.cscs.ch/v1/AUTH_c0a333ecf7c045809321ce9d9ecdfdea/Migliore_2018_CA1/exp_data/abf-int-bAC/Ivy_960711AHP3/96711008.abf"
+        test_file = "https://data-proxy.ebrains.eu/api/v1/buckets/pc0a33-Migliore_2018_CA1/exp_data/abf-int-bAC/Ivy_960711AHP3/96711008.abf"
         params = urllib.parse.urlencode({"url": test_file})
         response = test_client.get(f"/api/blockdata/?{params}")
         assert response.status_code == 200
@@ -64,7 +64,7 @@ class TestGetData:
             assert json_data["block"][0]["segments"][i]["spiketrains"] == []
 
     def test_get_segment_data_no_type(self):
-        test_file = "https://object.cscs.ch/v1/AUTH_c0a333ecf7c045809321ce9d9ecdfdea/Migliore_2018_CA1/exp_data/abf-int-bAC/Ivy_960711AHP3/96711008.abf"
+        test_file = "https://data-proxy.ebrains.eu/api/v1/buckets/pc0a33-Migliore_2018_CA1/exp_data/abf-int-bAC/Ivy_960711AHP3/96711008.abf"
         params = urllib.parse.urlencode(
             {"url": test_file, "segment_id": 1, "format": "json"}
         )
@@ -81,7 +81,7 @@ class TestGetData:
         assert json_data["spiketrains"] == []
 
     def test_get_analogsignal_data(self):
-        test_file = "https://object.cscs.ch/v1/AUTH_c0a333ecf7c045809321ce9d9ecdfdea/Migliore_2018_CA1/exp_data/abf-int-bAC/Ivy_960711AHP3/96711008.abf"
+        test_file = "https://data-proxy.ebrains.eu/api/v1/buckets/pc0a33-Migliore_2018_CA1/exp_data/abf-int-bAC/Ivy_960711AHP3/96711008.abf"
 
         names = ["Channels: (Chan0mV)", "Channels: (AO#0)"]
         value_units = ["mV", "nA"]
@@ -172,7 +172,7 @@ class TestGetData:
         )
 
         # missing segment_id
-        test_file = "https://object.cscs.ch/v1/AUTH_c0a333ecf7c045809321ce9d9ecdfdea/Migliore_2018_CA1/exp_data/abf-int-bAC/Ivy_960711AHP3/96711008.abf"
+        test_file = "https://data-proxy.ebrains.eu/api/v1/buckets/pc0a33-Migliore_2018_CA1/exp_data/abf-int-bAC/Ivy_960711AHP3/96711008.abf"
         params = urllib.parse.urlencode({"url": test_file})
         response = test_client.get(f"/api/segmentdata/?{params}")
         assert response.status_code == 422
@@ -196,7 +196,7 @@ class TestGetData:
         )
 
         # missing segment_id
-        test_file = "https://object.cscs.ch/v1/AUTH_c0a333ecf7c045809321ce9d9ecdfdea/Migliore_2018_CA1/exp_data/abf-int-bAC/Ivy_960711AHP3/96711008.abf"
+        test_file = "https://data-proxy.ebrains.eu/api/v1/buckets/pc0a33-Migliore_2018_CA1/exp_data/abf-int-bAC/Ivy_960711AHP3/96711008.abf"
         params = urllib.parse.urlencode({"url": test_file, "analog_signal_id": 0})
         response = test_client.get(f"/api/analogsignaldata/?{params}")
         assert response.status_code == 422

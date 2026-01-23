@@ -11,9 +11,9 @@ import { docco } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 import "./App.css";
 
 const source1 =
-    "https://object.cscs.ch/v1/AUTH_c0a333ecf7c045809321ce9d9ecdfdea/Migliore_2018_CA1/exp_data/abf-int-bAC/Ivy_960711AHP3/96711008.abf";
+    "https://data-proxy.ebrains.eu/api/v1/buckets/pc0a33-Migliore_2018_CA1/exp_data/abf-int-bAC/Ivy_960711AHP3/96711008.abf";
 // const source2 =
-    // "https://object.cscs.ch/v1/AUTH_c0a333ecf7c045809321ce9d9ecdfdea/test/spiketrainsx2a.nix";
+    // "https://data-proxy.ebrains.eu/api/v1/buckets/pc0a33-test/spiketrainsx2a.nix";
 
 function App() {
     const [state, setState] = React.useState({
@@ -42,15 +42,15 @@ function App() {
             let showSignals = false;
             let showSpikeTrains = false;
             if (value === "sampleAnalogSignal") {
-                urlValue = "https://object.cscs.ch/v1/AUTH_c0a333ecf7c045809321ce9d9ecdfdea/Migliore_2018_CA1/exp_data/abf-int-bAC/Ivy_960711AHP3/96711008.abf"
+                urlValue = "https://data-proxy.ebrains.eu/api/v1/buckets/pc0a33-Migliore_2018_CA1/exp_data/abf-int-bAC/Ivy_960711AHP3/96711008.abf"
                 showSignals = true;
                 showSpikeTrains = false;
             } else if (value === "sampleSpikeTrain") {
-                urlValue = "https://object.cscs.ch/v1/AUTH_c0a333ecf7c045809321ce9d9ecdfdea/test/spiketrainsx2a.nix"
+                urlValue = "https://data-proxy.ebrains.eu/api/v1/buckets/pc0a33-test/spiketrainsx2a.nix"
                 showSignals = false;
                 showSpikeTrains = true;
             } else {
-                // set source input text field to empty when 'Other' radio selected 
+                // set source input text field to empty when 'Other' radio selected
                 urlValue = ""
                 showSignals = true;
                 showSpikeTrains = false;
@@ -62,7 +62,7 @@ function App() {
                 showSignals: showSignals,
                 showSpikeTrains: showSpikeTrains
             });
-        } else if (name === "dataFileURLselect") {            
+        } else if (name === "dataFileURLselect") {
             setState({
                 ...state,
                 selectedFileTypeURL: value,
@@ -141,7 +141,7 @@ function App() {
             <div
                 className="text"
                 style={{ marginLeft: 10, marginTop: 25 }}
-            >   
+            >
                 The <code>neural-activity-visualizer-react</code> app can be
                 installed via <code>npm</code> as follows:
                 <br />
@@ -198,7 +198,7 @@ function App() {
                 Demo: Multiple file types
             </h5>
             <p>
-                NeoViewer supports a variety of filetypes. 
+                NeoViewer supports a variety of filetypes.
                 The dropdown below provides examples of several such file formats that can be visualized.
             </p>
 
@@ -229,11 +229,11 @@ function App() {
                 {
                     state.selectedFileTypeURL
                     &&
-                    <Visualizer 
+                    <Visualizer
                         key={JSON.stringify(state)}
                         source={state.selectedFileTypeURL}
                     />
-                }                
+                }
             </div>
 
             <br />
@@ -250,7 +250,7 @@ function App() {
                 Attributes:
             </div>
             <br />
-            
+
             <FormControl style={{ marginLeft: 10 }}>
                 <span style={{ fontFamily: "monospace", fontSize: 18, marginBottom: 5 }}>source</span>
                 <RadioGroup
@@ -259,8 +259,8 @@ function App() {
                     name="sourceRadio"
                     onChange={handleChange}
                 >
-                    <FormControlLabel value="sampleAnalogSignal" control={<Radio />} label={(<span style={{color: "black"}}>Sample Analog Signal <a href="https://object.cscs.ch/v1/AUTH_c0a333ecf7c045809321ce9d9ecdfdea/Migliore_2018_CA1/exp_data/abf-int-bAC/Ivy_960711AHP3/96711008.abf">(source)</a></span>)} />
-                    <FormControlLabel value="sampleSpikeTrain" control={<Radio />} label={(<span style={{color: "black"}}>Sample Spike Train <a href="https://object.cscs.ch/v1/AUTH_c0a333ecf7c045809321ce9d9ecdfdea/test/spiketrainsx2a.nix">(source)</a></span>)} />
+                    <FormControlLabel value="sampleAnalogSignal" control={<Radio />} label={(<span style={{color: "black"}}>Sample Analog Signal <a href="https://data-proxy.ebrains.eu/api/v1/buckets/pc0a33-Migliore_2018_CA1/exp_data/abf-int-bAC/Ivy_960711AHP3/96711008.abf">(source)</a></span>)} />
+                    <FormControlLabel value="sampleSpikeTrain" control={<Radio />} label={(<span style={{color: "black"}}>Sample Spike Train <a href="https://data-proxy.ebrains.eu/api/v1/buckets/pc0a33-test/spiketrainsx2a.nix">(source)</a></span>)} />
                     <FormControlLabel value="other" control={<Radio />} label={(<span style={{color: "black"}}>Other</span>)} />
                 </RadioGroup>
             </FormControl>

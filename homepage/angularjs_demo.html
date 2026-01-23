@@ -88,7 +88,7 @@
 
         &lt;div class=&quot;row&quot; ng-app=&quot;neo-visualizer&quot;&gt;
             &lt;visualizer-view
-                source=&quot;https://object.cscs.ch/v1/AUTH_c0a333ecf7c045809321ce9d9ecdfdea/Migliore_2018_CA1/exp_data/abf-int-bAC/Ivy_960711AHP3/96711008.abf&quot;
+                source=&quot;https://data-proxy.ebrains.eu/api/v1/buckets/pc0a33-Migliore_2018_CA1/exp_data/abf-int-bAC/Ivy_960711AHP3/96711008.abf&quot;
                 height=300&gt;
             &lt;/visualizer-view&gt;
         &lt;/div&gt;
@@ -96,7 +96,7 @@
 &lt;/body&gt;</code></pre>
             <div class="row angular-container">
                 <visualizer-view
-                    source="https://object.cscs.ch/v1/AUTH_c0a333ecf7c045809321ce9d9ecdfdea/Migliore_2018_CA1/exp_data/abf-int-bAC/Ivy_960711AHP3/96711008.abf"
+                    source="https://data-proxy.ebrains.eu/api/v1/buckets/pc0a33-Migliore_2018_CA1/exp_data/abf-int-bAC/Ivy_960711AHP3/96711008.abf"
                     height=300>
                 </visualizer-view>
             </div>
@@ -106,7 +106,7 @@
             <h5 style="line-height: 49.2px">Example With Spike Trains</h5>
             <div class="row angular-container">
                 <visualizer-view
-                    source="https://object.cscs.ch/v1/AUTH_c0a333ecf7c045809321ce9d9ecdfdea/test/spiketrainsx2a.nix"
+                    source="https://data-proxy.ebrains.eu/api/v1/buckets/pc0a33-test/spiketrainsx2a.nix"
                     height=300>
                 </visualizer-view>
             </div>
@@ -138,7 +138,7 @@
                 </form>
 
                 <div class="row angular-container">
-                    <visualizer-view ng-if="dataFileURL" 
+                    <visualizer-view ng-if="dataFileURL"
                     source="{{dataFileURL}}"
                     height=300>
                     </visualizer-view>
@@ -148,7 +148,7 @@
             <hr style="color: #CCCCCC">
 
             <h5 style="line-height: 49.2px">Examples of multiple file types</h5>
-            NeoViewer supports a variety of filetypes. The dropdown below provides 
+            NeoViewer supports a variety of filetypes. The dropdown below provides
             examples of several such file formats that can be visualized.
             <br /><br />
 
@@ -184,7 +184,7 @@
                 </form>
                 <br/>
                 <div class="row angular-container">
-                    <visualizer-view ng-if="dataFileURLselect" 
+                    <visualizer-view ng-if="dataFileURLselect"
                     source="{{dataFileURLselect}}"
                     height=300>
                     </visualizer-view>
@@ -192,7 +192,7 @@
             </div>
 
             <br/>
-              
+
             <div class="rainbow-row">
                 <div></div>
                 <div></div>
