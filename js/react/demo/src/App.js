@@ -690,7 +690,8 @@ function App() {
                 This project has received funding from the European Union’s
                 Horizon 2020 Framework Programme for Research and Innovation
                 under the Specific Grant Agreements No. 785907 and No. 945539
-                (Human Brain Project SGA2 and SGA3).
+                (Human Brain Project SGA2 and SGA3)
+                and by the European Union's Research and Innovation Program Horizon Europe Grant Agreement No. 101147319 (EBRAINS 2.0).
             </p>
             <p className="text" style={{ margin: 10, marginBottom: 40 }}>
                 If you encounter any problems,{" "}
