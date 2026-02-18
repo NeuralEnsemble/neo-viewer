@@ -1,0 +1,66 @@
+{
+  "@context": "https://w3id.org/codemeta/3.0",
+  "@type": "SoftwareSourceCode",
+  "description": "Neo Viewer provides web-based visualisation of electrophysiology data, with support for most of the widely-used file formats in neurophysiology, including community standards such as NIX and NWB. It consists of a REST API and a Javascript component that can be embedded in any web page. A hosted demo of the service is available at https://neo-viewer.brainsimulation.eu/, and is used in several of the EBRAINS Live Papers. Users can also host their own installations. Electrophysiology traces can be zoomed, scrolled, and saved as images. Individual points can be measured off the graphs.\n\nThis component implements the REST API for transforming electrophysiology data files from any file format supported by [Neo](http://neuralensemble.org/neo) into JSON format.\n\nIt is implemented with [FastAPI](https://fastapi.tiangolo.com/).",
+  "name": "Neo Viewer API",
+  "author": [
+    {
+      "givenName": "Andrew P.",
+      "familyName": "Davison",
+      "type": "Person",
+      "id": "https://orcid.org/0000-0002-4793-7541"
+    },
+    {
+      "givenName": "Hélissande",
+      "familyName": "Fragnaud",
+      "type": "Person"
+    },
+    {
+      "givenName": "Onur",
+      "familyName": "Ates",
+      "type": "Person"
+    },
+    {
+      "givenName": "Corentin",
+      "familyName": "Fragnaud",
+      "type": "Person"
+    },
+    {
+      "givenName": "Shailesh",
+      "familyName": "Appukuttan",
+      "type": "Person",
+      "id": "https://orcid.org/0000-0002-0148-8023"
+    }
+  ],
+  "license": [
+    "https://spdx.org/licenses/MIT"
+  ],
+  "version": "2.3.0",
+  "continuousIntegration": "https://github.com/NeuralEnsemble/neo-viewer/actions/workflows/apitest.yml",
+  "issueTracker": "https://github.com/NeuralEnsemble/neo-viewer/issues",
+  "developmentStatus": "active",
+  "codeRepository": "https://github.com/NeuralEnsemble/neo-viewer",
+  "downloadUrl": "https://github.com/NeuralEnsemble/neo-viewer/archive/refs/tags/2.3.0.tar.gz",
+  "relatedLink": [
+    "https://neoviewer.apps.ebrains.eu"
+  ],
+  "releaseNotes": "https://github.com/NeuralEnsemble/neo-viewer/releases/tag/2.3.0",
+  "referencePublication": "http://doi.org/10.1016/j.softx.2024.101710",
+  "programmingLanguage": [
+    "Python"
+  ],
+  "availableOnDevice": [
+    "server"
+  ],
+  "operatingSystem": [
+    "Linux"
+  ],
+  "softwareRequirements": [
+    "FastAPI",
+    "Neo"
+  ],
+  "keywords": [
+    "electrophysiology"
+  ],
+  "dateModified": "2026-01-23"
+}
