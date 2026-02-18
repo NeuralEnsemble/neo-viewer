@@ -1,0 +1,32 @@
+name: Test React component
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - 'js/react/**'
+  pull_request:
+    branches: [ master ]
+    paths:
+      - 'js/react/**'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+    - name: Install Dependencies
+      working-directory: js/react
+      run: npm run ci-all
+    - name: Build library
+      working-directory: js/react
+      run: npm run build-lib
+    - name: Run Tests
+      working-directory: js/react/demo
+      run: npm test -- --watchAll=false
