@@ -2,42 +2,26 @@
   "name": "demo",
   "version": "0.1.0",
   "private": true,
-  "homepage": "/react",
+  "type": "module",
   "dependencies": {
-    "@material-ui/core": "file:../node_modules/@material-ui/core",
-    "@material-ui/icons": "file:../node_modules/@material-ui/icons",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
-    "@testing-library/user-event": "^7.2.1",
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@mui/icons-material": "^6.1.6",
+    "@mui/material": "^6.1.6",
     "neural-activity-visualizer-react": "file:..",
-    "react": "file:../node_modules/react",
-    "react-dom": "file:../node_modules/react-dom",
-    "react-scripts": "file:../node_modules/react-scripts",
-    "web-vitals": "^1.0.1",
+    "plotly.js": "^2.35.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-plotly.js": "^2.6.0",
     "react-syntax-highlighter": "^15.4.5"
   },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.3",
+    "vite": "^5.4.10"
+  },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "start": "vite --base=/react/",
+    "build": "vite build --base=/react/",
+    "preview": "vite preview --base=/react/"
   }
 }

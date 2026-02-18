@@ -29,7 +29,7 @@ function Example {
 #### Interactive Demo:
 
 Explore the demo app:
-https://neo-viewer.netlify.app/
+https://neoviewer.apps.ebrains.eu
 
 
 ## Deploying the file server

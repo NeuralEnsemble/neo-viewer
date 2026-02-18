@@ -1,62 +1,38 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
+import Box from "@mui/material/Box";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
-import ButtonGroup from "@material-ui/core/ButtonGroup";
-import Button from "@material-ui/core/Button";
-import TimelineIcon from "@material-ui/icons/Timeline";
-import ScatterPlotIcon from "@material-ui/icons/ScatterPlot";
-import Tooltip from "@material-ui/core/Tooltip";
+import ButtonGroup from "@mui/material/ButtonGroup";
+import Button from "@mui/material/Button";
+import TimelineIcon from "@mui/icons-material/Timeline";
+import ScatterPlotIcon from "@mui/icons-material/ScatterPlot";
+import Tooltip from "@mui/material/Tooltip";
 
-import IconButton from "@material-ui/core/IconButton";
-import InfoIcon from "@material-ui/icons/Info";
+import IconButton from "@mui/material/IconButton";
+import InfoIcon from "@mui/icons-material/Info";
 import InfoPanel from "./InfoPanel";
-import GetAppIcon from "@material-ui/icons/GetApp";
+import GetAppIcon from "@mui/icons-material/GetApp";
 
-import CircularProgress from "@material-ui/core/CircularProgress";
-
-const useStyles = makeStyles((theme) => ({
-    controlBar: {
-        margin: theme.spacing(2),
-    },
-    formControl: {
-        margin: theme.spacing(1),
-        minWidth: 120,
-    },
-    controlButtons: {
-        margin: theme.spacing(1),
-        verticalAlign: "middle",
-    },
-    roundButtons: {
-        marginTop: theme.spacing(1),
-        marginBottom: theme.spacing(1),
-        verticalAlign: "middle",
-    },
-    loadingIndicator: {
-        margin: theme.spacing(1),
-        verticalAlign: "middle",
-    },
-}));
+import CircularProgress from "@mui/material/CircularProgress";
 
 function SegmentSelect(props) {
-    const classes = useStyles();
-
     let menuItemAll = "";
     if (props.consistent) {
         menuItemAll = <MenuItem value={"all"}>All</MenuItem>;
     }
     return (
-        <FormControl className={classes.formControl}>
+        <FormControl sx={{ margin: 1, minWidth: 120 }}>
             <InputLabel id="select-segment-label">Segment</InputLabel>
             <Select
                 labelId="select-segment-label"
                 id="select-segment"
                 value={props.labels[props.segmentId] ? props.segmentId : 0}
                 onChange={props.onChange}
+                label="Segment"
             >
                 {menuItemAll}
                 {props.labels.map((seg, index) => {
@@ -72,8 +48,6 @@ function SegmentSelect(props) {
 }
 
 function SignalSelect(props) {
-    const classes = useStyles();
-
     let segmentId = props.segmentId;
     if (props.segmentId === "all") {
         segmentId = 0; // if plotting signals from all segments, the segments
@@ -82,13 +56,14 @@ function SignalSelect(props) {
     }
     if (props.show && props.labels[segmentId]) {
         return (
-            <FormControl className={classes.formControl}>
+            <FormControl sx={{ margin: 1, minWidth: 120 }}>
                 <InputLabel id="select-signal-label">Signal</InputLabel>
                 <Select
                     labelId="select-signal-label"
                     id="select-signal"
                     value={props.signalId}
                     onChange={props.onChange}
+                    label="Signal"
                 >
                     {props.labels[segmentId].signalLabels.map(
                         (label, index) => {
@@ -108,12 +83,10 @@ function SignalSelect(props) {
 }
 
 function LoadingAnimation(props) {
-    const classes = useStyles();
-
     if (props.loading) {
         return (
             <CircularProgress
-                className={classes.loadingIndicator}
+                sx={{ margin: 1, verticalAlign: "middle" }}
                 color="secondary"
             />
         );
@@ -123,7 +96,6 @@ function LoadingAnimation(props) {
 }
 
 export default function HeaderPanel(props) {
-    const classes = useStyles();
     const [popoverAnchor, setPopoverAnchor] = React.useState(null);
 
     React.useEffect(() => {
@@ -178,12 +150,12 @@ export default function HeaderPanel(props) {
     const infoOpen = Boolean(popoverAnchor);
     const id = infoOpen ? "info-panel" : undefined;
     return (
-        <div className={classes.controlBar}>
+        <Box sx={{ margin: 2 }}>
             {!props.disableChoice && (
                 <ButtonGroup
                     color="primary"
                     aria-label="outlined primary button group"
-                    className={classes.controlButtons}
+                    sx={{ margin: 1, verticalAlign: "middle" }}
                 >
                     <Tooltip
                         title={`${props.showSignals ? "Hide" : "Show"} signals`}
@@ -230,7 +202,7 @@ export default function HeaderPanel(props) {
                 <IconButton
                     onClick={handleShowInfo}
                     aria-label="info"
-                    className={classes.roundButtons}
+                    sx={{ marginTop: 1, marginBottom: 1, verticalAlign: "middle" }}
                 >
                     <InfoIcon fontSize="medium" color="primary" />
                 </IconButton>
@@ -250,7 +222,7 @@ export default function HeaderPanel(props) {
                     rel="noopener noreferrer"
                     href={props.source}
                     aria-label="download"
-                    className={classes.roundButtons}
+                    sx={{ marginTop: 1, marginBottom: 1, verticalAlign: "middle" }}
                 >
                     <GetAppIcon fontSize="medium" color="primary" />
                 </IconButton>
@@ -274,6 +246,6 @@ export default function HeaderPanel(props) {
                         )
                     </span>
                 )}
-        </div>
+        </Box>
     );
 }
