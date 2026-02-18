@@ -27,6 +27,7 @@ export default defineConfig({
         '@emotion/react', '@emotion/styled',
         'plotly.js', 'react-plotly.js'],
     },
+    sourcemap: true,
     minify: false,
     emptyOutDir: true,
   },
