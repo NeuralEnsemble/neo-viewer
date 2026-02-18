@@ -1,21 +1,10 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 
-import Paper from '@material-ui/core/Paper';
-import Popover from '@material-ui/core/Popover';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText  from '@material-ui/core/ListItemText';
-
-
-const useStyles = makeStyles((theme) => ({
-    infoPanel: {
-        padding: theme.spacing(2),
-    },
-    list: {
-        width: '100%'
-    },
-}));
+import Paper from '@mui/material/Paper';
+import Popover from '@mui/material/Popover';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
 
 
 function ListItemNonEmpty(props) {
@@ -32,8 +21,6 @@ function ListItemNonEmpty(props) {
 
 
 export default function InfoPanel(props) {
-    const classes = useStyles();
-
     return (
         <Popover
             id={props.id}
@@ -49,8 +36,8 @@ export default function InfoPanel(props) {
                 horizontal: 'center',
             }}
         >
-            <Paper className={classes.infoPanel}>
-                <List className={classes.list} dense={true} >
+            <Paper sx={{ padding: 2 }}>
+                <List sx={{ width: '100%' }} dense={true} >
                     <ListItemNonEmpty label="Name" value={props.info.name} />
                     <ListItemNonEmpty label="Description" value={props.info.description} />
                     <ListItemNonEmpty label="Recording date" value={props.info.rec_datetime} />

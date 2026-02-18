@@ -78,7 +78,6 @@ packages/*
 !packages/.keep
 node_modules
 
-
 # Migrations #
 ##############
 app/migrations/
@@ -88,3 +87,7 @@ app/migrations/
 # dev DB #
 ##########
 db.sqlite3
+
+# other
+deployment/test
+settings.local.json

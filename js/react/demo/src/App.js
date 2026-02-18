@@ -1,10 +1,10 @@
 import React from "react";
-import TextField from "@material-ui/core/TextField";
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
-import Checkbox from "@material-ui/core/Checkbox";
+import TextField from "@mui/material/TextField";
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import Checkbox from "@mui/material/Checkbox";
 import Visualizer from "neural-activity-visualizer-react";
 import SyntaxHighLighter from "react-syntax-highlighter";
 import { docco } from "react-syntax-highlighter/dist/cjs/styles/hljs";

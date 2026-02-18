@@ -1,4 +1,10 @@
-import axios from 'axios';
+async function get(url) {
+    const response = await fetch(url);
+    if (!response.ok) {
+        throw new Error(`${response.status} ${response.statusText}`);
+    }
+    return { data: await response.json() };
+}
 
 function range(n) {
     return [...Array(n).keys()];
@@ -16,15 +22,16 @@ class DataStore {
     initialize() {
         if (!this.initialized) {
             const url = `${this.baseUrl}/blockdata/?url=${this.datafileUrl}`;
-            const config = {}
             console.log(`Initialising datastore for ${url}`);
-            return axios.get(url, config)
+            return get(url)
                 .then(res => {
                     this.blocks = res.data.block;
                     this.initialized = true;
                     console.log(`Initialized datastore for ${this.datafileUrl}`);
                     console.log(this.blocks);
                 });
+        } else {
+            return Promise.resolve();
         }
     }
 
@@ -69,25 +76,22 @@ class DataStore {
 
     loadSegment(blockId, segmentId) {
         const url = `${this.baseUrl}/segmentdata/?url=${this.datafileUrl}&segment_id=${segmentId}`;
-        const config = {};
         console.log(`Trying to load segment #${segmentId}`);
-        return axios.get(url, config)
+        return get(url)
             .catch(err => Promise.reject(`Error loading segment #${segmentId}: ${err.message}`));
     }
 
     loadSignal(blockId, segmentId, signalId, downSampleFactor) {
         const url = `${this.baseUrl}/analogsignaldata/?url=${this.datafileUrl}&segment_id=${segmentId}&analog_signal_id=${signalId}&down_sample_factor=${downSampleFactor || 1}`;
-        const config = {};
         console.log(`Trying to load signal #${signalId} in segment #${segmentId}`);
-        return axios.get(url, config)
+        return get(url)
             .catch(err => Promise.reject(`Error loading signal #${signalId} in segment #${segmentId}: ${err.message}`));
     }
 
     loadSpikeTrains(blockId, segmentId) {
         const url = `${this.baseUrl}/spiketraindata/?url=${this.datafileUrl}&segment_id=${segmentId}`;
-        const config = {};
         console.log(`Trying to load spiketrains for #${segmentId}`);
-        return axios.get(url, config)
+        return get(url)
             .catch(err => Promise.reject(`Error loading spiketrain data from segment #${segmentId}: ${err.message}`));
     }
 
@@ -169,12 +173,10 @@ class DataStore {
         }];
         if (this.initialized) {
             labels = this.blocks[blockId].segments.map((seg, iSeg) => {
-                //console.log(seg);
                 let signals = seg.analogsignals;
                 if (seg.as_prop) {
                     signals = seg.as_prop;
                 }
-                //console.log(signals);
                 let signalLabels = signals.map((sig, iSig) => {
                     return sig.name || `Signal #${iSig}`
                 });
