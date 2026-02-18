@@ -1,0 +1,40 @@
+{
+  "@context": "https://w3id.org/codemeta/3.0",
+  "@type": "SoftwareSourceCode",
+  "name": "neural-activity-visualizer-react",
+  "version": "1.1.0",
+  "description": "A ReactJS component for visualizing neural activity data",
+  "license": "https://spdx.org/licenses/MIT",
+  "codeRepository": "https://github.com/NeuralEnsemble/neo-viewer",
+  "url": "https://github.com/NeuralEnsemble/neo-viewer/blob/master/js/react#readme",
+  "programmingLanguage": [
+    "JavaScript"
+  ],
+  "author": [
+    {
+      "givenName": "Andrew P.",
+      "familyName": "Davison",
+      "type": "Person",
+      "id": "http://orcid.org/0000-0002-4793-7541"
+    },
+    {
+      "givenName": "Shailesh",
+      "familyName": "Appukuttan",
+      "type": "Person",
+      "id": "https://orcid.org/0000-0002-0148-8023"
+    }
+  ],
+  "dateModified": "2026-02-18",
+  "downloadUrl": "https://www.npmjs.com/package/neural-activity-visualizer-react",
+  "relatedLink": [
+    "https://neoviewer.apps.ebrains.eu/react/"
+  ],
+  "releaseNotes": "- Modernize libraries (React 19, MUI v6, Plotly v2.x)\n- Move to Vite build system\n- Add unit tests",
+  "availableOnDevice": [
+    "desktop",
+    "mobile device"
+  ],
+  "developmentStatus": "active",
+  "continuousIntegration": "https://github.com/NeuralEnsemble/neo-viewer/actions",
+  "issueTracker": "https://github.com/NeuralEnsemble/neo-viewer/issues"
+}
