@@ -1,51 +1,271 @@
-.container {
-  width: 75%;
-  margin: auto;
+/* ── EBRAINS Design System — React Demo ─── */
+
+/* Page layout */
+.demo-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #07140D;
 }
 
-.rounded-box {
-  background: #ffd180;
-  border-radius: 10px;
+/* Sticky header */
+.demo-header {
+  background: rgba(7, 20, 13, 0.97);
+  border-bottom: 1px solid rgba(0, 255, 157, 0.18);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+}
+
+.demo-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.demo-nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: #fff;
+}
+.demo-nav-brand:hover { text-decoration: none; color: #00FF9D; }
+.demo-nav-brand img { height: 34px; }
+.demo-nav-brand-text {
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.demo-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.demo-nav-links a {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.demo-nav-links a:hover { color: #00FF9D; text-decoration: none; }
+
+/* Main content */
+.demo-main {
+  flex: 1;
+  padding: 48px 0 64px;
+}
+
+/* Page hero */
+.demo-hero {
   text-align: center;
-  color: white;
-  height: 210px;
-  padding: 0px 10px 0px 10px;
+  padding: 48px 24px 36px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 48px;
+}
+.demo-hero h1 {
+  font-family: 'Inter', 'IBM Plex Sans', sans-serif;
+  font-size: 2.25rem;
+  font-weight: 300;
+  color: #fff;
+  margin: 0 0 12px;
+}
+.demo-hero p {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1.05rem;
+  max-width: 640px;
+  margin: 0 auto;
+}
+.demo-hero a { color: #00FF9D; }
+.demo-hero a:hover { color: #00C87B; }
+
+/* Container */
+.demo-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 24px;
 }
 
-.title-container {
-  justify-content: center;
-  padding-top: 50px;
-  padding-bottom: 50px;
-}
-
-/* .title-style {
-  font-family: "Roboto", "Helvetica", "Arial", "sans-serif";
-  font-size: 2.125rem;
-  color: #000000;
-  font-weight: 900;
-}
-
-.subtitle-style {
-  font-family: "Roboto", "Helvetica", "Arial", "sans-serif";
-  font-size: 1.5rem;
-  color: #000000;
+/* Section headings */
+.demo-section-heading {
+  font-family: 'Inter', 'IBM Plex Sans', sans-serif;
+  font-size: 1.35rem;
   font-weight: 400;
-} */
-
-.message-box {
-  width: 80%;
-  margin: auto;
+  color: #fff;
+  margin: 48px 0 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(0, 255, 157, 0.18);
 }
 
-.text {
+/* Intro card */
+.demo-intro {
+  background: #0f2318;
+  border: 1px solid rgba(0, 255, 157, 0.18);
+  border-radius: 10px;
+  padding: 24px 28px;
+  margin-bottom: 36px;
+  color: rgba(255, 255, 255, 0.8);
   line-height: 1.75;
-  font-size: 16px;
-  text-align: justify;
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
+}
+.demo-intro a { color: #00FF9D; }
+.demo-intro code {
+  font-family: 'IBM Plex Mono', monospace;
+  background: #122a1e;
+  border: 1px solid rgba(0, 255, 157, 0.18);
+  border-radius: 4px;
+  padding: 0.1em 0.4em;
+  color: #00FF9D;
+  font-size: 0.9em;
 }
 
-input {
-  border-bottom: 0 !important;
-  box-shadow: none !important;
-  margin: 0 !important;
+/* Accent strip */
+.demo-accent-strip {
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #00FF9D, #00C87B, #00FF9D, transparent);
+  border-radius: 2px;
+  margin: 40px 0;
 }
+
+/* Section card (wraps demo content) */
+.demo-section-card {
+  background: #0f2318;
+  border: 1px solid rgba(0, 255, 157, 0.15);
+  border-radius: 12px;
+  padding: 28px 32px;
+  margin-bottom: 24px;
+}
+
+/* Labels for attribute names */
+.attr-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #00FF9D;
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* Demo table */
+.demo-table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 16px 0;
+}
+.demo-table th,
+.demo-table td {
+  padding: 12px 14px;
+  border: 1px solid rgba(0, 255, 157, 0.15);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+  text-align: left;
+}
+.demo-table th {
+  background: #122a1e;
+  color: #fff;
+  font-weight: 500;
+  text-align: center;
+}
+.demo-table td:first-child {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.95rem;
+  color: #00FF9D;
+  text-align: center;
+}
+.demo-table td:nth-child(2) { text-align: center; }
+
+/* Source code label */
+.source-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 20px 0 8px;
+}
+
+/* Output label */
+.output-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 20px 0 8px;
+}
+
+/* Select / input styling */
+.demo-select {
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  padding: 8px 12px;
+  background: #122a1e;
+  border: 1px solid rgba(0, 255, 157, 0.3);
+  border-radius: 6px;
+  color: #fff;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 0.9rem;
+  cursor: pointer;
+  margin-bottom: 12px;
+}
+.demo-select:focus {
+  outline: none;
+  border-color: #00FF9D;
+}
+
+.demo-input-readonly {
+  display: block;
+  width: 100%;
+  padding: 8px 12px;
+  background: #0d1f17;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.85rem;
+}
+
+/* MUI overrides — keep inputs readable on dark */
+.MuiInputBase-root {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+.MuiOutlinedInput-notchedOutline {
+  border-color: rgba(0, 255, 157, 0.3) !important;
+}
+.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(0, 255, 157, 0.6) !important;
+}
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #00FF9D !important;
+}
+.MuiFormHelperText-root {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+.MuiRadio-root { color: rgba(0, 255, 157, 0.6) !important; }
+.MuiRadio-root.Mui-checked { color: #00FF9D !important; }
+.MuiCheckbox-root { color: rgba(0, 255, 157, 0.6) !important; }
+.MuiCheckbox-root.Mui-checked { color: #00FF9D !important; }
+.MuiFormControlLabel-label { color: rgba(255, 255, 255, 0.85) !important; }
+.MuiInputBase-input { color: rgba(255, 255, 255, 0.9) !important; }
+
+/* Footer */
+.demo-footer {
+  background: #0d1f17;
+  border-top: 1px solid rgba(0, 255, 157, 0.18);
+  padding: 32px 0 40px;
+}
+.demo-footer-content {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 24px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.875rem;
+  line-height: 1.7;
+}
+.demo-footer-content a { color: #00FF9D; }
+.demo-footer-content p { margin: 6px 0; }
