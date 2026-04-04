@@ -2,10 +2,10 @@
 # Build an image for deploying the Neo web viewer REST API
 #
 # To build the image, from the parent directory:
-#   docker build -t neo-viewer -f deployment/Dockerfile .
+#   docker build -t neo-viewer -f deployment/Dockerfile.dev .
 #
 # To run the application:
-#  docker run -d -p 443 neo-viewer
+#  docker run -d -p 8000:8000 neo-viewer
 #
 
 FROM docker-registry.ebrains.eu/neuralactivity/node:22-alpine as build
@@ -24,7 +24,7 @@ FROM docker-registry.ebrains.eu/neuralactivity/debian:bookworm-slim
 LABEL org.opencontainers.image.authors="Andrew Davison <andrew.davison@cnrs.fr>"
 
 ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update --fix-missing; apt-get -y -q install python3-full supervisor nginx-extras git
+RUN apt-get update --fix-missing; apt-get -y -q install python3-full git
 RUN unset DEBIAN_FRONTEND
 
 ENV BASEDIR /home/docker
@@ -43,13 +43,15 @@ COPY --from=build /js/react/demo/build $SITEDIR/react
 
 WORKDIR $SITEDIR
 
-COPY deployment $BASEDIR/deployment
-RUN echo "daemon off;" >> /etc/nginx/nginx.conf
-RUN rm /etc/nginx/sites-enabled/default
-RUN ln -s $BASEDIR/deployment/nginx-app.conf /etc/nginx/sites-enabled/
-RUN ln -s $BASEDIR/deployment/supervisor-app.conf /etc/supervisor/conf.d/
-RUN ln -sf /dev/stdout /var/log/nginx/access.log
-RUN ln -sf /dev/stderr /var/log/nginx/error.log
+ENV HOMEPAGE_DIR=$SITEDIR/homepage
+ENV REACT_DIR=$SITEDIR/react
 
-EXPOSE 80
-CMD ["supervisord", "-n", "-c", "/etc/supervisor/conf.d/supervisor-app.conf"]
+RUN useradd -r -u 1000 appuser \
+    && chown -R appuser $BASEDIR
+
+USER appuser
+
+EXPOSE 8000
+CMD ["/home/docker/pyenv/bin/uvicorn", "api.main:app", \
+     "--host", "0.0.0.0", "--port", "8000", "--proxy-headers", \
+     "--timeout-keep-alive", "300"]

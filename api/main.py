@@ -6,15 +6,20 @@ Authors: Andrew P. Davison, Onur Ates, Shailesh Appukuttan, Hélissande Fragnaud
 Licence: MIT (see LICENSE)
 """
 
+import os
+from pathlib import Path
+
 from fastapi import FastAPI, Request, status
 from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import RequestValidationError
-from fastapi.responses import JSONResponse
+from fastapi.responses import FileResponse, JSONResponse
+from fastapi.staticfiles import StaticFiles
 from starlette.middleware.cors import CORSMiddleware
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from .resources.v1 import router as router_v1
 from .metadata import title, description
+from .settings import HOMEPAGE_DIR, REACT_DIR
 
 
 app = FastAPI(
@@ -63,3 +68,22 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
 
 app.include_router(router_v1, prefix="/api/v1")
 app.include_router(router_v1, prefix="/api")
+
+# Static HTML pages served from the homepage directory.
+# These need explicit routes because StaticFiles(html=True) only serves index.html
+# for directory requests; it does not strip .html extensions from filenames.
+_DEMO_PAGES = ["angularjs", "guide_react_deploy", "guide_angular_usage", "guide_plotly_interactivity"]
+
+for _page in _DEMO_PAGES:
+    _path = Path(HOMEPAGE_DIR) / f"{_page}.html"
+    if _path.exists():
+        app.add_api_route(f"/{_page}", lambda p=_path: FileResponse(p), include_in_schema=False)
+
+if os.path.isdir(REACT_DIR):
+    _react_index = Path(REACT_DIR) / "index.html"
+    if _react_index.exists():
+        app.add_api_route("/react", lambda p=_react_index: FileResponse(p), include_in_schema=False)
+    app.mount("/react", StaticFiles(directory=REACT_DIR, html=True), name="react")
+
+if os.path.isdir(HOMEPAGE_DIR):
+    app.mount("/", StaticFiles(directory=HOMEPAGE_DIR, html=True), name="homepage")
