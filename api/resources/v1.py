@@ -49,14 +49,22 @@ async def get_block_data(
             )
         ),
     ] = None,
+    refresh_cache: Annotated[
+        bool,
+        Query(
+            description=(
+                "If true, any previously cached version of the file will be "
+                "invalidated and the file will be re-downloaded from the source."
+            )
+        ),
+    ] = False,
 ) -> BlockContainer:
     """
     Return metadata about all the blocks in a data file,
     including metadata about the segments within each block,
     but without any information about the data contained within each segment.
     """
-    # here `url` is a Pydantic object, which we convert to a string
-    blocks = load_blocks(str(url), type)
+    blocks = load_blocks(str(url), type, refresh_cache=refresh_cache)
     return BlockContainer.from_neo(blocks, url)
 
 
@@ -86,6 +94,15 @@ async def get_segment_data(
             )
         ),
     ] = None,
+    refresh_cache: Annotated[
+        bool,
+        Query(
+            description=(
+                "If true, any previously cached version of the file will be "
+                "invalidated and the file will be re-downloaded from the source."
+            )
+        ),
+    ] = False,
 ) -> Segment:
     """
     Return information about an individual Segment within a block,
@@ -93,18 +110,18 @@ async def get_segment_data(
     but not the signal data themselves.
     """
     try:
-        block = load_blocks(str(url), type)[block_id]
+        block = load_blocks(str(url), type, refresh_cache=refresh_cache)[block_id]
     except IndexError:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="IndexError on block_id",  # todo: improve this message in next API version
+            detail="IndexError on block_id",
         )
     try:
         segment = block.segments[segment_id]
     except IndexError:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="IndexError on segment_id",  # todo: improve this message in next API version
+            detail="IndexError on segment_id",
         )
     return Segment.from_neo(segment, url)
 
@@ -145,21 +162,30 @@ async def get_analogsignal_data(
             )
         ),
     ] = 1,
+    refresh_cache: Annotated[
+        bool,
+        Query(
+            description=(
+                "If true, any previously cached version of the file will be "
+                "invalidated and the file will be re-downloaded from the source."
+            )
+        ),
+    ] = False,
 ) -> AnalogSignal:
     """Get an analog signal from a given segment, including both data and metadata."""
     try:
-        block = load_blocks(str(url), type)[block_id]
+        block = load_blocks(str(url), type, refresh_cache=refresh_cache)[block_id]
     except IndexError:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="IndexError on block_id",  # todo: improve this message in next API version
+            detail="IndexError on block_id",
         )
     try:
         segment = block.segments[segment_id]
     except IndexError:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="IndexError on segment_id",  # todo: improve this message in next API version
+            detail="IndexError on segment_id",
         )
     if len(segment.analogsignals) > 0:
         container = segment.analogsignals
@@ -170,7 +196,7 @@ async def get_analogsignal_data(
     except IndexError:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="IndexError on analog_signal_id",  # todo: improve this message in next API version
+            detail="IndexError on analog_signal_id",
         )
     try:
         asig = AnalogSignal.from_neo(signal, down_sample_factor)
@@ -208,20 +234,29 @@ async def get_spiketrain_data(
             )
         ),
     ] = None,
+    refresh_cache: Annotated[
+        bool,
+        Query(
+            description=(
+                "If true, any previously cached version of the file will be "
+                "invalidated and the file will be re-downloaded from the source."
+            )
+        ),
+    ] = False,
 ) -> dict[str, SpikeTrain]:
     """Get the spike trains from a given segment, including both data and metadata."""
     try:
-        block = load_blocks(str(url), type)[block_id]
+        block = load_blocks(str(url), type, refresh_cache=refresh_cache)[block_id]
     except IndexError:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="IndexError on block_id",  # todo: improve this message in next API version
+            detail="IndexError on block_id",
         )
     try:
         segment = block.segments[segment_id]
     except IndexError:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="IndexError on segment_id",  # todo: improve this message in next API version
+            detail="IndexError on segment_id",
         )
     return {str(i): SpikeTrain.from_neo(st) for i, st in enumerate(segment.spiketrains)}
