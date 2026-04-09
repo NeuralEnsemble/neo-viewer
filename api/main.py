@@ -14,13 +14,14 @@ from starlette.middleware.cors import CORSMiddleware
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from .resources.v1 import router as router_v1
+from .resources.v2 import router as router_v2
 from .metadata import title, description
 
 
 app = FastAPI(
     title=title,
     description=description,
-    version="1.8",
+    version="2.0",
     openapi_url="/api/openapi.json",
     docs_url="/api/docs",
     redoc_url="/api/redoc"
@@ -63,3 +64,4 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
 
 app.include_router(router_v1, prefix="/api/v1")
 app.include_router(router_v1, prefix="/api")
+app.include_router(router_v2, prefix="/api/v2")

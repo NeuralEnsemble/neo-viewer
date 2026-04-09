@@ -386,3 +386,134 @@ class BlockContainer(BaseModel):
             ]
         }
     }
+
+# ============================================================
+# API v2 models - Simplified structure endpoint
+# ============================================================
+
+class SignalInfo(BaseModel):
+    """Metadata about an analog signal, without the actual data."""
+    signal_id: int
+    name: str
+    units: str
+    sampling_rate: float | None = None
+    sampling_rate_units: str | None = None
+    t_start: float
+    t_stop: float
+    duration: float
+    n_channels: int
+    n_samples: int
+    is_irregular: bool = False
+
+    @classmethod
+    def from_neo(cls, signal, signal_id, irregular=False):
+        if isinstance(signal, proxyobjects.BaseProxy):
+            signal = signal.load()
+        data = {
+            "signal_id": signal_id,
+            "name": signal.name or f"Signal {signal_id}",
+            "units": str(signal.units.dimensionality),
+            "t_start": float(signal.t_start.magnitude),
+            "t_stop": float(signal.t_stop.magnitude),
+            "duration": float((signal.t_stop - signal.t_start).magnitude),
+            "n_channels": signal.shape[1] if len(signal.shape) > 1 else 1,
+            "n_samples": signal.shape[0],
+            "is_irregular": irregular,
+        }
+        if not irregular:
+            data["sampling_rate"] = float(signal.sampling_rate.magnitude)
+            data["sampling_rate_units"] = str(signal.sampling_rate.units.dimensionality)
+        return cls(**data)
+
+
+class SpikeTrainInfo(BaseModel):
+    """Metadata about a spike train, without the actual data."""
+    train_id: int
+    name: str
+    units: str
+    t_stop: float
+    count: int
+
+    @classmethod
+    def from_neo(cls, spike_train, train_id):
+        if isinstance(spike_train, proxyobjects.BaseProxy):
+            spike_train = spike_train.load()
+        return cls(
+            train_id=train_id,
+            name=spike_train.name or f"Unit {train_id}",
+            units=str(spike_train.units.dimensionality),
+            t_stop=float(spike_train.t_stop.magnitude),
+            count=len(spike_train.times),
+        )
+
+
+class SegmentStructure(BaseModel):
+    """Structure of a segment with signal metadata."""
+    segment_id: int
+    name: str
+    description: str
+    rec_datetime: datetime | None = None
+    analog_signals: list[SignalInfo]
+    irregular_signals: list[SignalInfo]
+    spike_trains: list[SpikeTrainInfo]
+
+    @classmethod
+    def from_neo(cls, neo_segment, segment_id):
+        return cls(
+            segment_id=segment_id,
+            name=neo_segment.name or f"Segment {segment_id}",
+            description=neo_segment.description or "",
+            rec_datetime=parse_datetime(neo_segment.rec_datetime),
+            analog_signals=[
+                SignalInfo.from_neo(sig, i)
+                for i, sig in enumerate(neo_segment.analogsignals)
+            ],
+            irregular_signals=[
+                SignalInfo.from_neo(sig, i, irregular=True)
+                for i, sig in enumerate(neo_segment.irregularlysampledsignals)
+            ],
+            spike_trains=[
+                SpikeTrainInfo.from_neo(st, i)
+                for i, st in enumerate(neo_segment.spiketrains)
+            ],
+        )
+
+
+class BlockStructure(BaseModel):
+    """Structure of a block with all segment metadata."""
+    block_id: int
+    name: str
+    description: str
+    rec_datetime: datetime | None = None
+    annotations: dict[str, str]
+    segments: list[SegmentStructure]
+
+    @classmethod
+    def from_neo(cls, neo_block, block_id):
+        return cls(
+            block_id=block_id,
+            name=neo_block.name or f"Block {block_id}",
+            description=neo_block.description or "",
+            rec_datetime=parse_datetime(neo_block.rec_datetime),
+            annotations=sanitise_annotations(neo_block.annotations),
+            segments=[
+                SegmentStructure.from_neo(seg, i)
+                for i, seg in enumerate(neo_block.segments)
+            ],
+        )
+
+
+class FileStructure(BaseModel):
+    """Complete structure of a data file."""
+    url: str
+    blocks: list[BlockStructure]
+
+    @classmethod
+    def from_neo(cls, neo_blocks, url):
+        return cls(
+            url=str(url),
+            blocks=[
+                BlockStructure.from_neo(block, i)
+                for i, block in enumerate(neo_blocks)
+            ],
+        )
