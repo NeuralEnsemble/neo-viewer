@@ -7,127 +7,95 @@
     <link rel="icon" href="favicon/Favicon_32x32.png">
     <link rel="apple-touch-icon" href="favicon/Favicon_32x32.png">
     <title>Guide: Plotly Interactivity — Neural Activity Visualizer</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;600&display=swap">
+    <link rel="stylesheet" href="https://unpkg.com/@ebrains/assets@0.9.0/styles/output.css">
     <link rel="stylesheet" href="./css/styles.css">
+    <script type="module">
+        import { defineCustomElements } from 'https://cdn.jsdelivr.net/npm/@ebrains/components@3.0.0/dist/esm/loader.js';
+        defineCustomElements(window);
+    </script>
 </head>
-<body>
-<div class="page-wrapper">
+<body class="flex flex-col min-h-screen">
 
-    <header class="site-header">
-        <nav class="nav-container">
-            <a href="/" class="nav-brand">
-                <img src="./imgs/ebrains_logo.svg" alt="EBRAINS">
-                <span class="nav-brand-text">Neural Activity Visualizer</span>
-            </a>
-            <div class="nav-links">
-                <a href="/react">React Demo</a>
-                <a href="/angularjs">AngularJS Demo</a>
-                <a href="/api/docs" target="_blank" rel="noopener noreferrer">API Docs</a>
-                <a href="https://github.com/NeuralEnsemble/neo-viewer" target="_blank" rel="noopener noreferrer">GitHub</a>
-            </div>
-        </nav>
-    </header>
+    <eds-header
+        variant="strong"
+        url="/"
+        links='[{"label":"React Demo","url":"/react"},{"label":"AngularJS Demo","url":"/angularjs"},{"label":"API Docs","url":"/api/docs","external":true},{"label":"GitHub","url":"https://github.com/NeuralEnsemble/neo-viewer","external":true}]'>
+    </eds-header>
 
-    <main>
-        <div class="container">
+    <main class="flex-1 py-12">
+        <div class="container mx-auto px-6 max-w-4xl">
 
-            <div class="page-hero">
-                <h1>Visualizer Interactivity Features</h1>
-                <p>
+            <div class="text-center mb-12">
+                <h1 class="f-heading-03 mb-4">Visualizer Interactivity Features</h1>
+                <p class="f-body-01 text-default-weak max-w-2xl mx-auto">
                     The visualizer offers various interactive features for exploring data, courtesy
-                    of the underlying <a href="https://plotly.com/javascript/" target="_blank" rel="noopener noreferrer">Plotly.js</a>
-                    library. These are briefly presented below with examples.
+                    of the underlying <a href="https://plotly.com/javascript/" target="_blank"
+                    rel="noopener noreferrer" class="text-brand-green">Plotly.js</a> library.
                 </p>
             </div>
 
-            <div class="guide-step">
-                <h2>1. Download plot as PNG</h2>
-                <div class="row">
-                    Download the current plot as a PNG file — useful for saving or sharing results.
+            <div class="space-y-6">
+
+                <div class="p-6 rounded-xl border border-white/10 bg-white/5 guide-step">
+                    <h2 class="f-ui-01 font-semibold text-brand-green mb-3">1. Download plot as PNG</h2>
+                    <p class="text-default-weak">Download the current plot as a PNG — useful for saving or sharing results.</p>
                     <img src="./imgs/screenshots/plotly_demo/img_01_download.gif" alt="Download plot">
                 </div>
-            </div>
 
-            <div class="guide-step">
-                <h2>2. Zoom (select region of interest)</h2>
-                <div class="row">
-                    Click and drag over a region to zoom in. Double-click to reset to the original view.
+                <div class="p-6 rounded-xl border border-white/10 bg-white/5 guide-step">
+                    <h2 class="f-ui-01 font-semibold text-brand-green mb-3">2. Zoom (select region of interest)</h2>
+                    <p class="text-default-weak">Click and drag to zoom in. Double-click to reset.</p>
                     <img src="./imgs/screenshots/plotly_demo/img_02_zoom.gif" alt="Zoom region">
                 </div>
-            </div>
 
-            <div class="guide-step">
-                <h2>3. Pan</h2>
-                <div class="row">
-                    Click and drag to pan the plot in any direction. Double-click to reset.
+                <div class="p-6 rounded-xl border border-white/10 bg-white/5 guide-step">
+                    <h2 class="f-ui-01 font-semibold text-brand-green mb-3">3. Pan</h2>
+                    <p class="text-default-weak">Click and drag to pan. Double-click to reset.</p>
                     <img src="./imgs/screenshots/plotly_demo/img_03_pan.gif" alt="Pan plot">
                 </div>
-            </div>
 
-            <div class="guide-step">
-                <h2>4 &amp; 5. Zoom in / Zoom out</h2>
-                <div class="row">
-                    Use the toolbar buttons or the mouse scroll wheel to zoom. Double-click to reset.
+                <div class="p-6 rounded-xl border border-white/10 bg-white/5 guide-step">
+                    <h2 class="f-ui-01 font-semibold text-brand-green mb-3">4 &amp; 5. Zoom in / Zoom out</h2>
+                    <p class="text-default-weak">Use toolbar buttons or the scroll wheel. Double-click to reset.</p>
                     <img src="./imgs/screenshots/plotly_demo/img_04_05_zoom_in_out.gif" alt="Zoom in/out">
                 </div>
-            </div>
 
-            <div class="guide-step">
-                <h2>6. Autoscale</h2>
-                <div class="row">
-                    Resets the plot to fit all data. Useful after zooming or panning.
+                <div class="p-6 rounded-xl border border-white/10 bg-white/5 guide-step">
+                    <h2 class="f-ui-01 font-semibold text-brand-green mb-3">6. Autoscale</h2>
+                    <p class="text-default-weak">Resets the plot to fit all data after zooming or panning.</p>
                     <img src="./imgs/screenshots/plotly_demo/img_06_autoscale.gif" alt="Autoscale plot">
                 </div>
-            </div>
 
-            <div class="guide-step">
-                <h2>7. Reset axes</h2>
-                <div class="row">
-                    Resets only the axes of the plot, similar to Autoscale but without rescaling the
-                    data range.
+                <div class="p-6 rounded-xl border border-white/10 bg-white/5 guide-step">
+                    <h2 class="f-ui-01 font-semibold text-brand-green mb-3">7. Reset axes</h2>
+                    <p class="text-default-weak">Resets only the axes without rescaling the data range.</p>
                     <img src="./imgs/screenshots/plotly_demo/img_07_reset.gif" alt="Reset plot">
                 </div>
-            </div>
 
-            <div class="guide-step">
-                <h2>8. Toggle Spike Lines</h2>
-                <div class="row">
-                    Toggles spike lines (the vertical and horizontal crosshairs on hover) on and off.
+                <div class="p-6 rounded-xl border border-white/10 bg-white/5 guide-step">
+                    <h2 class="f-ui-01 font-semibold text-brand-green mb-3">8. Toggle Spike Lines</h2>
+                    <p class="text-default-weak">Toggles the vertical and horizontal crosshairs shown on hover.</p>
                     <img src="./imgs/screenshots/plotly_demo/img_08_toggle_lines.gif" alt="Toggle spike lines">
                 </div>
-            </div>
 
-            <div class="guide-step">
-                <h2>9 &amp; 10. Show closest / Compare data on hover</h2>
-                <div class="row">
-                    Hover over the plot to display the closest data point values, or compare multiple
-                    traces at once. Especially useful when multiple signals are shown.
+                <div class="p-6 rounded-xl border border-white/10 bg-white/5 guide-step">
+                    <h2 class="f-ui-01 font-semibold text-brand-green mb-3">9 &amp; 10. Show closest / Compare data on hover</h2>
+                    <p class="text-default-weak">
+                        Hover to display the nearest data point value, or compare multiple traces at once.
+                    </p>
                     <img src="./imgs/screenshots/plotly_demo/img_09_10_labels.gif" alt="Hover labels">
                 </div>
+
             </div>
 
         </div>
     </main>
 
-    <footer class="site-footer">
-        <div class="accent-strip" style="margin: 0 0 24px;"></div>
-        <div class="footer-content">
-            <p>
-                This project has received funding from the European Union's Horizon 2020 Framework
-                Programme for Research and Innovation under the Specific Grant Agreements No. 785907
-                and No. 945539 (Human Brain Project SGA2 and SGA3) and by the European Union's
-                Research and Innovation Program Horizon Europe Grant Agreement No. 101147319 (EBRAINS 2.0).
-            </p>
-            <p>
-                If you encounter any problems,
-                <a href="https://github.com/NeuralEnsemble/neo-viewer/issues/new"
-                   target="_blank" rel="noopener noreferrer">please let us know.</a>
-            </p>
-        </div>
-    </footer>
+    <eds-footer
+        variant="inverse"
+        funded-by="This project has received funding from the European Union's Horizon 2020 Framework Programme for Research and Innovation under the Specific Grant Agreements No. 785907 and No. 945539 (Human Brain Project SGA2 and SGA3) and by the European Union's Research and Innovation Program Horizon Europe Grant Agreement No. 101147319 (EBRAINS 2.0)."
+        rights-reserved="If you encounter any problems, please open an issue on GitHub.">
+    </eds-footer>
 
-</div>
 </body>
 </html>

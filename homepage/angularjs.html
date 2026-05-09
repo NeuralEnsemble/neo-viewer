@@ -7,13 +7,15 @@
     <link rel="icon" href="favicon/Favicon_32x32.png">
     <link rel="apple-touch-icon" href="favicon/Favicon_32x32.png">
     <title>AngularJS Demo — Neural Activity Visualizer</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;600&display=swap">
+    <link rel="stylesheet" href="https://unpkg.com/@ebrains/assets@0.9.0/styles/output.css">
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/atom-one-dark.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
     <script>hljs.highlightAll();</script>
+    <script type="module">
+        import { defineCustomElements } from 'https://cdn.jsdelivr.net/npm/@ebrains/components@3.0.0/dist/esm/loader.js';
+        defineCustomElements(window);
+    </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.5/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.5/angular-resource.min.js"></script>
@@ -23,47 +25,34 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/1.51.1/plotly.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/NeuralEnsemble/neo-viewer@master/js/angularjs/src/visualizer.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/NeuralEnsemble/neo-viewer@master/js/angularjs/src/services.js"></script>
-
     <link rel="stylesheet" href="./css/angular_style.css">
 </head>
-<body>
-<div class="page-wrapper">
+<body class="flex flex-col min-h-screen">
 
-    <header class="site-header">
-        <nav class="nav-container">
-            <a href="/" class="nav-brand">
-                <img src="./imgs/ebrains_logo.svg" alt="EBRAINS">
-                <span class="nav-brand-text">Neural Activity Visualizer</span>
-            </a>
-            <div class="nav-links">
-                <a href="/react">React Demo</a>
-                <a href="/angularjs" style="color: var(--brand-green);">AngularJS Demo</a>
-                <a href="/api/docs" target="_blank" rel="noopener noreferrer">API Docs</a>
-                <a href="https://github.com/NeuralEnsemble/neo-viewer" target="_blank" rel="noopener noreferrer">GitHub</a>
-            </div>
-        </nav>
-    </header>
+    <eds-header
+        variant="strong"
+        url="/"
+        links='[{"label":"React Demo","url":"/react"},{"label":"AngularJS Demo","url":"/angularjs"},{"label":"API Docs","url":"/api/docs","external":true},{"label":"GitHub","url":"https://github.com/NeuralEnsemble/neo-viewer","external":true}]'>
+    </eds-header>
 
-    <main>
-        <div class="container" ng-app="neo-visualizer">
+    <main class="flex-1 py-12" ng-app="neo-visualizer">
+        <div class="container mx-auto px-6 max-w-4xl guide-content">
 
-            <div class="page-hero">
-                <h1>AngularJS Component</h1>
-                <p>
-                    The <code>neural-activity-visualizer</code> AngularJS component enables
-                    web-browser visualisation of electrophysiology data files using the
-                    <a href="/api/docs" target="_blank" rel="noopener noreferrer">Neo Viewer REST API</a>.
+            <div class="text-center mb-12">
+                <h1 class="f-heading-03 mb-4">AngularJS Component</h1>
+                <p class="f-body-01 text-default-weak max-w-2xl mx-auto">
+                    The <code>visualizer-view</code> component requires a
+                    <strong class="text-white">source</strong> attribute (URL of the data file).
+                    Optional: <strong class="text-white">height</strong>,
+                    <strong class="text-white">downsamplefactor</strong>, and
+                    <strong class="text-white">iotype</strong>.
+                    Uses the <a href="/api/docs" target="_blank" rel="noopener noreferrer"
+                    class="text-brand-green">Neo Viewer REST API</a>.
                 </p>
             </div>
 
-            <div class="intro-card">
-                The <code>visualizer-view</code> component requires a <strong>source</strong> (URL of file)
-                attribute. Optional attributes include <strong>height</strong> (height of the visualization
-                panel), <strong>downsamplefactor</strong> (downsampling factor to improve loading time,
-                default 1), and <strong>iotype</strong> (manually specify the file type).
-            </div>
-
-            <h2 class="section-heading">Example Usage</h2>
+            <!-- Example Usage -->
+            <h2 class="f-heading-05 mb-4 pb-3 border-b border-white/10">Example Usage</h2>
 
 <pre><code class="language-html">&lt;head&gt;
     &lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"&gt;
@@ -81,14 +70,14 @@
     &lt;div class="container"&gt;
         &lt;div class="row" ng-app="neo-visualizer"&gt;
             &lt;visualizer-view
-                source="https://data-proxy.ebrains.eu/api/v1/buckets/pc0a33-Migliore_2018_CA1/exp_data/abf-int-bAC/Ivy_960711AHP3/96711008.abf"
+                source="https://data-proxy.ebrains.eu/..."
                 height=300&gt;
             &lt;/visualizer-view&gt;
         &lt;/div&gt;
     &lt;/div&gt;
 &lt;/body&gt;</code></pre>
 
-            <div class="angular-demo-surface">
+            <div class="angular-demo-surface mt-6">
                 <div class="row angular-container">
                     <visualizer-view
                         source="https://data-proxy.ebrains.eu/api/v1/buckets/pc0a33-Migliore_2018_CA1/exp_data/abf-int-bAC/Ivy_960711AHP3/96711008.abf"
@@ -97,9 +86,9 @@
                 </div>
             </div>
 
-            <div class="accent-strip"></div>
+            <hr class="border-white/10 my-10">
 
-            <h2 class="section-heading">Example With Spike Trains</h2>
+            <h2 class="f-heading-05 mb-6 pb-3 border-b border-white/10">Example With Spike Trains</h2>
 
             <div class="angular-demo-surface">
                 <div class="row angular-container">
@@ -110,11 +99,11 @@
                 </div>
             </div>
 
-            <div class="accent-strip"></div>
+            <hr class="border-white/10 my-10">
 
-            <h2 class="section-heading">Example With Dynamic Source</h2>
+            <h2 class="f-heading-05 mb-4 pb-3 border-b border-white/10">Example With Dynamic Source</h2>
 
-            <p class="text">You can input a custom data file URL below.</p>
+            <p class="text-default-weak mb-6">You can input a custom data file URL below.</p>
 
 <pre><code class="language-html">&lt;div ng-controller="URLFormController"&gt;
     &lt;form class="form-inline"&gt;
@@ -130,7 +119,7 @@
     &lt;/visualizer-view&gt;
 &lt;/div&gt;</code></pre>
 
-            <div class="angular-demo-surface">
+            <div class="angular-demo-surface mt-6">
                 <div ng-controller="URLFormController">
                     <form class="form-inline angular-container">
                         <div class="form-group">
@@ -148,13 +137,12 @@
                 </div>
             </div>
 
-            <div class="accent-strip"></div>
+            <hr class="border-white/10 my-10">
 
-            <h2 class="section-heading">Examples of Multiple File Types</h2>
+            <h2 class="f-heading-05 mb-4 pb-3 border-b border-white/10">Examples of Multiple File Types</h2>
 
-            <p class="text">
-                NeoViewer supports a variety of file types. The dropdown below provides examples
-                of several formats that can be visualised.
+            <p class="text-default-weak mb-6">
+                NeoViewer supports a variety of file types. The dropdown below provides examples.
             </p>
 
             <script>
@@ -204,23 +192,11 @@
         </div>
     </main>
 
-    <footer class="site-footer">
-        <div class="accent-strip" style="margin: 0 0 24px;"></div>
-        <div class="footer-content">
-            <p>
-                This project has received funding from the European Union's Horizon 2020 Framework
-                Programme for Research and Innovation under the Specific Grant Agreements No. 785907
-                and No. 945539 (Human Brain Project SGA2 and SGA3) and by the European Union's
-                Research and Innovation Program Horizon Europe Grant Agreement No. 101147319 (EBRAINS 2.0).
-            </p>
-            <p>
-                If you encounter any problems,
-                <a href="https://github.com/NeuralEnsemble/neo-viewer/issues/new"
-                   target="_blank" rel="noopener noreferrer">please let us know.</a>
-            </p>
-        </div>
-    </footer>
+    <eds-footer
+        variant="inverse"
+        funded-by="This project has received funding from the European Union's Horizon 2020 Framework Programme for Research and Innovation under the Specific Grant Agreements No. 785907 and No. 945539 (Human Brain Project SGA2 and SGA3) and by the European Union's Research and Innovation Program Horizon Europe Grant Agreement No. 101147319 (EBRAINS 2.0)."
+        rights-reserved="If you encounter any problems, please open an issue on GitHub.">
+    </eds-footer>
 
-</div>
 </body>
 </html>

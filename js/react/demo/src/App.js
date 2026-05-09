@@ -13,6 +13,12 @@ import "./App.css";
 const source1 =
     "https://data-proxy.ebrains.eu/api/v1/buckets/pc0a33-Migliore_2018_CA1/exp_data/abf-int-bAC/Ivy_960711AHP3/96711008.abf";
 
+const NAV_LINKS = JSON.stringify([
+    { label: "Home", url: "/" },
+    { label: "API Docs", url: "/api/docs", external: true },
+    { label: "GitHub", url: "https://github.com/NeuralEnsemble/neo-viewer", external: true },
+]);
+
 function App() {
     const [state, setState] = React.useState({
         sourceRadio: "sampleAnalogSignal",
@@ -34,93 +40,68 @@ function App() {
         let value = evt.target.value;
 
         if (name === "sourceRadio") {
-            let urlValue = ""
+            let urlValue = "";
             let showSignals = false;
             let showSpikeTrains = false;
             if (value === "sampleAnalogSignal") {
-                urlValue = "https://data-proxy.ebrains.eu/api/v1/buckets/pc0a33-Migliore_2018_CA1/exp_data/abf-int-bAC/Ivy_960711AHP3/96711008.abf"
+                urlValue = "https://data-proxy.ebrains.eu/api/v1/buckets/pc0a33-Migliore_2018_CA1/exp_data/abf-int-bAC/Ivy_960711AHP3/96711008.abf";
                 showSignals = true;
-                showSpikeTrains = false;
             } else if (value === "sampleSpikeTrain") {
-                urlValue = "https://data-proxy.ebrains.eu/api/v1/buckets/pc0a33-test/spiketrainsx2a.nix"
-                showSignals = false;
+                urlValue = "https://data-proxy.ebrains.eu/api/v1/buckets/pc0a33-test/spiketrainsx2a.nix";
                 showSpikeTrains = true;
             } else {
-                urlValue = ""
                 showSignals = true;
-                showSpikeTrains = false;
             }
-            setState({
-                ...state,
-                source: urlValue,
-                [name]: value,
-                showSignals: showSignals,
-                showSpikeTrains: showSpikeTrains
-            });
+            setState({ ...state, source: urlValue, [name]: value, showSignals, showSpikeTrains });
         } else if (name === "dataFileURLselect") {
-            setState({
-                ...state,
-                selectedFileTypeURL: value,
-            });
+            setState({ ...state, selectedFileTypeURL: value });
         } else {
             setState({
                 ...state,
-                [name]:
-                    evt.target.type === "checkbox"
-                        ? !state[name]
-                        : value,
+                [name]: evt.target.type === "checkbox" ? !state[name] : value,
             });
         }
     }
 
-    let example_attributes = `\tsource = "${state.source}"\n`
-    example_attributes += state.width ? `\twidth = {${state.width}}\n` : ""
-    example_attributes += state.height ? `\theight = {${state.height}}\n` : ""
-    example_attributes += state.downSampleFactor !== 1 ? `\tdownSampleFactor = {${state.downSampleFactor}}\n` : ""
-    example_attributes += state.ioType ? `\tioType = "${state.ioType}"\n` : ""
-    example_attributes += !state.showSignals ? `\tshowSignals = {${state.showSignals}}\n` : ""
-    example_attributes += state.showSpikeTrains ? `\tshowSpikeTrains = {${state.showSpikeTrains}}\n` : ""
-    example_attributes += state.disableChoice ? `\tdisableChoice = {${state.disableChoice}}\n` : ""
-    example_attributes += state.segmentId !== 0 ? `\tsegmentId = {${state.segmentId}}\n` : ""
-    example_attributes += state.signalId !== 0 ? `\tsignalId = {${state.signalId}}\n` : ""
+    let example_attributes = `\tsource = "${state.source}"\n`;
+    example_attributes += state.width ? `\twidth = {${state.width}}\n` : "";
+    example_attributes += state.height ? `\theight = {${state.height}}\n` : "";
+    example_attributes += state.downSampleFactor !== 1 ? `\tdownSampleFactor = {${state.downSampleFactor}}\n` : "";
+    example_attributes += state.ioType ? `\tioType = "${state.ioType}"\n` : "";
+    example_attributes += !state.showSignals ? `\tshowSignals = {${state.showSignals}}\n` : "";
+    example_attributes += state.showSpikeTrains ? `\tshowSpikeTrains = {${state.showSpikeTrains}}\n` : "";
+    example_attributes += state.disableChoice ? `\tdisableChoice = {${state.disableChoice}}\n` : "";
+    example_attributes += state.segmentId !== 0 ? `\tsegmentId = {${state.segmentId}}\n` : "";
+    example_attributes += state.signalId !== 0 ? `\tsignalId = {${state.signalId}}\n` : "";
 
     return (
-        <div className="demo-page">
+        <div className="flex flex-col min-h-screen">
 
-            {/* ── Header ── */}
-            <header className="demo-header">
-                <nav className="demo-nav">
-                    <a href="/" className="demo-nav-brand">
-                        <img src="./imgs/ebrains_logo.svg" alt="EBRAINS" />
-                        <span className="demo-nav-brand-text">Neural Activity Visualizer</span>
-                    </a>
-                    <div className="demo-nav-links">
-                        <a href="/">Home</a>
-                        <a href="/api/docs" target="_blank" rel="noopener noreferrer">API Docs</a>
-                        <a href="https://github.com/NeuralEnsemble/neo-viewer"
-                           target="_blank" rel="noopener noreferrer">GitHub</a>
-                    </div>
-                </nav>
-            </header>
+            {/* ── EDS Header ── */}
+            <eds-header variant="strong" url="/" links={NAV_LINKS}></eds-header>
 
             {/* ── Hero ── */}
-            <div className="demo-hero">
-                <h1>React Component</h1>
-                <p>
-                    The <code style={{fontFamily:"'IBM Plex Mono',monospace", color:"#00FF9D", background:"rgba(0,255,157,0.1)", padding:"0.1em 0.4em", borderRadius:"4px"}}>neural-activity-visualizer-react</code> component enables
-                    web-browser visualisation of electrophysiology data files. It uses the{" "}
-                    <a href="/api/docs" target="_blank" rel="noopener noreferrer">Neo Viewer REST API</a>.
+            <div className="text-center py-16 px-6 border-b border-white/10">
+                <h1 className="f-heading-03 mb-4">React Component</h1>
+                <p className="f-body-01 text-default-weak max-w-2xl mx-auto">
+                    The <code className="bg-white/10 rounded px-2 py-0.5 text-brand-green font-mono text-sm">
+                        neural-activity-visualizer-react
+                    </code> component enables web-browser visualisation of electrophysiology data.
+                    It uses the{" "}
+                    <a href="/api/docs" target="_blank" rel="noopener noreferrer"
+                       className="text-brand-green">Neo Viewer REST API</a>.
                 </p>
             </div>
 
-            <main className="demo-main">
-                <div className="demo-container">
+            {/* ── Main content ── */}
+            <main className="flex-1 py-12">
+                <div className="container mx-auto px-6 max-w-4xl">
 
                     {/* ── Installation ── */}
-                    <h2 className="demo-section-heading">Installation</h2>
-                    <div className="demo-intro">
-                        The <code>neural-activity-visualizer-react</code> component can be installed via npm:
-                    </div>
+                    <h2 className="f-heading-05 mb-4 pb-3 border-b border-white/10">Installation</h2>
+                    <p className="text-default-weak mb-4">
+                        Install via npm:
+                    </p>
                     <SyntaxHighLighter
                         language="bash"
                         style={atomOneDark}
@@ -129,35 +110,30 @@ function App() {
                         npm install --save neural-activity-visualizer-react
                     </SyntaxHighLighter>
 
-                    <div className="demo-accent-strip" />
+                    <hr className="border-white/10 my-10" />
 
                     {/* ── Basic Usage ── */}
-                    <h2 className="demo-section-heading">Example: Basic Usage</h2>
-                    <div className="source-label">Source Code</div>
+                    <h2 className="f-heading-05 mb-4 pb-3 border-b border-white/10">Example: Basic Usage</h2>
+                    <p className="text-default-weak/60 text-xs uppercase tracking-wider mb-2">Source Code</p>
                     <SyntaxHighLighter
                         language="javascript"
                         style={atomOneDark}
                         codeTagProps={{ style: { fontSize: 15, lineHeight: 1.6 } }}
                     >
-                        {`import Visualizer from 'neural-activity-visualizer-react'
-...
-let source_url = "${source1}"
-<Visualizer source={source_url} />`.replace(/\n +/g, "\n")}
+                        {`import Visualizer from 'neural-activity-visualizer-react'\n...\nlet source_url = "${source1}"\n<Visualizer source={source_url} />`}
                     </SyntaxHighLighter>
-                    <div className="output-label">Output</div>
+                    <p className="text-default-weak/60 text-xs uppercase tracking-wider mt-6 mb-2">Output</p>
                     <Visualizer source={source1} />
 
-                    <div className="demo-accent-strip" />
+                    <hr className="border-white/10 my-10" />
 
                     {/* ── Multiple File Types ── */}
-                    <h2 className="demo-section-heading">Demo: Multiple File Types</h2>
-                    <p style={{ color: "rgba(255,255,255,0.75)", marginBottom: 16 }}>
-                        NeoViewer supports a variety of file types. The dropdown below provides
-                        examples of several formats that can be visualised.
+                    <h2 className="f-heading-05 mb-4 pb-3 border-b border-white/10">Demo: Multiple File Types</h2>
+                    <p className="text-default-weak mb-4">
+                        NeoViewer supports a variety of file types. Select one below:
                     </p>
-
                     <form>
-                        <label style={{ color: "rgba(255,255,255,0.8)", fontWeight: 600, display: "block", marginBottom: 8 }}>
+                        <label className="block text-sm font-medium text-default-weak mb-2">
                             Choose a filetype:
                         </label>
                         <select
@@ -182,9 +158,7 @@ let source_url = "${source1}"
                             <option value="https://gin.g-node.org/NeuralEnsemble/ephy_testing_data/raw/master/winedr/File_WinEDR_1.EDR">Winedr</option>
                             <option value="https://gin.g-node.org/NeuralEnsemble/ephy_testing_data/raw/master/winwcp/File_winwcp_1.wcp">Winwcp</option>
                         </select>
-                        <label style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.85rem", display: "block", marginBottom: 6 }}>
-                            Sample file URL:
-                        </label>
+                        <label className="block text-xs text-default-weak/50 mb-1">Sample file URL:</label>
                         <input
                             id="showSelectURL"
                             className="demo-input-readonly"
@@ -194,58 +168,28 @@ let source_url = "${source1}"
                         />
                     </form>
                     {state.selectedFileTypeURL && (
-                        <Visualizer
-                            key={JSON.stringify(state)}
-                            source={state.selectedFileTypeURL}
-                        />
+                        <Visualizer key={JSON.stringify(state)} source={state.selectedFileTypeURL} />
                     )}
 
-                    <div className="demo-accent-strip" />
+                    <hr className="border-white/10 my-10" />
 
                     {/* ── Interactive Demo ── */}
-                    <h2 className="demo-section-heading">Example: Interactive Demo</h2>
+                    <h2 className="f-heading-05 mb-6 pb-3 border-b border-white/10">Example: Interactive Demo</h2>
 
-                    <div style={{ marginBottom: 24 }}>
-                        <span className="attr-label">source</span>
+                    <div className="mb-6">
+                        <span className="block text-brand-green font-mono text-sm mb-2">source</span>
                         <FormControl>
-                            <RadioGroup
-                                row
-                                defaultValue="sampleAnalogSignal"
-                                name="sourceRadio"
-                                onChange={handleChange}
-                            >
-                                <FormControlLabel
-                                    value="sampleAnalogSignal"
-                                    control={<Radio />}
-                                    label={
-                                        <span style={{ color: "rgba(255,255,255,0.85)" }}>
-                                            Sample Analog Signal{" "}
-                                            <a href="https://data-proxy.ebrains.eu/api/v1/buckets/pc0a33-Migliore_2018_CA1/exp_data/abf-int-bAC/Ivy_960711AHP3/96711008.abf"
-                                               style={{ color: "#00FF9D" }}>(source)</a>
-                                        </span>
-                                    }
-                                />
-                                <FormControlLabel
-                                    value="sampleSpikeTrain"
-                                    control={<Radio />}
-                                    label={
-                                        <span style={{ color: "rgba(255,255,255,0.85)" }}>
-                                            Sample Spike Train{" "}
-                                            <a href="https://data-proxy.ebrains.eu/api/v1/buckets/pc0a33-test/spiketrainsx2a.nix"
-                                               style={{ color: "#00FF9D" }}>(source)</a>
-                                        </span>
-                                    }
-                                />
-                                <FormControlLabel
-                                    value="other"
-                                    control={<Radio />}
-                                    label={<span style={{ color: "rgba(255,255,255,0.85)" }}>Other</span>}
-                                />
+                            <RadioGroup row defaultValue="sampleAnalogSignal" name="sourceRadio" onChange={handleChange}>
+                                <FormControlLabel value="sampleAnalogSignal" control={<Radio />}
+                                    label={<span>Sample Analog Signal <a href={source1} className="text-brand-green text-sm">(source)</a></span>} />
+                                <FormControlLabel value="sampleSpikeTrain" control={<Radio />}
+                                    label={<span>Sample Spike Train <a href="https://data-proxy.ebrains.eu/api/v1/buckets/pc0a33-test/spiketrainsx2a.nix" className="text-brand-green text-sm">(source)</a></span>} />
+                                <FormControlLabel value="other" control={<Radio />} label="Other" />
                             </RadioGroup>
                         </FormControl>
                     </div>
 
-                    <div style={{ marginBottom: 24 }}>
+                    <div className="mb-8">
                         <TextField
                             disabled={state.sourceRadio !== "other"}
                             name="source"
@@ -253,193 +197,81 @@ let source_url = "${source1}"
                             onChange={handleChange}
                             variant="outlined"
                             fullWidth
-                            InputProps={{
-                                style: {
-                                    fontSize: 15,
-                                    color: "#ffffff",
-                                    fontFamily: "'IBM Plex Mono', monospace",
-                                    padding: "5px 10px",
-                                },
-                            }}
+                            InputProps={{ style: { fontSize: 15, color: "#ffffff", fontFamily: "'IBM Plex Mono', monospace", padding: "5px 10px" } }}
                             helperText="URL of source data file"
                         />
                     </div>
 
-                    <table className="demo-table">
+                    <table className="w-full border-collapse text-sm mb-8">
                         <thead>
-                            <tr>
-                                <th style={{ width: 180 }}>Attribute</th>
-                                <th style={{ width: 160 }}>Value</th>
-                                <th>Description</th>
+                            <tr className="border-b border-white/10">
+                                <th className="py-3 px-4 text-left text-white font-medium w-44">Attribute</th>
+                                <th className="py-3 px-4 text-center text-white font-medium w-36">Value</th>
+                                <th className="py-3 px-4 text-left text-white font-medium">Description</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>width</td>
-                                <td>
-                                    <TextField
-                                        name="width"
-                                        value={state.width}
-                                        onChange={handleChange}
-                                        type="number"
-                                        variant="outlined"
-                                        size="small"
-                                        InputProps={{ inputProps: { min: 0, max: 9999, style: { textAlign: "center" } } }}
-                                    />
-                                </td>
-                                <td style={{ color: "rgba(255,255,255,0.75)", textAlign: "left" }}>
-                                    Set width of visualization panel (absolute values, not %).
-                                    Inherits from parent by default and is responsive.
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>height</td>
-                                <td>
-                                    <TextField
-                                        name="height"
-                                        value={state.height}
-                                        onChange={handleChange}
-                                        type="number"
-                                        variant="outlined"
-                                        size="small"
-                                        InputProps={{ inputProps: { min: 0, max: 9999, style: { textAlign: "center" } } }}
-                                    />
-                                </td>
-                                <td style={{ color: "rgba(255,255,255,0.75)", textAlign: "left" }}>
-                                    Set height of visualization panel (absolute values, not %).
-                                    Inherits from parent (up to 450 px) by default and is responsive.
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>downSampleFactor</td>
-                                <td>
-                                    <TextField
-                                        name="downSampleFactor"
-                                        value={state.downSampleFactor}
-                                        onChange={handleChange}
-                                        type="number"
-                                        variant="outlined"
-                                        size="small"
-                                        InputProps={{ inputProps: { min: 0, max: 9999, style: { textAlign: "center" } } }}
-                                    />
-                                </td>
-                                <td style={{ color: "rgba(255,255,255,0.75)", textAlign: "left" }}>
-                                    Factor by which data should be downsampled prior to loading.
-                                    Useful for faster loading of large files. Default = 1 (no downsampling).
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>ioType</td>
-                                <td>
-                                    <TextField
-                                        name="ioType"
-                                        value={state.ioType}
-                                        onChange={handleChange}
-                                        variant="outlined"
-                                        size="small"
-                                        InputProps={{ inputProps: { style: { textAlign: "center" } } }}
-                                    />
-                                </td>
-                                <td style={{ color: "rgba(255,255,255,0.75)", textAlign: "left" }}>
-                                    Manually specify the file type. Useful for generic extensions
-                                    (e.g. .dat). No default value.
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>showSignals</td>
-                                <td>
-                                    <Checkbox
-                                        name="showSignals"
-                                        checked={state.showSignals}
-                                        onChange={handleChange}
-                                        sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }}
-                                    />
-                                </td>
-                                <td style={{ color: "rgba(255,255,255,0.75)", textAlign: "left" }}>
-                                    Enable/disable display of signals panel on loading.
-                                    Default = true.
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>showSpikeTrains</td>
-                                <td>
-                                    <Checkbox
-                                        name="showSpikeTrains"
-                                        checked={state.showSpikeTrains}
-                                        onChange={handleChange}
-                                        sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }}
-                                    />
-                                </td>
-                                <td style={{ color: "rgba(255,255,255,0.75)", textAlign: "left" }}>
-                                    Enable/disable display of spike train panel on loading.
-                                    Default = false.
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>disableChoice</td>
-                                <td>
-                                    <Checkbox
-                                        name="disableChoice"
-                                        checked={state.disableChoice}
-                                        onChange={handleChange}
-                                        sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }}
-                                    />
-                                </td>
-                                <td style={{ color: "rgba(255,255,255,0.75)", textAlign: "left" }}>
-                                    Hide/show the buttons to toggle signal and spike train panels.
-                                    Default = false.
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>segmentId</td>
-                                <td>
-                                    <TextField
-                                        name="segmentId"
-                                        value={state.segmentId}
-                                        onChange={handleChange}
-                                        type="number"
-                                        variant="outlined"
-                                        size="small"
-                                        InputProps={{ inputProps: { min: 0, max: 9999, style: { textAlign: "center" } } }}
-                                    />
-                                </td>
-                                <td style={{ color: "rgba(255,255,255,0.75)", textAlign: "left" }}>
-                                    Data segment to display on loading. Default = 0.
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>signalId</td>
-                                <td>
-                                    <TextField
-                                        name="signalId"
-                                        value={state.signalId}
-                                        onChange={handleChange}
-                                        type="number"
-                                        variant="outlined"
-                                        size="small"
-                                        InputProps={{ inputProps: { min: 0, max: 9999, style: { textAlign: "center" } } }}
-                                    />
-                                </td>
-                                <td style={{ color: "rgba(255,255,255,0.75)", textAlign: "left" }}>
-                                    Signal to display on loading. Default = 0.
-                                </td>
-                            </tr>
+                        <tbody className="divide-y divide-white/10">
+                            {[
+                                { name: "width", type: "number", desc: "Width of visualisation panel (absolute, not %). Inherits from parent by default." },
+                                { name: "height", type: "number", desc: "Height of visualisation panel (absolute, not %). Inherits from parent (up to 450 px)." },
+                                { name: "downSampleFactor", type: "number", desc: "Downsample data before loading. Useful for large files. Default = 1 (no downsampling)." },
+                                { name: "ioType", type: "text", desc: "Manually specify the file type — useful for generic extensions (e.g. .dat)." },
+                            ].map(({ name, type, desc }) => (
+                                <tr key={name}>
+                                    <td className="py-3 px-4 font-mono text-brand-green">{name}</td>
+                                    <td className="py-3 px-4 text-center">
+                                        <TextField
+                                            name={name} value={state[name]} onChange={handleChange}
+                                            type={type} variant="outlined" size="small"
+                                            InputProps={{ inputProps: { min: 0, max: 9999, style: { textAlign: "center" } } }}
+                                        />
+                                    </td>
+                                    <td className="py-3 px-4 text-default-weak">{desc}</td>
+                                </tr>
+                            ))}
+                            {[
+                                { name: "showSignals", desc: "Show/hide signals panel on load. Default = true." },
+                                { name: "showSpikeTrains", desc: "Show/hide spike train panel on load. Default = false." },
+                                { name: "disableChoice", desc: "Hide the toggle buttons for signal/spike train panels. Default = false." },
+                            ].map(({ name, desc }) => (
+                                <tr key={name}>
+                                    <td className="py-3 px-4 font-mono text-brand-green">{name}</td>
+                                    <td className="py-3 px-4 text-center">
+                                        <Checkbox name={name} checked={state[name]} onChange={handleChange}
+                                            sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }} />
+                                    </td>
+                                    <td className="py-3 px-4 text-default-weak">{desc}</td>
+                                </tr>
+                            ))}
+                            {[
+                                { name: "segmentId", desc: "Data segment to display on load. Default = 0." },
+                                { name: "signalId", desc: "Signal to display on load. Default = 0." },
+                            ].map(({ name, desc }) => (
+                                <tr key={name}>
+                                    <td className="py-3 px-4 font-mono text-brand-green">{name}</td>
+                                    <td className="py-3 px-4 text-center">
+                                        <TextField
+                                            name={name} value={state[name]} onChange={handleChange}
+                                            type="number" variant="outlined" size="small"
+                                            InputProps={{ inputProps: { min: 0, max: 9999, style: { textAlign: "center" } } }}
+                                        />
+                                    </td>
+                                    <td className="py-3 px-4 text-default-weak">{desc}</td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
 
-                    <div className="source-label" style={{ marginTop: 24 }}>Source Code</div>
+                    <p className="text-default-weak/60 text-xs uppercase tracking-wider mb-2">Source Code</p>
                     <SyntaxHighLighter
                         language="javascript"
                         style={atomOneDark}
                         codeTagProps={{ style: { fontSize: 15, lineHeight: 1.6 } }}
                     >
-                        {`import Visualizer from 'neural-activity-visualizer-react'
-...
-<Visualizer
-${example_attributes}/>`.replace(/\n +/g, "\n")}
+                        {`import Visualizer from 'neural-activity-visualizer-react'\n...\n<Visualizer\n${example_attributes}/>`}
                     </SyntaxHighLighter>
 
-                    <div className="output-label">Output</div>
+                    <p className="text-default-weak/60 text-xs uppercase tracking-wider mt-6 mb-2">Output</p>
                     <Visualizer
                         key={JSON.stringify(state)}
                         source={state.source}
@@ -457,26 +289,12 @@ ${example_attributes}/>`.replace(/\n +/g, "\n")}
                 </div>
             </main>
 
-            {/* ── Footer ── */}
-            <footer className="demo-footer">
-                <div className="demo-accent-strip" style={{ margin: "0 0 24px" }} />
-                <div className="demo-footer-content">
-                    <p>
-                        This project has received funding from the European Union's Horizon 2020
-                        Framework Programme for Research and Innovation under the Specific Grant
-                        Agreements No. 785907 and No. 945539 (Human Brain Project SGA2 and SGA3)
-                        and by the European Union's Research and Innovation Program Horizon Europe
-                        Grant Agreement No. 101147319 (EBRAINS 2.0).
-                    </p>
-                    <p>
-                        If you encounter any problems,{" "}
-                        <a href="https://github.com/NeuralEnsemble/neo-viewer/issues/new"
-                           target="_blank" rel="noopener noreferrer">
-                            please let us know.
-                        </a>
-                    </p>
-                </div>
-            </footer>
+            {/* ── EDS Footer ── */}
+            <eds-footer
+                variant="inverse"
+                funded-by="This project has received funding from the European Union's Horizon 2020 Framework Programme for Research and Innovation under the Specific Grant Agreements No. 785907 and No. 945539 (Human Brain Project SGA2 and SGA3) and by the European Union's Research and Innovation Program Horizon Europe Grant Agreement No. 101147319 (EBRAINS 2.0)."
+                rights-reserved="If you encounter any problems, please open an issue on GitHub.">
+            </eds-footer>
 
         </div>
     );

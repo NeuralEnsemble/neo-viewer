@@ -7,117 +7,106 @@
     <link rel="icon" href="favicon/Favicon_32x32.png">
     <link rel="apple-touch-icon" href="favicon/Favicon_32x32.png">
     <title>Neural Activity Visualizer</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;600&display=swap">
+    <link rel="stylesheet" href="https://unpkg.com/@ebrains/assets@0.9.0/styles/output.css">
     <link rel="stylesheet" href="./css/styles.css">
+    <script type="module">
+        import { defineCustomElements } from 'https://cdn.jsdelivr.net/npm/@ebrains/components@3.0.0/dist/esm/loader.js';
+        defineCustomElements(window);
+    </script>
 </head>
-<body>
-<div class="page-wrapper">
+<body class="flex flex-col min-h-screen">
 
-    <header class="site-header">
-        <nav class="nav-container">
-            <a href="/" class="nav-brand">
-                <img src="./imgs/ebrains_logo.svg" alt="EBRAINS">
-                <span class="nav-brand-text">Neural Activity Visualizer</span>
-            </a>
-            <div class="nav-links">
-                <a href="/react">React Demo</a>
-                <a href="/angularjs">AngularJS Demo</a>
-                <a href="/api/docs" target="_blank" rel="noopener noreferrer">API Docs</a>
-                <a href="https://github.com/NeuralEnsemble/neo-viewer" target="_blank" rel="noopener noreferrer">GitHub</a>
-            </div>
-        </nav>
-    </header>
+    <eds-header
+        variant="strong"
+        url="/"
+        links='[{"label":"React Demo","url":"/react"},{"label":"AngularJS Demo","url":"/angularjs"},{"label":"API Docs","url":"/api/docs","external":true},{"label":"GitHub","url":"https://github.com/NeuralEnsemble/neo-viewer","external":true}]'>
+    </eds-header>
 
-    <main>
-        <div class="container">
+    <main class="flex-1 py-16">
+        <div class="container mx-auto px-6 max-w-4xl">
 
-            <div class="page-hero">
-                <h1>Neural Activity Visualizer</h1>
-                <p>
+            <div class="text-center mb-16">
+                <h1 class="f-heading-02 mb-4">Neural Activity Visualizer</h1>
+                <p class="f-body-01 text-default-weak max-w-2xl mx-auto">
                     Web-browser visualisation of electrophysiology data files in any format
-                    supported by the <a href="http://neuralensemble.org/neo" target="_blank" rel="noopener noreferrer">Neo</a> library.
+                    supported by the <a href="http://neuralensemble.org/neo" target="_blank"
+                    rel="noopener noreferrer" class="text-brand-green">Neo</a> library.
                 </p>
             </div>
 
-            <div class="intro-card">
-                <p>
-                    The <strong>neural-activity-visualizer</strong> JavaScript app enables
-                    web-browser visualisation of electrophysiology data files in any format
+            <div class="mb-12 p-8 rounded-xl border border-white/10 bg-white/5">
+                <p class="f-body-01 text-default-weak mb-4">
+                    The <strong class="text-white">neural-activity-visualizer</strong> JavaScript app
+                    enables web-browser visualisation of electrophysiology data files in any format
                     supported by the Neo library. It makes use of the
-                    <a href="/api/docs" target="_blank" rel="noopener noreferrer">Neo Viewer REST API</a>.
+                    <a href="/api/docs" target="_blank" rel="noopener noreferrer"
+                       class="text-brand-green">Neo Viewer REST API</a>.
                 </p>
-                <p>
-                    <a href="http://neuralensemble.org/neo" target="_blank" rel="noopener noreferrer">Neo</a>
-                    is an open-source Python API supporting 30+ file formats including proprietary formats
-                    (AlphaOmega, Plexon, NeuroExplorer), open formats (Neurodata Without Borders, Klustakwik,
-                    Elan), and generic file formats (MATLAB, ASCII, HDF5). Neo loads data into a common object
-                    model to increase interoperability. The visualizer provides interactive
-                    <a href="https://plotly.com/javascript/" target="_blank" rel="noopener noreferrer">Plotly.js</a>
-                    visualisations, with a
-                    <a href="https://fastapi.tiangolo.com" target="_blank" rel="noopener noreferrer">FastAPI</a>
-                    backend.
+                <p class="f-body-01 text-default-weak mb-4">
+                    <a href="http://neuralensemble.org/neo" target="_blank" rel="noopener noreferrer"
+                       class="text-brand-green">Neo</a>
+                    is an open-source Python API supporting 30+ file formats including proprietary
+                    formats (AlphaOmega, Plexon, NeuroExplorer), open formats (Neurodata Without
+                    Borders, Klustakwik, Elan), and generic file formats (MATLAB, ASCII, HDF5).
+                    The visualizer provides interactive
+                    <a href="https://plotly.com/javascript/" target="_blank" rel="noopener noreferrer"
+                       class="text-brand-green">Plotly.js</a>
+                    visualisations backed by a
+                    <a href="https://fastapi.tiangolo.com" target="_blank" rel="noopener noreferrer"
+                       class="text-brand-green">FastAPI</a> server.
                 </p>
             </div>
 
-            <h2 class="section-heading text-center">Resources</h2>
-
-            <div class="resource-links">
-                <a class="btn btn-primary" href="https://github.com/NeuralEnsemble/neo-viewer"
-                   target="_blank" rel="noopener noreferrer">GitHub Repo</a>
-                <a class="btn btn-secondary" href="/api/docs"
-                   target="_blank" rel="noopener noreferrer">API Docs</a>
-                <a class="btn btn-secondary" href="/react"
-                   target="_blank" rel="noopener noreferrer">React Demo</a>
-                <a class="btn btn-secondary" href="/angularjs"
-                   target="_blank" rel="noopener noreferrer">AngularJS Demo</a>
+            <h2 class="f-heading-04 mb-6 pb-3 border-b border-white/10">Resources</h2>
+            <div class="flex flex-wrap gap-4 justify-center mb-16">
+                <a href="https://github.com/NeuralEnsemble/neo-viewer"
+                   target="_blank" rel="noopener noreferrer">
+                    <eds-button intent="brand" label="GitHub Repo"></eds-button>
+                </a>
+                <a href="/api/docs" target="_blank" rel="noopener noreferrer">
+                    <eds-button intent="secondary" label="API Docs"></eds-button>
+                </a>
+                <a href="/react" target="_blank" rel="noopener noreferrer">
+                    <eds-button intent="secondary" label="React Demo"></eds-button>
+                </a>
+                <a href="/angularjs" target="_blank" rel="noopener noreferrer">
+                    <eds-button intent="secondary" label="AngularJS Demo"></eds-button>
+                </a>
             </div>
 
-            <div class="accent-strip"></div>
-
-            <h2 class="section-heading">Guides</h2>
-
-            <div class="card">
-                <ul class="guides-list">
-                    <li>
-                        <a href="/guide_react_deploy" target="_blank" rel="noopener noreferrer">
-                            Deploying the Neural Activity Visualizer React demo app
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/guide_angular_usage" target="_blank" rel="noopener noreferrer">
-                            Using the Neural Activity Visualizer Angular component
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/guide_plotly_interactivity" target="_blank" rel="noopener noreferrer">
-                            Quick overview of visualizer interactivity features
-                        </a>
-                    </li>
-                </ul>
+            <h2 class="f-heading-04 mb-6 pb-3 border-b border-white/10">Guides</h2>
+            <div class="rounded-xl border border-white/10 bg-white/5 divide-y divide-white/10">
+                <div class="p-5">
+                    <a href="/guide_react_deploy" target="_blank" rel="noopener noreferrer"
+                       class="flex items-center gap-3 text-brand-green f-body-01 hover:text-brand-green-dark">
+                        <span class="text-lg">→</span>
+                        Deploying the Neural Activity Visualizer React demo app
+                    </a>
+                </div>
+                <div class="p-5">
+                    <a href="/guide_angular_usage" target="_blank" rel="noopener noreferrer"
+                       class="flex items-center gap-3 text-brand-green f-body-01 hover:text-brand-green-dark">
+                        <span class="text-lg">→</span>
+                        Using the Neural Activity Visualizer Angular component
+                    </a>
+                </div>
+                <div class="p-5">
+                    <a href="/guide_plotly_interactivity" target="_blank" rel="noopener noreferrer"
+                       class="flex items-center gap-3 text-brand-green f-body-01 hover:text-brand-green-dark">
+                        <span class="text-lg">→</span>
+                        Quick overview of visualizer interactivity features
+                    </a>
+                </div>
             </div>
 
         </div>
     </main>
 
-    <footer class="site-footer">
-        <div class="accent-strip" style="margin: 0 0 24px;"></div>
-        <div class="footer-content">
-            <p>
-                This project has received funding from the European Union's Horizon 2020 Framework
-                Programme for Research and Innovation under the Specific Grant Agreements No. 785907
-                and No. 945539 (Human Brain Project SGA2 and SGA3) and by the European Union's
-                Research and Innovation Program Horizon Europe Grant Agreement No. 101147319 (EBRAINS 2.0).
-            </p>
-            <p>
-                If you encounter any problems,
-                <a href="https://github.com/NeuralEnsemble/neo-viewer/issues/new"
-                   target="_blank" rel="noopener noreferrer">please let us know.</a>
-            </p>
-        </div>
-    </footer>
+    <eds-footer
+        variant="inverse"
+        funded-by="This project has received funding from the European Union's Horizon 2020 Framework Programme for Research and Innovation under the Specific Grant Agreements No. 785907 and No. 945539 (Human Brain Project SGA2 and SGA3) and by the European Union's Research and Innovation Program Horizon Europe Grant Agreement No. 101147319 (EBRAINS 2.0)."
+        rights-reserved="If you encounter any problems, please open an issue on GitHub.">
+    </eds-footer>
 
-</div>
 </body>
 </html>
