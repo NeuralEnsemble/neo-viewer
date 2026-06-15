@@ -6,6 +6,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import Checkbox from "@mui/material/Checkbox";
 import Visualizer from "neural-activity-visualizer-react";
+import "neural-activity-visualizer-react/style.css";
 import SyntaxHighLighter from "react-syntax-highlighter";
 import { docco } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 import "./App.css";
