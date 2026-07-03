@@ -173,6 +173,7 @@ test_data_gin = {
                 "nwb/BlackrockSortingInterface.nwb",
                 "nwb/ecephys_tutorial_v2.5.0.nwb",
             ],
+            "KwikIO": ["kwik/neo.kwik"],  # kwik package incompatible with numpy >= 2.3
         },
         "segment": {
             "NWBIO": [
@@ -196,7 +197,6 @@ test_data_gin = {
         },
     },
     415: {  # dependency not installed
-        "KwikIO": ["kwik/neo.kwik"],
         "MEArecIO": ["mearec/mearec_test_10s.h5"],
         "Plexon2IO": [
             "plexon/File_plexon_1.plx",
