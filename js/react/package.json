@@ -1,6 +1,6 @@
 {
   "name": "neural-activity-visualizer-react",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "A ReactJS component for visualizing neural activity data",
   "files": [
     "dist"
