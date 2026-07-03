@@ -48,9 +48,9 @@ const { makeSegment, createMockDataStoreInstance } = vi.hoisted(() => {
 
 // Mock DataStore
 vi.mock('../datastore', () => {
-    const MockDataStore = vi.fn().mockImplementation(() =>
-        createMockDataStoreInstance([makeSegment(2), makeSegment(2)])
-    )
+    const MockDataStore = vi.fn().mockImplementation(function () {
+        return createMockDataStoreInstance([makeSegment(2), makeSegment(2)])
+    })
     return { default: MockDataStore }
 })
 
@@ -92,7 +92,7 @@ describe('Visualizer', () => {
             initialized: false,
         }
         // Both the useRef and useEffect create a DataStore, so mock both
-        DataStore.mockImplementation(() => failingInstance)
+        DataStore.mockImplementation(function () { return failingInstance })
 
         render(<Visualizer source="http://example.com/file.nwb" />)
         await waitFor(() => {
@@ -136,9 +136,9 @@ describe('Visualizer - dynamic source changes', () => {
     it('keeps segmentId and signalId when valid for the new source', async () => {
         // Both sources have 2 segments with 2 signals each
         const DataStore = (await import('../datastore')).default
-        DataStore.mockImplementation(() =>
-            createMockDataStoreInstance([makeSegment(2), makeSegment(2)])
-        )
+        DataStore.mockImplementation(function () {
+            return createMockDataStoreInstance([makeSegment(2), makeSegment(2)])
+        })
 
         const { rerender } = render(
             <Visualizer source="http://example.com/file1.nwb" segmentId={1} signalId={1} showSignals={true} />
@@ -162,7 +162,7 @@ describe('Visualizer - dynamic source changes', () => {
     it('resets segmentId to 0 when invalid for the new source', async () => {
         const DataStore = (await import('../datastore')).default
         let callCount = 0
-        DataStore.mockImplementation(() => {
+        DataStore.mockImplementation(function () {
             callCount++
             // First source: 3 segments; second source: 1 segment
             const segments = callCount <= 1
@@ -191,7 +191,7 @@ describe('Visualizer - dynamic source changes', () => {
     it('resets signalId to 0 when invalid for the new source', async () => {
         const DataStore = (await import('../datastore')).default
         let callCount = 0
-        DataStore.mockImplementation(() => {
+        DataStore.mockImplementation(function () {
             callCount++
             // First source: 4 signals; second source: 1 signal
             const segments = callCount <= 1
@@ -220,7 +220,7 @@ describe('Visualizer - dynamic source changes', () => {
     it('validates signalId using as_prop when available', async () => {
         const DataStore = (await import('../datastore')).default
         let callCount = 0
-        DataStore.mockImplementation(() => {
+        DataStore.mockImplementation(function () {
             callCount++
             // First source uses as_prop with 3 signals; second source uses as_prop with 1 signal
             const segments = callCount <= 1
@@ -248,9 +248,9 @@ describe('Visualizer - dynamic source changes', () => {
 
     it('keeps segmentId "all" when source changes', async () => {
         const DataStore = (await import('../datastore')).default
-        DataStore.mockImplementation(() =>
-            createMockDataStoreInstance([makeSegment(2)])
-        )
+        DataStore.mockImplementation(function () {
+            return createMockDataStoreInstance([makeSegment(2)])
+        })
 
         const { rerender } = render(
             <Visualizer source="http://example.com/file1.nwb" segmentId="all" signalId={0} showSignals={true} />
