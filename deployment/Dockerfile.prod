@@ -23,7 +23,7 @@ FROM docker-registry.ebrains.eu/neuralactivity/debian:bookworm-slim
 LABEL org.opencontainers.image.authors="Andrew Davison <andrew.davison@cnrs.fr>"
 
 ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update --fix-missing; apt-get -y -q install python3-full git
+RUN apt-get update --fix-missing; apt-get -y -q install python3-venv
 RUN unset DEBIAN_FRONTEND
 
 ENV BASEDIR /home/docker
