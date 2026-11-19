@@ -18,18 +18,18 @@ Clone the Git repository using:
 git clone https://github.com/NeuralEnsemble/neo-viewer.git
 ```
 
-Obtain an SSL certificate using LetsEncrypt, and then modify `deployment/nginx-app.conf` to set the
-correct values of `server_name`, `ssl_certificate` and `ssl_certificate_key` for your server.
-
-Now build the Docker image using:
+Build the Docker image using:
 ```
-docker build -t neo-viewer -f deployment/Dockerfile .
+docker build -t neo-viewer -f deployment/Dockerfile.prod .
 ```
 
 Run the Docker container using
 ```
-docker run -d -p 443:443 --name neo-viewer -v /etc/letsencrypt:/etc/letsencrypt neo-viewer
+docker run -d -p 8000:8000 --name neo-viewer neo-viewer
 ```
+
+The container serves plain HTTP on port 8000 (uvicorn), so put it behind a reverse proxy or
+ingress that terminates TLS.
 
 To check everything has worked, run
 ```

@@ -2,7 +2,7 @@ name: Mirror to EBRAINS
 
 on:
   push:
-    branches: [ master, staging, development ]
+    branches: [ master, development ]
 
 jobs:
   to_ebrains:
@@ -15,13 +15,6 @@ jobs:
           source_branch: "master"
           destination_repo: "https://ghpusher:${{ secrets.EBRAINS_GITLAB_ACCESS_TOKEN }}@gitlab.ebrains.eu/NeuralEnsemble/neo-viewer.git"
           destination_branch: "main"
-      - name: syncmaster
-        uses: wei/git-sync@v3
-        with:
-          source_repo: "NeuralEnsemble/neo-viewer"
-          source_branch: "staging"
-          destination_repo: "https://ghpusher:${{ secrets.EBRAINS_GITLAB_ACCESS_TOKEN }}@gitlab.ebrains.eu/NeuralEnsemble/neo-viewer.git"
-          destination_branch: "staging"
       - name: syncmaster
         uses: wei/git-sync@v3
         with:
