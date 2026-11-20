@@ -1,5 +1,15 @@
 # Changelog
 
+## [2.2.0] - 2026-11-20
+
+### Added
+
+- Toggle Spike Lines, Show closest data on hover and Compare data on hover buttons in the plot toolbar. Plotly.js 2 removed these from its default toolbar.
+
+### Fixed
+
+- The segment/signal dropdowns and the info popover now set their own text colour, so they stay readable on pages with a dark background (new CSS custom property `--nv-text-color`).
+
 ## [2.1.1] - 2026-07-03
 
 ### Changed

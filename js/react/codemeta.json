@@ -2,7 +2,7 @@
   "@context": "https://w3id.org/codemeta/3.0",
   "@type": "SoftwareSourceCode",
   "name": "neural-activity-visualizer-react",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "description": "A ReactJS component for visualizing neural activity data",
   "license": "https://spdx.org/licenses/MIT",
   "codeRepository": "https://github.com/NeuralEnsemble/neo-viewer",
@@ -24,12 +24,12 @@
       "id": "https://orcid.org/0000-0002-0148-8023"
     }
   ],
-  "dateModified": "2026-07-03",
-  "downloadUrl": "https://registry.npmjs.org/neural-activity-visualizer-react/-/neural-activity-visualizer-react-2.1.1.tgz",
+  "dateModified": "2026-11-20",
+  "downloadUrl": "https://registry.npmjs.org/neural-activity-visualizer-react/-/neural-activity-visualizer-react-2.2.0.tgz",
   "relatedLink": [
     "https://neoviewer.apps.ebrains.eu/react/"
   ],
-  "releaseNotes": "- Upgrade build/test toolchain to Vite 7, Vitest 4, and @vitejs/plugin-react 5 to resolve Dependabot security alerts (dev dependencies only; no runtime API changes)\n- Pin the library CSS output filename to style.css so the published ./style.css export keeps resolving under Vite 6+",
+  "releaseNotes": "- Add Toggle Spike Lines, Show closest data on hover and Compare data on hover buttons to the plot toolbar (removed from Plotly.js 2's default toolbar)\n- Set an explicit text colour on the segment/signal dropdowns and the info popover, so they stay readable on pages with a dark background (new CSS custom property --nv-text-color)",
   "availableOnDevice": [
     "desktop",
     "mobile device"
