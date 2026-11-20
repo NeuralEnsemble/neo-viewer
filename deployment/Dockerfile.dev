@@ -46,8 +46,13 @@ WORKDIR $SITEDIR
 ENV HOMEPAGE_DIR=$SITEDIR/homepage
 ENV REACT_DIR=$SITEDIR/react
 
-RUN useradd -r -u 1000 appuser \
-    && chown -R appuser $BASEDIR
+# The code and venv stay owned by root (read-only for the app); only the
+# download cache must be writable. Avoid `chown -R` on $BASEDIR: it copies the
+# whole venv into a new layer, doubling the disk space the build needs.
+RUN ${BASEDIR}/pyenv/bin/python -m compileall -q $SITEDIR/api \
+    && useradd -r -u 1000 appuser \
+    && mkdir -p $SITEDIR/api/download_cache \
+    && chown appuser $SITEDIR/api/download_cache
 
 USER appuser
 
