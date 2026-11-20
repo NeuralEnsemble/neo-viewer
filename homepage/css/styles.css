@@ -211,6 +211,8 @@ a.plain {
   border-radius: 4px;
   padding: 0.15em 0.45em;
   font-size: 0.875em;
+  /* long URLs and commands wrap rather than widen the page on phones */
+  overflow-wrap: anywhere;
 }
 
 .site-main pre {
