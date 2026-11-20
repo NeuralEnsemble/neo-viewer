@@ -279,6 +279,13 @@ a.plain {
   margin: 24px 0;
 }
 
+/* ── Breadcrumbs (sub-pages) ───────────────────────────────────── */
+
+.breadcrumbs {
+  display: block;
+  margin: -24px 0 40px;
+}
+
 /* ── Theme toggle (injected into eds-header's "actions" slot) ──── */
 
 .theme-toggle {

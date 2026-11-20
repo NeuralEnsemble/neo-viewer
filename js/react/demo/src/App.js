@@ -16,9 +16,15 @@ const source1 =
     "https://data-proxy.ebrains.eu/api/v1/buckets/pc0a33-Migliore_2018_CA1/exp_data/abf-int-bAC/Ivy_960711AHP3/96711008.abf";
 
 const NAV_LINKS = JSON.stringify([
-    { label: "Home", url: "/" },
+    { label: "React Demo", url: "/react" },
+    { label: "AngularJS Demo", url: "/angularjs" },
     { label: "API Docs", url: "/api/docs", external: true },
     { label: "GitHub", url: "https://github.com/NeuralEnsemble/neo-viewer", external: true },
+]);
+
+const BREADCRUMBS = JSON.stringify([
+    { label: "Neural Activity Visualizer", url: "/" },
+    { label: "React Component", url: "/react" },
 ]);
 
 const THEME_KEY = "neo-viewer-theme";
@@ -129,12 +135,15 @@ function App() {
         <ThemeProvider theme={muiTheme}>
         <div className="site">
 
-            <eds-header variant={theme === "dark" ? "strong" : "inverse"} url="/" links={NAV_LINKS}>
+            <eds-header variant={theme === "dark" ? "strong" : "inverse"} url="https://ebrains.eu" links={NAV_LINKS}>
                 <ThemeToggle theme={theme} onToggle={toggleTheme} />
             </eds-header>
 
             <main className="site-main">
                 <div className="page">
+
+                    <eds-breadcrumb className="breadcrumbs" intent={theme === "dark" ? "inverse" : "strong"}
+                        items={BREADCRUMBS}></eds-breadcrumb>
 
                     <div className="page-intro">
                         <h1 className="f-heading-03 page-title">React Component</h1>
@@ -335,7 +344,7 @@ function App() {
             <eds-footer
                 variant={theme === "dark" ? "inverse" : "default"}
                 funded-by="This project has received funding from the European Union's Horizon 2020 Framework Programme for Research and Innovation under the Specific Grant Agreements No. 785907 and No. 945539 (Human Brain Project SGA2 and SGA3) and by the European Union's Research and Innovation Program Horizon Europe Grant Agreement No. 101147319 (EBRAINS 2.0)."
-                rights-reserved="If you encounter any problems, please open an issue on GitHub.">
+                rights-reserved="2026 CNRS · If you encounter any problems, please open an issue on GitHub.">
             </eds-footer>
 
         </div>

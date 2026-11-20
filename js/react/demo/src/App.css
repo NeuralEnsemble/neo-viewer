@@ -249,6 +249,13 @@ eds-footer {
   color: var(--muted);
 }
 
+/* ── Breadcrumbs (sub-pages) ───────────────────────────────────── */
+
+.breadcrumbs {
+  display: block;
+  margin: -24px 0 40px;
+}
+
 /* ── Theme toggle (in eds-header's "actions" slot) ─────────────── */
 
 .theme-toggle {
