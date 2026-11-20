@@ -1,67 +1,291 @@
 /* ================================================================
-   MUI dark-theme overrides — needed because Material UI components
-   are retained for the interactive demo form and EDS doesn't style
-   them. All other styling comes from @ebrains/assets output.css.
+   React demo page styles on top of EDS.
+
+   EDS (@ebrains/assets output.css) provides fonts, typography classes
+   (f-heading-*, f-body-*, f-ui-*) and the eds-* web components. Its
+   utility classes are a pruned build whose spacing scale is in pixels
+   (p-8 = 8px), so layout and colour are defined here as semantic
+   classes driven by theme tokens. The tokens match homepage/css/styles.css.
+
+   The theme is selected by data-theme="light|dark" on <html> (see
+   useTheme in App.js); MUI widgets get matching colours from the MUI
+   theme there.
    ================================================================ */
 
-/* Page background */
+:root,
+:root[data-theme="light"] {
+  --page-bg: #f3f5f4;
+  --surface: #ffffff;
+  --fg: var(--brand-black, #07140D);
+  --muted: #4d4d4d;
+  --border: rgba(7, 20, 13, 0.12);
+  --link: #007734;
+  --link-hover: var(--brand-black, #07140D);
+  --link-underline: var(--brand-green, #00FF9D);
+  --accent-text: #007734;
+  --code-inline-bg: rgba(7, 20, 13, 0.06);
+  --footer-bg: #e8ebe9;
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --page-bg: var(--brand-black, #07140D);
+  --surface: #0f2018;
+  --fg: #ffffff;
+  --muted: #c3cac6;
+  --border: rgba(255, 255, 255, 0.14);
+  --link: var(--brand-green, #00FF9D);
+  --link-hover: #9dffb4;
+  --link-underline: rgba(0, 255, 157, 0.45);
+  --accent-text: var(--brand-green, #00FF9D);
+  --code-inline-bg: rgba(255, 255, 255, 0.1);
+  --footer-bg: transparent;
+  color-scheme: dark;
+}
+
 html, body {
-  background-color: var(--brand-black, #07140D);
-  color: var(--white, #ffffff);
+  background-color: var(--page-bg);
+  color: var(--fg);
 }
 
-/* MUI input colours */
-.MuiInputBase-root {
-  color: rgba(255, 255, 255, 0.9) !important;
-}
-.MuiOutlinedInput-notchedOutline {
-  border-color: rgba(0, 255, 157, 0.3) !important;
-}
-.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
-  border-color: rgba(0, 255, 157, 0.6) !important;
-}
-.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
-  border-color: #00FF9D !important;
-}
-.MuiFormHelperText-root {
-  color: rgba(255, 255, 255, 0.5) !important;
-}
-.MuiInputBase-input { color: rgba(255, 255, 255, 0.9) !important; }
-.MuiInputBase-input.Mui-disabled { -webkit-text-fill-color: rgba(255,255,255,0.3) !important; }
+/* ── Page skeleton ─────────────────────────────────────────────── */
 
-/* MUI Radio / Checkbox colours */
-.MuiRadio-root            { color: rgba(0, 255, 157, 0.6) !important; }
-.MuiRadio-root.Mui-checked { color: #00FF9D !important; }
-.MuiCheckbox-root            { color: rgba(0, 255, 157, 0.6) !important; }
-.MuiCheckbox-root.Mui-checked { color: #00FF9D !important; }
-.MuiFormControlLabel-label   { color: rgba(255, 255, 255, 0.85) !important; }
+.site {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
-/* Demo-specific layout helpers */
-.demo-select {
+.site-main {
+  flex: 1;
+  padding: 64px 0 96px;
+}
+
+eds-header {
   display: block;
-  width: 100%;
-  max-width: 500px;
-  padding: 8px 12px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(0, 255, 157, 0.3);
-  border-radius: 6px;
-  color: #fff;
-  font-size: 0.9rem;
-  margin-bottom: 12px;
-}
-.demo-select:focus {
-  outline: none;
-  border-color: #00FF9D;
+  border-bottom: 1px solid var(--border);
 }
 
+eds-footer {
+  display: block;
+  background: var(--footer-bg);
+  border-top: 1px solid var(--border);
+}
+
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.page-intro {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.page-title {
+  margin-bottom: 16px;
+}
+
+.lead {
+  color: var(--muted);
+  max-width: 44rem;
+  margin: 0 auto;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.section {
+  margin-top: 72px;
+}
+
+.section-title {
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.section p + p,
+.section p + form,
+.section form + * {
+  margin-top: 16px;
+}
+
+/* Small uppercase label above a code block or an output panel */
+.eyebrow {
+  margin: 28px 0 8px;
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ── Links and code ────────────────────────────────────────────── */
+
+.site-main a {
+  color: var(--link);
+  text-decoration: underline;
+  text-decoration-color: var(--link-underline);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.site-main a:hover {
+  color: var(--link-hover);
+  text-decoration-color: currentColor;
+}
+
+/* Leave the Visualizer's own links (e.g. download icon) alone */
+.site-main .output-surface a {
+  color: var(--nv-primary);
+  text-decoration: none;
+}
+
+.inline-code {
+  background: var(--code-inline-bg);
+  border-radius: 4px;
+  padding: 0.15em 0.45em;
+  font-family: var(--plex-mono, 'IBM Plex Mono'), monospace;
+  font-size: 0.875em;
+}
+
+.attr-name {
+  color: var(--accent-text);
+  font-family: var(--plex-mono, 'IBM Plex Mono'), monospace;
+}
+
+/* ── Visualizer output ─────────────────────────────────────────── */
+
+/* The Visualizer and its Plotly charts are designed for a light
+   background, so give them a white panel in both themes. */
+.output-surface {
+  background: #ffffff;
+  color: rgba(0, 0, 0, 0.87);
+  color-scheme: light;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 8px;
+  overflow: hidden;
+}
+
+/* ── Form controls ─────────────────────────────────────────────── */
+
+.field-label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--muted);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.demo-select,
 .demo-input-readonly {
   display: block;
   width: 100%;
-  padding: 8px 12px;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.1);
+  padding: 10px 12px;
+  border: 1px solid var(--border);
   border-radius: 6px;
-  color: rgba(255, 255, 255, 0.4);
-  font-family: 'IBM Plex Mono', monospace;
+  background: var(--surface);
+  color: var(--fg);
+  font-size: 0.9rem;
+}
+
+.demo-select {
+  max-width: 500px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.demo-select:focus {
+  outline: 2px solid var(--link);
+  outline-offset: 1px;
+}
+
+.demo-input-readonly {
+  color: var(--muted);
+  font-family: var(--plex-mono, 'IBM Plex Mono'), monospace;
   font-size: 0.85rem;
+}
+
+/* ── Attribute table ───────────────────────────────────────────── */
+
+.attr-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0 8px;
+  font-size: 0.875rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.attr-table th,
+.attr-table td {
+  padding: 12px 16px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.attr-table thead th {
+  color: var(--muted);
+  font-weight: 600;
+  border-bottom: 1px solid var(--border);
+}
+
+.attr-table tbody tr + tr td {
+  border-top: 1px solid var(--border);
+}
+
+.attr-table .value-cell {
+  width: 9rem;
+  text-align: center;
+}
+
+.attr-table .desc-cell {
+  color: var(--muted);
+}
+
+/* ── Theme toggle (in eds-header's "actions" slot) ─────────────── */
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-right: 24px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--fg);
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  background: var(--code-inline-bg);
+  border-color: currentColor;
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--link);
+  outline-offset: 2px;
+}
+
+.theme-toggle svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ── Small screens ─────────────────────────────────────────────── */
+
+@media (max-width: 640px) {
+  .site-main { padding: 40px 0 64px; }
+  .page { padding: 0 16px; }
+  .section { margin-top: 48px; }
+  .attr-table th, .attr-table td { padding: 10px 8px; }
+  .attr-table .desc-cell { font-size: 0.8rem; }
 }

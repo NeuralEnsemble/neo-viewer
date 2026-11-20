@@ -3,10 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#07140D">
+    <meta name="theme-color" content="#ffffff">
     <link rel="icon" href="favicon/Favicon_32x32.png">
     <link rel="apple-touch-icon" href="favicon/Favicon_32x32.png">
     <title>Guide: Deploying the React Demo — Neural Activity Visualizer</title>
+    <script src="./js/theme.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/@ebrains/assets@0.9.0/styles/output.css">
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/atom-one-dark.min.css">
@@ -17,236 +18,236 @@
         defineCustomElements(window);
     </script>
 </head>
-<body class="flex flex-col min-h-screen">
+<body class="site">
 
     <eds-header
-        variant="strong"
+        variant="inverse" data-light-variant="inverse" data-dark-variant="strong"
         url="/"
         links='[{"label":"React Demo","url":"/react"},{"label":"AngularJS Demo","url":"/angularjs"},{"label":"API Docs","url":"/api/docs","external":true},{"label":"GitHub","url":"https://github.com/NeuralEnsemble/neo-viewer","external":true}]'>
     </eds-header>
 
-    <main class="flex-1 py-12">
-        <div class="container mx-auto px-6 max-w-4xl guide-content">
+    <main class="site-main">
+        <div class="page guide-content">
 
-            <div class="text-center mb-12">
-                <h1 class="f-heading-03 mb-4">Deploying the React Demo App</h1>
-                <p class="f-body-01 text-default-weak max-w-2xl mx-auto">
+            <div class="page-intro">
+                <h1 class="f-heading-03 page-title">Deploying the React Demo App</h1>
+                <p class="f-body-01 lead">
                     A step-by-step guide to deploying the Neural Activity Visualizer ReactJS demo app.
                     The final result will be similar to the app running on
                     <a href="/react" target="_blank" rel="noopener noreferrer"
-                       class="text-brand-green">this page</a>.
+                      >this page</a>.
                     You will need a
                     <a href="https://github.com/signup?source=login" target="_blank"
-                       rel="noopener noreferrer" class="text-brand-green">GitHub account</a>.
+                       rel="noopener noreferrer">GitHub account</a>.
                 </p>
             </div>
 
             <!-- Steps -->
-            <div class="space-y-6">
+            <div class="stack">
 
-                <div class="p-6 rounded-xl border border-white/10 bg-white/5">
-                    <h2 class="f-ui-01 font-semibold text-brand-green mb-3">Step 1</h2>
-                    <p class="text-default-weak">
+                <div class="card">
+                    <h2 class="f-ui-01 step-title">Step 1</h2>
+                    <p class="muted">
                         Open the GitHub repository at
                         <a href="https://github.com/NeuralEnsemble/neo-viewer" target="_blank"
-                           rel="noopener noreferrer" class="text-brand-green">
+                           rel="noopener noreferrer">
                             https://github.com/NeuralEnsemble/neo-viewer
                         </a>.
                     </p>
                 </div>
 
-                <div class="p-6 rounded-xl border border-white/10 bg-white/5 guide-step">
-                    <h2 class="f-ui-01 font-semibold text-brand-green mb-3">Step 2</h2>
-                    <p class="text-default-weak">
-                        Create a fork by clicking <strong class="text-white">Fork</strong>:
+                <div class="card guide-step">
+                    <h2 class="f-ui-01 step-title">Step 2</h2>
+                    <p class="muted">
+                        Create a fork by clicking <strong>Fork</strong>:
                     </p>
                     <img src="./imgs/screenshots/react_demo/img_01.png" alt="Fork button">
                 </div>
 
-                <div class="p-6 rounded-xl border border-white/10 bg-white/5 guide-step">
-                    <h2 class="f-ui-01 font-semibold text-brand-green mb-3">Step 3</h2>
-                    <p class="text-default-weak">Log in to GitHub if prompted:</p>
+                <div class="card guide-step">
+                    <h2 class="f-ui-01 step-title">Step 3</h2>
+                    <p class="muted">Log in to GitHub if prompted:</p>
                     <img src="./imgs/screenshots/react_demo/img_03.png" alt="GitHub login">
                 </div>
 
-                <div class="p-6 rounded-xl border border-white/10 bg-white/5 guide-step">
-                    <h2 class="f-ui-01 font-semibold text-brand-green mb-3">Step 4</h2>
-                    <p class="text-default-weak">
-                        Select the account to fork into, then click <strong class="text-white">Create fork</strong>:
+                <div class="card guide-step">
+                    <h2 class="f-ui-01 step-title">Step 4</h2>
+                    <p class="muted">
+                        Select the account to fork into, then click <strong>Create fork</strong>:
                     </p>
                     <img src="./imgs/screenshots/react_demo/img_04.png" alt="Create fork">
                 </div>
 
-                <div class="p-6 rounded-xl border border-white/10 bg-white/5 guide-step">
-                    <h2 class="f-ui-01 font-semibold text-brand-green mb-3">Step 5</h2>
-                    <p class="text-default-weak">
+                <div class="card guide-step">
+                    <h2 class="f-ui-01 step-title">Step 5</h2>
+                    <p class="muted">
                         You will be redirected to your fork at
                         <code>https://github.com/GitHub_Username/Repo_name</code>:
                     </p>
                     <img src="./imgs/screenshots/react_demo/img_05.png" alt="Forked repo">
                 </div>
 
-                <div class="p-6 rounded-xl border border-white/10 bg-white/5 guide-step">
-                    <h2 class="f-ui-01 font-semibold text-brand-green mb-3">Step 6</h2>
-                    <p class="text-default-weak">
+                <div class="card guide-step">
+                    <h2 class="f-ui-01 step-title">Step 6</h2>
+                    <p class="muted">
                         We will use <a href="https://netlify.com" target="_blank"
-                        rel="noopener noreferrer" class="text-brand-green">Netlify</a> to host the app.
+                        rel="noopener noreferrer">Netlify</a> to host the app.
                         <a href="https://app.netlify.com/signup" target="_blank"
-                           rel="noopener noreferrer" class="text-brand-green">Create a free account</a>,
-                        then click <strong class="text-white">Log in</strong>:
+                           rel="noopener noreferrer">Create a free account</a>,
+                        then click <strong>Log in</strong>:
                     </p>
                     <img src="./imgs/screenshots/react_demo/img_06.png" alt="Visit Netlify">
                 </div>
 
-                <div class="p-6 rounded-xl border border-white/10 bg-white/5 guide-step">
-                    <h2 class="f-ui-01 font-semibold text-brand-green mb-3">Step 7</h2>
-                    <p class="text-default-weak">Log in with your GitHub account:</p>
+                <div class="card guide-step">
+                    <h2 class="f-ui-01 step-title">Step 7</h2>
+                    <p class="muted">Log in with your GitHub account:</p>
                     <img src="./imgs/screenshots/react_demo/img_07.png" alt="Netlify login">
                 </div>
 
-                <div class="p-6 rounded-xl border border-white/10 bg-white/5 guide-step">
-                    <h2 class="f-ui-01 font-semibold text-brand-green mb-3">Step 8</h2>
-                    <p class="text-default-weak">Click <strong class="text-white">Add new site</strong>:</p>
+                <div class="card guide-step">
+                    <h2 class="f-ui-01 step-title">Step 8</h2>
+                    <p class="muted">Click <strong>Add new site</strong>:</p>
                     <img src="./imgs/screenshots/react_demo/img_09.png" alt="Netlify homepage">
                 </div>
 
-                <div class="p-6 rounded-xl border border-white/10 bg-white/5 guide-step">
-                    <h2 class="f-ui-01 font-semibold text-brand-green mb-3">Step 9</h2>
-                    <p class="text-default-weak">Click <strong class="text-white">Import an existing project</strong>:</p>
+                <div class="card guide-step">
+                    <h2 class="f-ui-01 step-title">Step 9</h2>
+                    <p class="muted">Click <strong>Import an existing project</strong>:</p>
                     <img src="./imgs/screenshots/react_demo/img_10.png" alt="Add new site">
                 </div>
 
-                <div class="p-6 rounded-xl border border-white/10 bg-white/5 guide-step">
-                    <h2 class="f-ui-01 font-semibold text-brand-green mb-3">Step 10</h2>
-                    <p class="text-default-weak">Click <strong class="text-white">Deploy with GitHub</strong>:</p>
+                <div class="card guide-step">
+                    <h2 class="f-ui-01 step-title">Step 10</h2>
+                    <p class="muted">Click <strong>Deploy with GitHub</strong>:</p>
                     <img src="./imgs/screenshots/react_demo/img_12.png" alt="Deploy with GitHub">
                 </div>
 
-                <div class="p-6 rounded-xl border border-white/10 bg-white/5 guide-step">
-                    <h2 class="f-ui-01 font-semibold text-brand-green mb-3">Step 11</h2>
-                    <p class="text-default-weak">
+                <div class="card guide-step">
+                    <h2 class="f-ui-01 step-title">Step 11</h2>
+                    <p class="muted">
                         If your fork isn't listed, click
-                        <strong class="text-white">Configure the Netlify app on GitHub</strong>
+                        <strong>Configure the Netlify app on GitHub</strong>
                         to grant access:
                     </p>
                     <img src="./imgs/screenshots/react_demo/img_13.png" alt="Configure Netlify GitHub">
                 </div>
 
-                <div class="p-6 rounded-xl border border-white/10 bg-white/5 guide-step">
-                    <h2 class="f-ui-01 font-semibold text-brand-green mb-3">Step 12</h2>
-                    <p class="text-default-weak">Select the GitHub account that owns your fork:</p>
+                <div class="card guide-step">
+                    <h2 class="f-ui-01 step-title">Step 12</h2>
+                    <p class="muted">Select the GitHub account that owns your fork:</p>
                     <img src="./imgs/screenshots/react_demo/img_16.png" alt="Select account">
                 </div>
 
-                <div class="p-6 rounded-xl border border-white/10 bg-white/5 guide-step">
-                    <h2 class="f-ui-01 font-semibold text-brand-green mb-3">Step 13</h2>
-                    <p class="text-default-weak">Grant Netlify repository access:</p>
+                <div class="card guide-step">
+                    <h2 class="f-ui-01 step-title">Step 13</h2>
+                    <p class="muted">Grant Netlify repository access:</p>
                     <img src="./imgs/screenshots/react_demo/img_17.png" alt="Install all repos">
                 </div>
 
-                <div class="p-6 rounded-xl border border-white/10 bg-white/5 guide-step">
-                    <h2 class="f-ui-01 font-semibold text-brand-green mb-3">Step 14</h2>
-                    <p class="text-default-weak">
+                <div class="card guide-step">
+                    <h2 class="f-ui-01 step-title">Step 14</h2>
+                    <p class="muted">
                         Select <em>All repositories</em> or choose your fork specifically,
-                        then click <strong class="text-white">Install</strong>:
+                        then click <strong>Install</strong>:
                     </p>
                     <img src="./imgs/screenshots/react_demo/img_18.png" alt="Install selected repos">
                 </div>
 
-                <div class="p-6 rounded-xl border border-white/10 bg-white/5 guide-step">
-                    <h2 class="f-ui-01 font-semibold text-brand-green mb-3">Step 15</h2>
+                <div class="card guide-step">
+                    <h2 class="f-ui-01 step-title">Step 15</h2>
                     <img src="./imgs/screenshots/react_demo/img_19.png" alt="Install Netlify">
                 </div>
 
-                <div class="p-6 rounded-xl border border-white/10 bg-white/5 guide-step">
-                    <h2 class="f-ui-01 font-semibold text-brand-green mb-3">Step 16</h2>
-                    <p class="text-default-weak">Click your forked repository to proceed:</p>
+                <div class="card guide-step">
+                    <h2 class="f-ui-01 step-title">Step 16</h2>
+                    <p class="muted">Click your forked repository to proceed:</p>
                     <img src="./imgs/screenshots/react_demo/img_21.png" alt="Available repos">
                 </div>
 
-                <div class="p-6 rounded-xl border border-white/10 bg-white/5 guide-step">
-                    <h2 class="f-ui-01 font-semibold text-brand-green mb-3">Step 17</h2>
-                    <p class="text-default-weak">You will see the deployment configuration page:</p>
+                <div class="card guide-step">
+                    <h2 class="f-ui-01 step-title">Step 17</h2>
+                    <p class="muted">You will see the deployment configuration page:</p>
                     <img src="./imgs/screenshots/react_demo/img_22.png" alt="Deploy homepage">
                 </div>
 
-                <div class="p-6 rounded-xl border border-white/10 bg-white/5 guide-step">
-                    <h2 class="f-ui-01 font-semibold text-brand-green mb-3">Step 18</h2>
-                    <p class="text-default-weak">
+                <div class="card guide-step">
+                    <h2 class="f-ui-01 step-title">Step 18</h2>
+                    <p class="muted">
                         Assign a site name, e.g. <code>neoviewerdemo</code>
                         → URL: <code>https://neoviewerdemo.netlify.app</code>:
                     </p>
                     <img src="./imgs/screenshots/react_demo/img_23.png" alt="Assign site name">
                 </div>
 
-                <div class="p-6 rounded-xl border border-white/10 bg-white/5 guide-step">
-                    <h2 class="f-ui-01 font-semibold text-brand-green mb-3">Step 19</h2>
-                    <p class="text-default-weak mb-4">Set these build settings:</p>
-                    <table class="w-full text-sm border-collapse mb-4">
+                <div class="card guide-step">
+                    <h2 class="f-ui-01 step-title">Step 19</h2>
+                    <p class="muted">Set these build settings:</p>
+                    <table class="props-table f-ui-02">
                         <tbody>
-                            <tr class="border-b border-white/10">
-                                <td class="py-2 pr-4 text-default-weak font-medium">Base directory</td>
-                                <td class="py-2"><code>js/react/</code></td>
-                            </tr>
-                            <tr class="border-b border-white/10">
-                                <td class="py-2 pr-4 text-default-weak font-medium">Build command</td>
-                                <td class="py-2"><code>npm update &amp;&amp; npm run build-lib &amp;&amp; npm run i-all &amp;&amp; npm run build-demo</code></td>
+                            <tr>
+                                <td>Base directory</td>
+                                <td><code>js/react/</code></td>
                             </tr>
                             <tr>
-                                <td class="py-2 pr-4 text-default-weak font-medium">Publish directory</td>
-                                <td class="py-2"><code>js/react/demo/build</code></td>
+                                <td>Build command</td>
+                                <td><code>npm update &amp;&amp; npm run build-lib &amp;&amp; npm run i-all &amp;&amp; npm run build-demo</code></td>
+                            </tr>
+                            <tr>
+                                <td>Publish directory</td>
+                                <td><code>js/react/demo/build</code></td>
                             </tr>
                         </tbody>
                     </table>
                     <img src="./imgs/screenshots/react_demo/img_24.png" alt="Build settings">
                 </div>
 
-                <div class="p-6 rounded-xl border border-white/10 bg-white/5 guide-step">
-                    <h2 class="f-ui-01 font-semibold text-brand-green mb-3">Step 20</h2>
-                    <p class="text-default-weak">Click <strong class="text-white">Add environment variables</strong>:</p>
+                <div class="card guide-step">
+                    <h2 class="f-ui-01 step-title">Step 20</h2>
+                    <p class="muted">Click <strong>Add environment variables</strong>:</p>
                     <img src="./imgs/screenshots/react_demo/img_24_01.png" alt="Deploy app">
                 </div>
 
-                <div class="p-6 rounded-xl border border-white/10 bg-white/5 guide-step">
-                    <h2 class="f-ui-01 font-semibold text-brand-green mb-3">Step 21</h2>
-                    <p class="text-default-weak">Click <strong class="text-white">New variable</strong>:</p>
+                <div class="card guide-step">
+                    <h2 class="f-ui-01 step-title">Step 21</h2>
+                    <p class="muted">Click <strong>New variable</strong>:</p>
                     <img src="./imgs/screenshots/react_demo/img_24_02.png" alt="Deploy app">
                 </div>
 
-                <div class="p-6 rounded-xl border border-white/10 bg-white/5 guide-step">
-                    <h2 class="f-ui-01 font-semibold text-brand-green mb-3">Step 22</h2>
-                    <p class="text-default-weak">
+                <div class="card guide-step">
+                    <h2 class="f-ui-01 step-title">Step 22</h2>
+                    <p class="muted">
                         Set key <code>PUBLIC_URL</code> and value <code>.</code> (a single dot):
                     </p>
                     <img src="./imgs/screenshots/react_demo/img_24_03.png" alt="Deploy app">
                 </div>
 
-                <div class="p-6 rounded-xl border border-white/10 bg-white/5 guide-step">
-                    <h2 class="f-ui-01 font-semibold text-brand-green mb-3">Step 23</h2>
-                    <p class="text-default-weak">Click <strong class="text-white">Deploy SITENAME</strong>:</p>
+                <div class="card guide-step">
+                    <h2 class="f-ui-01 step-title">Step 23</h2>
+                    <p class="muted">Click <strong>Deploy SITENAME</strong>:</p>
                     <img src="./imgs/screenshots/react_demo/img_25.png" alt="Deploy app">
                 </div>
 
-                <div class="p-6 rounded-xl border border-white/10 bg-white/5 guide-step">
-                    <h2 class="f-ui-01 font-semibold text-brand-green mb-3">Step 24</h2>
-                    <p class="text-default-weak">
+                <div class="card guide-step">
+                    <h2 class="f-ui-01 step-title">Step 24</h2>
+                    <p class="muted">
                         Deployment takes a few minutes. When status shows
                         <em>published</em>, visit your URL:
                     </p>
                     <img src="./imgs/screenshots/react_demo/img_27.png" alt="Deploy complete">
                 </div>
 
-                <div class="p-6 rounded-xl border border-white/10 bg-white/5 guide-step">
-                    <h2 class="f-ui-01 font-semibold text-brand-green mb-3">Step 25</h2>
-                    <p class="text-default-weak">
+                <div class="card guide-step">
+                    <h2 class="f-ui-01 step-title">Step 25</h2>
+                    <p class="muted">
                         Your app is live. Share the URL or redeploy at any time by pushing to GitHub:
                     </p>
                     <img src="./imgs/screenshots/react_demo/img_28.png" alt="Visit app">
                 </div>
 
-                <div class="p-6 rounded-xl border border-white/10 bg-white/5 guide-step">
-                    <h2 class="f-ui-01 font-semibold text-brand-green mb-3">Step 26</h2>
-                    <p class="text-default-weak">Scrolling down you will see the familiar visualisation:</p>
+                <div class="card guide-step">
+                    <h2 class="f-ui-01 step-title">Step 26</h2>
+                    <p class="muted">Scrolling down you will see the familiar visualisation:</p>
                     <img src="./imgs/screenshots/react_demo/img_29.png" alt="Use app">
                 </div>
 
@@ -256,7 +257,7 @@
     </main>
 
     <eds-footer
-        variant="inverse"
+        variant="default" data-light-variant="default" data-dark-variant="inverse"
         funded-by="This project has received funding from the European Union's Horizon 2020 Framework Programme for Research and Innovation under the Specific Grant Agreements No. 785907 and No. 945539 (Human Brain Project SGA2 and SGA3) and by the European Union's Research and Innovation Program Horizon Europe Grant Agreement No. 101147319 (EBRAINS 2.0)."
         rights-reserved="If you encounter any problems, please open an issue on GitHub.">
     </eds-footer>

@@ -3,6 +3,7 @@
 :root {
     --nv-primary: #1976d2;
     --nv-primary-text: #fff;
+    --nv-text-color: rgba(0, 0, 0, 0.87);
     --nv-border-color: #bbb;
     --nv-border-radius: 4px;
     --nv-font-family: sans-serif;
@@ -131,6 +132,7 @@
     padding: 6px 8px;
     font-family: var(--nv-font-family);
     font-size: var(--nv-font-size);
+    color: var(--nv-text-color);
     background: #fff;
     cursor: pointer;
 }
@@ -167,6 +169,7 @@
     position: absolute;
     z-index: 1000;
     background: var(--nv-popover-bg);
+    color: var(--nv-text-color);
     box-shadow: var(--nv-popover-shadow);
     border-radius: var(--nv-border-radius);
     padding: var(--nv-spacing);

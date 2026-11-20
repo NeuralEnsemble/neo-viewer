@@ -1,39 +1,322 @@
 /* ================================================================
-   Neural Activity Visualizer — page-specific overrides only.
-   All design tokens, typography, colours and components come from
-   @ebrains/assets output.css loaded in each page's <head>.
+   Neural Activity Visualizer — page styles on top of EDS.
+
+   EDS (@ebrains/assets output.css) provides the fonts, the
+   typography classes (f-heading-*, f-body-*, f-ui-*) and the
+   eds-* web components. Its utility classes are a pruned build
+   whose spacing scale is in pixels (p-8 = 8px, mb-16 = 16px), so
+   layout and colour are defined here instead, as semantic classes
+   driven by the theme tokens below.
+
+   The theme is selected by data-theme="light|dark" on <html>,
+   set by js/theme.js.
    ================================================================ */
 
-/* Dark page background using EDS CSS variables */
+:root,
+:root[data-theme="light"] {
+  --page-bg: #f3f5f4;
+  --surface: #ffffff;
+  --fg: var(--brand-black, #07140D);
+  --muted: #4d4d4d;               /* grey-800: 8:1 on white */
+  --border: rgba(7, 20, 13, 0.12);
+  --link: #007734;                /* green-800: 5.6:1 on white */
+  --link-hover: var(--brand-black, #07140D);
+  --link-underline: var(--brand-green, #00FF9D);
+  --accent-text: #007734;
+  --code-inline-bg: rgba(7, 20, 13, 0.06);
+  --footer-bg: #e8ebe9;
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --page-bg: var(--brand-black, #07140D);
+  --surface: #0f2018;
+  --fg: #ffffff;
+  --muted: #c3cac6;
+  --border: rgba(255, 255, 255, 0.14);
+  --link: var(--brand-green, #00FF9D);
+  --link-hover: #9dffb4;
+  --link-underline: rgba(0, 255, 157, 0.45);
+  --accent-text: var(--brand-green, #00FF9D);
+  --code-inline-bg: rgba(255, 255, 255, 0.1);
+  --footer-bg: transparent;
+  color-scheme: dark;
+}
+
 html, body {
-  background-color: var(--brand-black, #07140D);
-  color: var(--white, #ffffff);
+  background-color: var(--page-bg);
+  color: var(--fg);
+}
+
+/* ── Page skeleton ─────────────────────────────────────────────── */
+
+.site {
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
 }
 
-/* AngularJS demo: the Bootstrap-scoped visualizer component needs a
-   white surface so its internal styles render correctly. */
-.angular-demo-surface {
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 4px;
-  margin: 16px 0;
-  border: 1px solid rgba(0, 255, 157, 0.2);
+.site-main {
+  flex: 1;
+  padding: 64px 0 96px;
 }
 
-/* Guide-step images */
-.guide-step img {
-  width: 100%;
+eds-header {
   display: block;
-  margin-top: 16px;
-  border-radius: 6px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid var(--border);
 }
 
-/* Inline code that appears in guide content */
-.guide-content code {
-  background: rgba(255, 255, 255, 0.08);
+eds-footer {
+  display: block;
+  background: var(--footer-bg);
+  border-top: 1px solid var(--border);
+}
+
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.page-intro {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.page-title {
+  margin-bottom: 16px;
+}
+
+.lead {
+  color: var(--muted);
+  max-width: 44rem;
+  margin: 0 auto;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.section-title {
+  margin: 64px 0 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.divider {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 64px 0;
+}
+
+.divider + .section-title {
+  margin-top: 0;
+}
+
+/* ── Cards ─────────────────────────────────────────────────────── */
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 32px;
+}
+
+.card p + p,
+.card p + pre,
+.card pre + p,
+.card p + code {
+  margin-top: 16px;
+}
+
+.stack > * + * {
+  margin-top: 24px;
+}
+
+.step-title {
+  color: var(--accent-text);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+/* ── Links ─────────────────────────────────────────────────────── */
+
+.site-main a:not(.plain) {
+  color: var(--link);
+  text-decoration: underline;
+  text-decoration-color: var(--link-underline);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  transition: color 0.15s, text-decoration-color 0.15s;
+}
+
+.site-main a:not(.plain):hover {
+  color: var(--link-hover);
+  text-decoration-color: currentColor;
+}
+
+a.plain {
+  text-decoration: none;
+}
+
+/* List of links in a card (homepage "Guides") */
+.card.link-list {
+  padding: 0;
+  list-style: none;
+}
+
+.link-list li + li {
+  border-top: 1px solid var(--border);
+}
+
+.site-main .link-list a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 28px;
+  color: var(--fg);
+  text-decoration: none;
+}
+
+.site-main .link-list a::before {
+  content: "→";
+  color: var(--accent-text);
+  transition: transform 0.15s;
+}
+
+.site-main .link-list a:hover {
+  color: var(--link);
+  background: var(--code-inline-bg);
+}
+
+.site-main .link-list a:hover::before {
+  transform: translateX(3px);
+}
+
+.link-list li:first-child a { border-radius: 12px 12px 0 0; }
+.link-list li:last-child a  { border-radius: 0 0 12px 12px; }
+
+/* ── Buttons ───────────────────────────────────────────────────── */
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* ── Code ──────────────────────────────────────────────────────── */
+
+.site-main code:not(.hljs) {
+  background: var(--code-inline-bg);
   border-radius: 4px;
   padding: 0.15em 0.45em;
   font-size: 0.875em;
+}
+
+.site-main pre {
+  margin: 16px 0;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+.site-main pre code.hljs {
+  padding: 16px 20px;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.code-url {
+  display: block;
+  margin: 12px 0 16px;
+  word-break: break-all;
+}
+
+/* ── Tables ────────────────────────────────────────────────────── */
+
+.props-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+}
+
+.props-table th,
+.props-table td {
+  padding: 10px 16px 10px 0;
+  text-align: left;
+  vertical-align: top;
+}
+
+.props-table tr + tr {
+  border-top: 1px solid var(--border);
+}
+
+.props-table th {
+  color: var(--muted);
+  font-weight: 500;
+}
+
+/* ── Guide images ──────────────────────────────────────────────── */
+
+.guide-step img {
+  width: 100%;
+  display: block;
+  margin-top: 20px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+/* ── AngularJS demo ────────────────────────────────────────────── */
+
+/* The Bootstrap-scoped visualizer component expects a light surface
+   in both themes. */
+.angular-demo-surface {
+  background: #ffffff;
+  color: #222222;
+  color-scheme: light;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  margin: 24px 0;
+}
+
+/* ── Theme toggle (injected into eds-header's "actions" slot) ──── */
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-right: 24px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--fg);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.theme-toggle:hover {
+  background: var(--code-inline-bg);
+  border-color: currentColor;
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--link);
+  outline-offset: 2px;
+}
+
+.theme-toggle svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ── Small screens ─────────────────────────────────────────────── */
+
+@media (max-width: 640px) {
+  .site-main { padding: 40px 0 64px; }
+  .page { padding: 0 16px; }
+  .card { padding: 20px; }
+  .section-title { margin-top: 48px; }
+  .divider { margin: 48px 0; }
 }

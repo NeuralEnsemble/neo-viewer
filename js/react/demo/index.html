@@ -4,11 +4,20 @@
     <meta charset="utf-8" />
     <link rel="icon" href="./favicon/Favicon_32x32.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#07140D" />
+    <meta name="theme-color" content="#ffffff" />
     <meta name="description" content="Neural Activity Visualizer — React component demo" />
     <link rel="apple-touch-icon" href="./favicon/Favicon_32x32.png" />
     <link rel="manifest" href="./manifest.json" />
     <title>Neural Activity Visualizer</title>
+    <script>
+      // Set the theme before first paint (see useTheme in src/App.js).
+      try {
+        document.documentElement.setAttribute(
+          "data-theme", localStorage.getItem("neo-viewer-theme") === "dark" ? "dark" : "light");
+      } catch (e) {
+        document.documentElement.setAttribute("data-theme", "light");
+      }
+    </script>
     <script type="module">
       import { defineCustomElements } from 'https://cdn.jsdelivr.net/npm/@ebrains/components@3.0.0/dist/esm/loader.js';
       defineCustomElements(window);

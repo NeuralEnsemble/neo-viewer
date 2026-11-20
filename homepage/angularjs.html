@@ -3,10 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#07140D">
+    <meta name="theme-color" content="#ffffff">
     <link rel="icon" href="favicon/Favicon_32x32.png">
     <link rel="apple-touch-icon" href="favicon/Favicon_32x32.png">
     <title>AngularJS Demo — Neural Activity Visualizer</title>
+    <script src="./js/theme.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/@ebrains/assets@0.9.0/styles/output.css">
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/atom-one-dark.min.css">
@@ -27,32 +28,32 @@
     <script src="https://cdn.jsdelivr.net/gh/NeuralEnsemble/neo-viewer@master/js/angularjs/src/services.js"></script>
     <link rel="stylesheet" href="./css/angular_style.css">
 </head>
-<body class="flex flex-col min-h-screen">
+<body class="site">
 
     <eds-header
-        variant="strong"
+        variant="inverse" data-light-variant="inverse" data-dark-variant="strong"
         url="/"
         links='[{"label":"React Demo","url":"/react"},{"label":"AngularJS Demo","url":"/angularjs"},{"label":"API Docs","url":"/api/docs","external":true},{"label":"GitHub","url":"https://github.com/NeuralEnsemble/neo-viewer","external":true}]'>
     </eds-header>
 
-    <main class="flex-1 py-12" ng-app="neo-visualizer">
-        <div class="container mx-auto px-6 max-w-4xl guide-content">
+    <main class="site-main" ng-app="neo-visualizer">
+        <div class="page guide-content">
 
-            <div class="text-center mb-12">
-                <h1 class="f-heading-03 mb-4">AngularJS Component</h1>
-                <p class="f-body-01 text-default-weak max-w-2xl mx-auto">
+            <div class="page-intro">
+                <h1 class="f-heading-03 page-title">AngularJS Component</h1>
+                <p class="f-body-01 lead">
                     The <code>visualizer-view</code> component requires a
-                    <strong class="text-white">source</strong> attribute (URL of the data file).
-                    Optional: <strong class="text-white">height</strong>,
-                    <strong class="text-white">downsamplefactor</strong>, and
-                    <strong class="text-white">iotype</strong>.
+                    <strong>source</strong> attribute (URL of the data file).
+                    Optional: <strong>height</strong>,
+                    <strong>downsamplefactor</strong>, and
+                    <strong>iotype</strong>.
                     Uses the <a href="/api/docs" target="_blank" rel="noopener noreferrer"
-                    class="text-brand-green">Neo Viewer REST API</a>.
+                   >Neo Viewer REST API</a>.
                 </p>
             </div>
 
             <!-- Example Usage -->
-            <h2 class="f-heading-05 mb-4 pb-3 border-b border-white/10">Example Usage</h2>
+            <h2 class="f-heading-05 section-title">Example Usage</h2>
 
 <pre><code class="language-html">&lt;head&gt;
     &lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"&gt;
@@ -86,9 +87,9 @@
                 </div>
             </div>
 
-            <hr class="border-white/10 my-10">
+            <hr class="divider">
 
-            <h2 class="f-heading-05 mb-6 pb-3 border-b border-white/10">Example With Spike Trains</h2>
+            <h2 class="f-heading-05 section-title">Example With Spike Trains</h2>
 
             <div class="angular-demo-surface">
                 <div class="row angular-container">
@@ -99,11 +100,11 @@
                 </div>
             </div>
 
-            <hr class="border-white/10 my-10">
+            <hr class="divider">
 
-            <h2 class="f-heading-05 mb-4 pb-3 border-b border-white/10">Example With Dynamic Source</h2>
+            <h2 class="f-heading-05 section-title">Example With Dynamic Source</h2>
 
-            <p class="text-default-weak mb-6">You can input a custom data file URL below.</p>
+            <p class="muted">You can input a custom data file URL below.</p>
 
 <pre><code class="language-html">&lt;div ng-controller="URLFormController"&gt;
     &lt;form class="form-inline"&gt;
@@ -137,11 +138,11 @@
                 </div>
             </div>
 
-            <hr class="border-white/10 my-10">
+            <hr class="divider">
 
-            <h2 class="f-heading-05 mb-4 pb-3 border-b border-white/10">Examples of Multiple File Types</h2>
+            <h2 class="f-heading-05 section-title">Examples of Multiple File Types</h2>
 
-            <p class="text-default-weak mb-6">
+            <p class="muted">
                 NeoViewer supports a variety of file types. The dropdown below provides examples.
             </p>
 
@@ -193,7 +194,7 @@
     </main>
 
     <eds-footer
-        variant="inverse"
+        variant="default" data-light-variant="default" data-dark-variant="inverse"
         funded-by="This project has received funding from the European Union's Horizon 2020 Framework Programme for Research and Innovation under the Specific Grant Agreements No. 785907 and No. 945539 (Human Brain Project SGA2 and SGA3) and by the European Union's Research and Innovation Program Horizon Europe Grant Agreement No. 101147319 (EBRAINS 2.0)."
         rights-reserved="If you encounter any problems, please open an issue on GitHub.">
     </eds-footer>
