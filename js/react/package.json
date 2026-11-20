@@ -28,7 +28,18 @@
     "test": "vitest run",
     "test:watch": "vitest"
   },
-  "keywords": [],
+  "keywords": [
+    "react",
+    "react-component",
+    "neuroscience",
+    "electrophysiology",
+    "neo",
+    "neural-data",
+    "spike-trains",
+    "visualization",
+    "plotly",
+    "ebrains"
+  ],
   "author": "Andrew Davison <andrew.davison@cnrs.fr>, CNRS",
   "license": "MIT",
   "homepage": "https://github.com/NeuralEnsemble/neo-viewer/blob/master/js/react#readme",

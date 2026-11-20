@@ -4,6 +4,18 @@
   "name": "neural-activity-visualizer-react",
   "version": "2.2.0",
   "description": "A ReactJS component for visualizing neural activity data",
+  "keywords": [
+    "react",
+    "react-component",
+    "neuroscience",
+    "electrophysiology",
+    "neo",
+    "neural-data",
+    "spike-trains",
+    "visualization",
+    "plotly",
+    "ebrains"
+  ],
   "license": "https://spdx.org/licenses/MIT",
   "codeRepository": "https://github.com/NeuralEnsemble/neo-viewer",
   "url": "https://github.com/NeuralEnsemble/neo-viewer/blob/master/js/react#readme",
