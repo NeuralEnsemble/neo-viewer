@@ -125,6 +125,7 @@
 }
 
 .nv-select {
+    display: inline-block;
     border: 1px solid var(--nv-border-color);
     border-radius: var(--nv-border-radius);
     padding: 6px 8px;

@@ -14,19 +14,6 @@ build_api_image_prod:
     - shell-runner
 
 
-build_api_image_staging:
-  stage: build
-  only:
-    refs:
-      - staging
-  script:
-    - docker build -f deployment/Dockerfile.staging -t docker-registry.ebrains.eu/neuralactivity/neo-viewer:staging .
-    - docker login -u $DOCKER_REGISTRY_USER -p $DOCKER_REGISTRY_SECRET docker-registry.ebrains.eu
-    - docker push docker-registry.ebrains.eu/neuralactivity/neo-viewer:staging
-  tags:
-    - shell-runner
-
-
 build_api_image_dev:
   stage: build
   only:

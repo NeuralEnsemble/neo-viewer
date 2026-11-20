@@ -23,10 +23,13 @@ Build the Docker image using:
 docker build -t neo-viewer -f deployment/Dockerfile.prod .
 ```
 
-Run the Docker container using:
+Run the Docker container using
 ```
-docker run -d -p 80:80 --name neo-viewer neo-viewer
+docker run -d -p 8000:8000 --name neo-viewer neo-viewer
 ```
+
+The container serves plain HTTP on port 8000 (uvicorn), so put it behind a reverse proxy or
+ingress that terminates TLS.
 
 To check everything has worked, run
 ```

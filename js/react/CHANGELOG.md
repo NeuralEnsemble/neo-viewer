@@ -1,5 +1,15 @@
 # Changelog
 
+## [2.1.1] - 2026-07-03
+
+### Changed
+
+- Upgraded build/test toolchain to Vite 7, Vitest 4, and `@vitejs/plugin-react` 5 to resolve Dependabot security alerts (dev dependencies only; no runtime API changes).
+
+### Fixed
+
+- Pinned the library CSS output filename to `style.css` so the published `./style.css` export keeps resolving under Vite 6+.
+
 ## [2.1.0] - 2026-03-30
 
 ### Added

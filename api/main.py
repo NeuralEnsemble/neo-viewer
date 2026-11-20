@@ -62,7 +62,7 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
     except Exception:
         err_messages = str(error_detail)
     return JSONResponse(
-        status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+        status_code=status.HTTP_422_UNPROCESSABLE_CONTENT,
         content=jsonable_encoder({"detail": error_detail, "error": error_messages}),
     )
 
@@ -72,12 +72,17 @@ app.include_router(router_v1, prefix="/api")
 # Static HTML pages served from the homepage directory.
 # These need explicit routes because StaticFiles(html=True) only serves index.html
 # for directory requests; it does not strip .html extensions from filenames.
-_DEMO_PAGES = ["angularjs", "guide_react_deploy", "guide_angular_usage", "guide_plotly_interactivity"]
+_DEMO_PAGES = {
+    "angularjs": "angularjs",
+    "guide_react_deploy": "guide_react_deploy",
+    "guide_angular_usage": "guide_angular_usage",
+    "guide_plotly_interactivity": "guide_plotly_interactivity",
+}
 
-for _page in _DEMO_PAGES:
-    _path = Path(HOMEPAGE_DIR) / f"{_page}.html"
+for _route, _filename in _DEMO_PAGES.items():
+    _path = Path(HOMEPAGE_DIR) / f"{_filename}.html"
     if _path.exists():
-        app.add_api_route(f"/{_page}", lambda p=_path: FileResponse(p), include_in_schema=False)
+        app.add_api_route(f"/{_route}", lambda p=_path: FileResponse(p), include_in_schema=False)
 
 if os.path.isdir(REACT_DIR):
     _react_index = Path(REACT_DIR) / "index.html"

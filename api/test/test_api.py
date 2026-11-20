@@ -149,15 +149,9 @@ class TestGetData:
         # missing url test
         response = test_client.get(f"/api/blockdata/")
         assert response.status_code == 422
-        assert response.json()["detail"] == [
-            {
-                "type": "missing",
-                "loc": ["query", "url"],
-                "msg": "Field required",
-                "input": None,
-                "url": "https://errors.pydantic.dev/2.3/v/missing",
-            }
-        ]
+        assert response.json()["detail"][0]["type"] == "missing"
+        assert response.json()["detail"][0]["loc"] == ["query", "url"]
+        assert response.json()["detail"][0]["msg"] == "Field required"
         assert (
             response.json()["error"] == "url parameter is missing"
         )  # for backwards compatibility

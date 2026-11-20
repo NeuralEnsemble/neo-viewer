@@ -19,6 +19,9 @@ export default defineConfig({
       entry: resolve(__dirname, 'src/index.js'),
       name: 'NeuralActivityVisualizerReact',
       fileName: (format) => `index.${format === 'es' ? 'esm' : format}.js`,
+      // Vite 6+ names lib CSS after the package by default; pin to style.css
+      // to keep the published "./style.css" export path stable.
+      cssFileName: 'style',
       formats: ['es', 'cjs'],
     },
     rollupOptions: {
