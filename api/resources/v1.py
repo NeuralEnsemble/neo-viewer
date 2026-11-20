@@ -13,6 +13,7 @@ from pydantic import HttpUrl, PositiveInt
 from fastapi import Query, HTTPException, APIRouter, status
 
 from ..metadata import title, description
+from ..version import API_VERSION, SOFTWARE_VERSION, DEPLOYMENT
 from ..data_models import (
     IOModule,
     Segment,
@@ -31,7 +32,9 @@ async def info():
     return {
         "title": title,
         "description": description.strip(),
-        "version": 2.0,
+        "api_version": API_VERSION,
+        "software_version": SOFTWARE_VERSION,
+        "deployment": DEPLOYMENT,
     }
 
 

@@ -2,6 +2,7 @@
 
 """
 
+import json
 import os.path
 import urllib.parse
 
@@ -11,6 +12,24 @@ from ..main import app
 
 
 test_client = TestClient(app)
+
+
+class TestInfo:
+    def test_info_reports_versions(self):
+        for prefix in ("/api/v1/", "/api/"):
+            response = test_client.get(prefix)
+            assert response.status_code == 200
+            info = response.json()
+            assert info["title"] == "Neo Viewer API"
+            assert info["api_version"] == "1.2"
+            with open(os.path.join(os.path.dirname(__file__), "..", "codemeta.json")) as fp:
+                assert info["software_version"] == json.load(fp)["version"]
+            assert set(info["deployment"]) == {"commit", "built"}
+            assert "version" not in info
+
+    def test_openapi_reports_interface_version(self):
+        response = test_client.get("/api/openapi.json")
+        assert response.json()["info"]["version"] == "1.2"
 
 
 class TestGetData:

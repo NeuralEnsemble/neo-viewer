@@ -56,6 +56,11 @@ RUN ${BASEDIR}/pyenv/bin/python -m compileall -q $SITEDIR/api \
 
 USER appuser
 
+# Identify the deployment (reported at /api/v1/); set by .gitlab-ci.yml
+ARG GIT_COMMIT
+ARG BUILD_DATE
+ENV GIT_COMMIT=$GIT_COMMIT BUILD_DATE=$BUILD_DATE
+
 EXPOSE 8000
 CMD ["/home/docker/pyenv/bin/uvicorn", "api.main:app", \
      "--host", "0.0.0.0", "--port", "8000", "--proxy-headers", \

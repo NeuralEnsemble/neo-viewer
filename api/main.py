@@ -19,13 +19,14 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from .resources.v1 import router as router_v1
 from .metadata import title, description
+from .version import API_VERSION
 from .settings import HOMEPAGE_DIR, REACT_DIR
 
 
 app = FastAPI(
     title=title,
     description=description,
-    version="1.8",
+    version=API_VERSION,
     openapi_url="/api/openapi.json",
     docs_url="/api/docs",
     redoc_url="/api/redoc"
