@@ -15,16 +15,21 @@ import "./App.css";
 const source1 =
     "https://data-proxy.ebrains.eu/api/v1/buckets/pc0a33-Migliore_2018_CA1/exp_data/abf-int-bAC/Ivy_960711AHP3/96711008.abf";
 
+// Served under /react/ on the Neo Viewer site, links to the other pages are
+// relative. A standalone build (base "/", e.g. on Netlify, see
+// homepage/guide_react_deploy.html) links to the production site instead.
+const SITE_URL = import.meta.env.BASE_URL === "/react/" ? "" : "https://neoviewer.apps.ebrains.eu";
+
 const NAV_LINKS = JSON.stringify([
-    { label: "React Demo", url: "/react" },
-    { label: "AngularJS Demo", url: "/angularjs" },
-    { label: "API Docs", url: "/api/docs", external: true },
+    { label: "React Demo", url: `${SITE_URL}/react` },
+    { label: "AngularJS Demo", url: `${SITE_URL}/angularjs` },
+    { label: "API Docs", url: `${SITE_URL}/api/docs`, external: true },
     { label: "GitHub", url: "https://github.com/NeuralEnsemble/neo-viewer", external: true },
 ]);
 
 const BREADCRUMBS = JSON.stringify([
-    { label: "Neural Activity Visualizer", url: "/" },
-    { label: "React Component", url: "/react" },
+    { label: "Neural Activity Visualizer", url: `${SITE_URL}/` },
+    { label: "React Component", url: `${SITE_URL}/react` },
 ]);
 
 const THEME_KEY = "neo-viewer-theme";
@@ -151,7 +156,7 @@ function App() {
                             The <code className="inline-code">neural-activity-visualizer-react</code> component
                             enables web-browser visualisation of electrophysiology data.
                             It uses the{" "}
-                            <a href="/api/docs" target="_blank" rel="noopener noreferrer">Neo Viewer REST API</a>.
+                            <a href={`${SITE_URL}/api/docs`} target="_blank" rel="noopener noreferrer">Neo Viewer REST API</a>.
                         </p>
                     </div>
 

@@ -35,8 +35,15 @@
                 <p class="f-body-01 lead">
                     The visualizer offers various interactive features for exploring data, courtesy
                     of the underlying <a href="https://plotly.com/javascript/" target="_blank"
-                    rel="noopener noreferrer">Plotly.js</a> library.
+                    rel="noopener noreferrer">Plotly.js</a> library. They are available from the
+                    toolbar that appears at the top right of a plot when you move the mouse over it.
                 </p>
+            </div>
+
+            <div class="note">
+                <p><strong>About the animations.</strong> They were recorded with an earlier
+                version of the visualizer, so the page around the plot looks different today.
+                The toolbar buttons are the same in both the React and AngularJS components.</p>
             </div>
 
             <div class="stack">
@@ -49,7 +56,7 @@
 
                 <div class="card guide-step">
                     <h2 class="f-ui-01 step-title">2. Zoom (select region of interest)</h2>
-                    <p class="muted">Click and drag to zoom in. Double-click to reset.</p>
+                    <p class="muted">Click and drag to select a region to zoom into. Double-click to reset.</p>
                     <img src="./imgs/screenshots/plotly_demo/img_02_zoom.gif" alt="Zoom region">
                 </div>
 
@@ -61,19 +68,19 @@
 
                 <div class="card guide-step">
                     <h2 class="f-ui-01 step-title">4 &amp; 5. Zoom in / Zoom out</h2>
-                    <p class="muted">Use toolbar buttons or the scroll wheel. Double-click to reset.</p>
+                    <p class="muted">Zoom in or out around the centre of the plot. Double-click to reset.</p>
                     <img src="./imgs/screenshots/plotly_demo/img_04_05_zoom_in_out.gif" alt="Zoom in/out">
                 </div>
 
                 <div class="card guide-step">
                     <h2 class="f-ui-01 step-title">6. Autoscale</h2>
-                    <p class="muted">Resets the plot to fit all data after zooming or panning.</p>
+                    <p class="muted">Rescales the axes to fit all the data after zooming or panning.</p>
                     <img src="./imgs/screenshots/plotly_demo/img_06_autoscale.gif" alt="Autoscale plot">
                 </div>
 
                 <div class="card guide-step">
                     <h2 class="f-ui-01 step-title">7. Reset axes</h2>
-                    <p class="muted">Resets only the axes without rescaling the data range.</p>
+                    <p class="muted">Returns the axes to their initial ranges, as when the plot was first drawn.</p>
                     <img src="./imgs/screenshots/plotly_demo/img_07_reset.gif" alt="Reset plot">
                 </div>
 
@@ -86,7 +93,8 @@
                 <div class="card guide-step">
                     <h2 class="f-ui-01 step-title">9 &amp; 10. Show closest / Compare data on hover</h2>
                     <p class="muted">
-                        Hover to display the nearest data point value, or compare multiple traces at once.
+                        Choose what is shown when you hover over the plot: the value of the
+                        nearest data point, or the values of all traces at the same time point.
                     </p>
                     <img src="./imgs/screenshots/plotly_demo/img_09_10_labels.gif" alt="Hover labels">
                 </div>

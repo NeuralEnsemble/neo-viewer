@@ -3,8 +3,9 @@ import { render, screen } from '@testing-library/react'
 import GraphPanel from '../GraphPanel'
 
 vi.mock('react-plotly.js', () => ({
-    default: ({ layout, data, ...props }) => (
-        <div data-testid="plotly-plot" data-xaxis={layout?.xaxis?.title?.text} data-yaxis={layout?.yaxis?.title?.text} />
+    default: ({ layout, data, config, ...props }) => (
+        <div data-testid="plotly-plot" data-xaxis={layout?.xaxis?.title?.text} data-yaxis={layout?.yaxis?.title?.text}
+             data-modebar-add={config?.modeBarButtonsToAdd?.join(',')} />
     ),
 }))
 
@@ -30,5 +31,11 @@ describe('GraphPanel', () => {
         const plot = screen.getByTestId('plotly-plot')
         expect(plot).toHaveAttribute('data-xaxis', 's')
         expect(plot).toHaveAttribute('data-yaxis', 'mV')
+    })
+
+    it('adds the spike-line and hover-mode buttons to the mode bar', () => {
+        render(<GraphPanel show={true} data={sampleData} axisLabels={axisLabels} />)
+        expect(screen.getByTestId('plotly-plot')).toHaveAttribute(
+            'data-modebar-add', 'togglespikelines,hoverclosest,hovercompare')
     })
 })

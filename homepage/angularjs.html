@@ -20,9 +20,6 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.5/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.5/angular-resource.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.6/nv.d3.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-nvd3/1.0.9/angular-nvd3.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/1.51.1/plotly.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/NeuralEnsemble/neo-viewer@master/js/angularjs/src/visualizer.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/NeuralEnsemble/neo-viewer@master/js/angularjs/src/services.js"></script>
@@ -61,12 +58,8 @@
 
 <pre><code class="language-html">&lt;head&gt;
     &lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"&gt;
-    &lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.6/nv.d3.min.css"&gt;
     &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.5/angular.min.js"&gt;&lt;/script&gt;
     &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.5/angular-resource.min.js"&gt;&lt;/script&gt;
-    &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"&gt;&lt;/script&gt;
-    &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.6/nv.d3.min.js"&gt;&lt;/script&gt;
-    &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/angular-nvd3/1.0.9/angular-nvd3.min.js"&gt;&lt;/script&gt;
     &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/1.51.1/plotly.min.js"&gt;&lt;/script&gt;
     &lt;script src="https://cdn.jsdelivr.net/gh/NeuralEnsemble/neo-viewer@master/js/angularjs/src/visualizer.js"&gt;&lt;/script&gt;
     &lt;script src="https://cdn.jsdelivr.net/gh/NeuralEnsemble/neo-viewer@master/js/angularjs/src/services.js"&gt;&lt;/script&gt;
@@ -116,7 +109,7 @@
             &lt;label for="dataFileURL"&gt;URL of data file:&lt;/label&gt;
             &lt;input type="text" class="form-control" ng-model="dataFileURL"
                    id="dataFileURL" placeholder="enter data file URL here"
-                   style="width: 600px;"&gt;
+                   style="width: 100%; max-width: 600px;"&gt;
         &lt;/div&gt;
     &lt;/form&gt;
     &lt;visualizer-view ng-if="dataFileURL"

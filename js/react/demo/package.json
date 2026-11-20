@@ -23,6 +23,7 @@
   "scripts": {
     "start": "vite --base=/react/",
     "build": "vite build --base=/react/",
-    "preview": "vite preview --base=/react/"
+    "preview": "vite preview --base=/react/",
+    "build-root": "vite build --base=/"
   }
 }

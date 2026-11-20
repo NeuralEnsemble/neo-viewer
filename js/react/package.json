@@ -20,6 +20,7 @@
     "build-lib": "vite build",
     "build-lib-watch": "vite build --watch",
     "build-demo": "npm run build-lib && cd demo && npm run build",
+    "build-demo-root": "npm run build-lib && cd demo && npm run build-root",
     "start-demo": "cd demo && npm run start",
     "i-all": "npm i && cd demo && npm i",
     "ci-all": "npm ci && cd demo && npm ci",

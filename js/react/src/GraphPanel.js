@@ -1,5 +1,6 @@
 import React from "react";
 import Plot from "react-plotly.js";
+import { PLOT_CONFIG } from "./plotConfig";
 
 export default function GraphPanel(props) {
     const lineProperties = {
@@ -14,6 +15,7 @@ export default function GraphPanel(props) {
         return (
             <Plot
                 data={data}
+                config={PLOT_CONFIG}
                 layout={{
                     margin: {
                         l: 50,

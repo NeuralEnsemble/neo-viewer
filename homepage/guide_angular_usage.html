@@ -64,7 +64,6 @@
     &lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"&gt;
     &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.5/angular.min.js"&gt;&lt;/script&gt;
     &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.5/angular-resource.min.js"&gt;&lt;/script&gt;
-    &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/angular-nvd3/1.0.9/angular-nvd3.min.js"&gt;&lt;/script&gt;
     &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/1.51.1/plotly.min.js"&gt;&lt;/script&gt;
     &lt;script src="https://cdn.jsdelivr.net/gh/NeuralEnsemble/neo-viewer@master/js/angularjs/src/visualizer.js"&gt;&lt;/script&gt;
     &lt;script src="https://cdn.jsdelivr.net/gh/NeuralEnsemble/neo-viewer@master/js/angularjs/src/services.js"&gt;&lt;/script&gt;
@@ -78,7 +77,7 @@
                         &lt;label for="dataFileURL"&gt;URL of data file:&lt;/label&gt;
                         &lt;input type="text" class="form-control" ng-model="dataFileURL"
                                id="dataFileURL" placeholder="enter data file URL here"
-                               style="width: 600px;"&gt;
+                               style="width: 100%; max-width: 600px;"&gt;
                     &lt;/div&gt;
                 &lt;/form&gt;
                 &lt;div class="row angular-container"&gt;
@@ -114,6 +113,13 @@
                     <img src="./imgs/screenshots/angular_demo/img_06.png" alt="Select signal and view plot">
                 </div>
 
+                <div class="note">
+                    <p><strong>About the Netlify screenshots.</strong> They were taken with an earlier
+                    version of Netlify, which has since renamed sites to <em>projects</em> and
+                    calls drag-and-drop deployment <strong>Netlify Drop</strong>. Where the text of
+                    a step differs from its screenshot, follow the text.</p>
+                </div>
+
                 <div class="card guide-step">
                     <h2 class="f-ui-01 step-title">Step 7</h2>
                     <p class="muted">
@@ -135,19 +141,24 @@
 
                 <div class="card guide-step">
                     <h2 class="f-ui-01 step-title">Step 9</h2>
-                    <p class="muted">Click <strong>Add new site</strong>:</p>
+                    <p class="muted">
+                        Open <a href="https://app.netlify.com/drop" target="_blank"
+                        rel="noopener noreferrer">Netlify Drop</a>.
+                        In the older interface shown here, it was reached by clicking
+                        <strong>Add new site</strong>…
+                    </p>
                     <img src="./imgs/screenshots/angular_demo/img_09.png" alt="Add new site">
                 </div>
 
                 <div class="card guide-step">
                     <h2 class="f-ui-01 step-title">Step 10</h2>
-                    <p class="muted">Click <strong>Deploy manually</strong>:</p>
+                    <p class="muted">…and then <strong>Deploy manually</strong>:</p>
                     <img src="./imgs/screenshots/angular_demo/img_10.png" alt="Deploy manually">
                 </div>
 
                 <div class="card guide-step">
                     <h2 class="f-ui-01 step-title">Step 11</h2>
-                    <p class="muted">Drag and drop your <code>NeoViewer</code> folder onto the upload area:</p>
+                    <p class="muted">Drag and drop your <code>NeoViewer</code> folder onto the drop zone:</p>
                     <img src="./imgs/screenshots/angular_demo/img_11.png" alt="Drag and drop folder">
                 </div>
 
@@ -165,7 +176,8 @@
                 <div class="card guide-step">
                     <h2 class="f-ui-01 step-title">Step 14</h2>
                     <p class="muted">
-                        Click <strong>Site Overview</strong> to find your URL:
+                        Your project's overview page shows its URL
+                        (<em>Site overview</em> in the screenshot):
                     </p>
                     <img src="./imgs/screenshots/angular_demo/img_14.png" alt="Site overview">
                 </div>
@@ -179,8 +191,9 @@
                 <div class="card guide-step">
                     <h2 class="f-ui-01 step-title">Step 16</h2>
                     <p class="muted">
-                        To rename your site (and its URL), go to
-                        <strong>Site configuration → Change site name</strong>.
+                        To rename your project (and so its URL), go to
+                        <strong>Project configuration</strong> (<em>Site configuration</em> in the
+                        screenshot) and change the project name.
                         Share the URL with anyone to give them access, or embed it in another website.
                     </p>
                     <img src="./imgs/screenshots/angular_demo/img_16.png" alt="Change site name">

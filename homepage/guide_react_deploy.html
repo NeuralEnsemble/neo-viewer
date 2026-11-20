@@ -46,6 +46,16 @@
                 </p>
             </div>
 
+            <div class="note">
+                <p><strong>About the screenshots.</strong> They were taken with earlier versions of
+                GitHub, Netlify and the demo app, so some labels and layouts look different today.
+                In particular, Netlify now calls sites <em>projects</em>: <strong>Add new site</strong>
+                is now <strong>Add new project</strong>, <strong>Import an existing project</strong> is
+                now <strong>Import a Git repository</strong>, and <strong>Site configuration</strong> is
+                now <strong>Project configuration</strong>.</p>
+                <p>Where the text of a step differs from its screenshot, follow the text.</p>
+            </div>
+
             <!-- Steps -->
             <div class="stack">
 
@@ -111,19 +121,19 @@
 
                 <div class="card guide-step">
                     <h2 class="f-ui-01 step-title">Step 8</h2>
-                    <p class="muted">Click <strong>Add new site</strong>:</p>
+                    <p class="muted">Click <strong>Add new project</strong> (<em>Add new site</em> in the screenshot):</p>
                     <img src="./imgs/screenshots/react_demo/img_09.png" alt="Netlify homepage">
                 </div>
 
                 <div class="card guide-step">
                     <h2 class="f-ui-01 step-title">Step 9</h2>
-                    <p class="muted">Click <strong>Import an existing project</strong>:</p>
+                    <p class="muted">Click <strong>Import a Git repository</strong> (<em>Import an existing project</em> in the screenshot):</p>
                     <img src="./imgs/screenshots/react_demo/img_10.png" alt="Add new site">
                 </div>
 
                 <div class="card guide-step">
                     <h2 class="f-ui-01 step-title">Step 10</h2>
-                    <p class="muted">Click <strong>Deploy with GitHub</strong>:</p>
+                    <p class="muted">Choose <strong>GitHub</strong> as your Git provider:</p>
                     <img src="./imgs/screenshots/react_demo/img_12.png" alt="Deploy with GitHub">
                 </div>
 
@@ -178,7 +188,7 @@
                 <div class="card guide-step">
                     <h2 class="f-ui-01 step-title">Step 18</h2>
                     <p class="muted">
-                        Assign a site name, e.g. <code>neoviewerdemo</code>
+                        Choose a project name, e.g. <code>neoviewerdemo</code>
                         → URL: <code>https://neoviewerdemo.netlify.app</code>:
                     </p>
                     <img src="./imgs/screenshots/react_demo/img_23.png" alt="Assign site name">
@@ -195,7 +205,7 @@
                             </tr>
                             <tr>
                                 <td>Build command</td>
-                                <td><code>npm update &amp;&amp; npm run build-lib &amp;&amp; npm run i-all &amp;&amp; npm run build-demo</code></td>
+                                <td><code>npm run ci-all &amp;&amp; npm run build-demo-root</code></td>
                             </tr>
                             <tr>
                                 <td>Publish directory</td>
@@ -203,37 +213,26 @@
                             </tr>
                         </tbody>
                     </table>
+                    <p class="muted">
+                        <code>build-demo-root</code> builds the demo to be served from the root of
+                        your site, rather than under <code>/react/</code> as on the Neo Viewer site.
+                        The screenshot shows an older build command: use the one in the table.
+                        No environment variables are needed.
+                    </p>
                     <img src="./imgs/screenshots/react_demo/img_24.png" alt="Build settings">
                 </div>
 
+
+
+
                 <div class="card guide-step">
                     <h2 class="f-ui-01 step-title">Step 20</h2>
-                    <p class="muted">Click <strong>Add environment variables</strong>:</p>
-                    <img src="./imgs/screenshots/react_demo/img_24_01.png" alt="Deploy app">
-                </div>
-
-                <div class="card guide-step">
-                    <h2 class="f-ui-01 step-title">Step 21</h2>
-                    <p class="muted">Click <strong>New variable</strong>:</p>
-                    <img src="./imgs/screenshots/react_demo/img_24_02.png" alt="Deploy app">
-                </div>
-
-                <div class="card guide-step">
-                    <h2 class="f-ui-01 step-title">Step 22</h2>
-                    <p class="muted">
-                        Set key <code>PUBLIC_URL</code> and value <code>.</code> (a single dot):
-                    </p>
-                    <img src="./imgs/screenshots/react_demo/img_24_03.png" alt="Deploy app">
-                </div>
-
-                <div class="card guide-step">
-                    <h2 class="f-ui-01 step-title">Step 23</h2>
-                    <p class="muted">Click <strong>Deploy SITENAME</strong>:</p>
+                    <p class="muted">Click the deploy button at the bottom of the page (<em>Deploy neoviewerdemo</em> in the screenshot):</p>
                     <img src="./imgs/screenshots/react_demo/img_25.png" alt="Deploy app">
                 </div>
 
                 <div class="card guide-step">
-                    <h2 class="f-ui-01 step-title">Step 24</h2>
+                    <h2 class="f-ui-01 step-title">Step 21</h2>
                     <p class="muted">
                         Deployment takes a few minutes. When status shows
                         <em>published</em>, visit your URL:
@@ -242,7 +241,7 @@
                 </div>
 
                 <div class="card guide-step">
-                    <h2 class="f-ui-01 step-title">Step 25</h2>
+                    <h2 class="f-ui-01 step-title">Step 22</h2>
                     <p class="muted">
                         Your app is live. Share the URL or redeploy at any time by pushing to GitHub:
                     </p>
@@ -250,8 +249,8 @@
                 </div>
 
                 <div class="card guide-step">
-                    <h2 class="f-ui-01 step-title">Step 26</h2>
-                    <p class="muted">Scrolling down you will see the familiar visualisation:</p>
+                    <h2 class="f-ui-01 step-title">Step 23</h2>
+                    <p class="muted">Scrolling down you will see the visualisation (the page design has changed since this screenshot was taken):</p>
                     <img src="./imgs/screenshots/react_demo/img_29.png" alt="Use app">
                 </div>
 

@@ -231,6 +231,26 @@ a.plain {
   word-break: break-all;
 }
 
+/* ── Notes ─────────────────────────────────────────────────────── */
+
+.note {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--link-underline);
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin-bottom: 32px;
+  color: var(--muted);
+}
+
+.note strong:first-child {
+  color: var(--fg);
+}
+
+.note p + p {
+  margin-top: 12px;
+}
+
 /* ── Tables ────────────────────────────────────────────────────── */
 
 .props-table {
