@@ -20,7 +20,8 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 from .resources.v1 import router as router_v1
 from .metadata import title, description
 from .version import API_VERSION
-from .settings import HOMEPAGE_DIR, REACT_DIR
+from .settings import HOMEPAGE_DIR, REACT_DIR, MATOMO_TRACKING_URL, MATOMO_SITE_ID, MATOMO_TOKEN_AUTH
+from .matomo import MatomoMiddleware
 
 
 app = FastAPI(
@@ -39,6 +40,13 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+if MATOMO_SITE_ID:
+    app.add_middleware(
+        MatomoMiddleware,
+        matomo_url=MATOMO_TRACKING_URL,
+        idsite=MATOMO_SITE_ID,
+        token_auth=MATOMO_TOKEN_AUTH,
+    )
 
 
 @app.exception_handler(StarletteHTTPException)

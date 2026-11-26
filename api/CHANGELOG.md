@@ -10,6 +10,16 @@ The API *interface* has its own version, shown at `/api/docs`; all 1.x versions 
 
 Entries for releases before 2.5.0 were reconstructed from the git history.
 
+## [Unreleased]
+
+### Added
+
+- Usage tracking with EBRAINS Stats (Matomo): the website and demo pages use the Matomo
+  JavaScript tracker on the production host only, and the API records requests server-side,
+  so that use from visualisers embedded in other sites is counted. Server-side tracking is
+  enabled by setting `MATOMO_SITE_ID`, and records visitor locations only if `MATOMO_TOKEN_AUTH`
+  is also set.
+
 ## [2.5.0] - 2026-11-20
 
 ### Added
