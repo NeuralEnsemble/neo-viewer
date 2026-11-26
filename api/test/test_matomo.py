@@ -19,6 +19,10 @@ def make_app(**kwargs):
     async def api_ping():
         return {"ok": True}
 
+    @app.get("/api/blockdata/")
+    async def api_blockdata(url: str):
+        return {"ok": True}
+
     @app.get("/page")
     async def page():
         return {"ok": True}
@@ -96,3 +100,29 @@ def test_response_does_not_wait_for_matomo():
     received, timings = run(make_app(), [("/api/v1/ping", {})], matomo_delay=1.0)
     assert len(received) == 1
     assert timings[0] < 0.5
+
+
+def test_data_file_query_string_is_not_tracked():
+    data_url = "https://ada:SECRET@bucket.example.org:8443/data/recording.nwb?X-Amz-Signature=SECRET&X-Amz-Expires=600#frag"
+    query = urllib.parse.urlencode({"url": data_url, "type": "nwb"})
+    received, _ = run(make_app(), [(f"/api/blockdata/?{query}", {})])
+    tracked = urllib.parse.urlsplit(form(received[0])["url"])
+    tracked_params = dict(urllib.parse.parse_qsl(tracked.query))
+    assert tracked.path == "/api/blockdata/"
+    assert tracked_params == {"url": "https://bucket.example.org:8443/data/recording.nwb", "type": "nwb"}
+    assert "SECRET" not in form(received[0])["url"]
+
+
+def test_api_request_still_receives_full_data_file_url():
+    seen = {}
+    app = FastAPI()
+
+    @app.get("/api/blockdata/")
+    async def api_blockdata(url: str):
+        seen["url"] = url
+        return {"ok": True}
+
+    app.add_middleware(MatomoMiddleware, matomo_url="https://stats.example.org", idsite=99)
+    data_url = "https://bucket.example.org/data/recording.nwb?token=abc"
+    run(app, [(f"/api/blockdata/?{urllib.parse.urlencode({'url': data_url})}", {})])
+    assert seen["url"] == data_url

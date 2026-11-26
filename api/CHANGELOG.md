@@ -18,7 +18,9 @@ Entries for releases before 2.5.0 were reconstructed from the git history.
   JavaScript tracker on the production host only, and the API records requests server-side,
   so that use from visualisers embedded in other sites is counted. Server-side tracking is
   enabled by setting `MATOMO_SITE_ID`, and records visitor locations only if `MATOMO_TOKEN_AUTH`
-  is also set.
+  is also set. Any user name and password, the query string and the fragment of the data
+  file location (the `url` parameter) are not recorded, since they may contain access
+  credentials.
 
 ## [2.5.0] - 2026-11-20
 

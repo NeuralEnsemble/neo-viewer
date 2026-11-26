@@ -8,13 +8,33 @@ so it is not seen by the JavaScript tracker on our own pages.
 import asyncio
 import logging
 import time
-from urllib.parse import urlparse
+from urllib.parse import urlencode, urlsplit, urlunsplit, urlparse
 
 import httpx
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.requests import Request
 
 logger = logging.getLogger("matomo")
+
+
+def _url_for_tracking(request: Request) -> str:
+    """
+    The request URL, with any user name and password, the query string and the fragment
+    removed from the data file location given in the "url" parameter.
+
+    The data file location may be a pre-signed or token-bearing link, and anyone with
+    view access to the Matomo site can read the URLs it records.
+    """
+    if "url" not in request.query_params:
+        return str(request.url)
+    params = []
+    for key, value in request.query_params.multi_items():
+        if key == "url":
+            parts = urlsplit(value)
+            host = parts.netloc.rpartition("@")[2]
+            value = urlunsplit((parts.scheme, host, parts.path, "", ""))
+        params.append((key, value))
+    return str(request.url.replace(query=urlencode(params)))
 
 
 class MatomoMiddleware(BaseHTTPMiddleware):
@@ -50,7 +70,7 @@ class MatomoMiddleware(BaseHTTPMiddleware):
         params = {
             "idsite": self.idsite,
             "rec": 1,
-            "url": str(request.url),
+            "url": _url_for_tracking(request),
             "action_name": request.url.path,
             "send_image": 0,
             "pf_srv": server_time_ms,
