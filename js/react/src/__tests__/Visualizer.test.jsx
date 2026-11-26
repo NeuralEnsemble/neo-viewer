@@ -65,7 +65,7 @@ vi.mock('../HeaderPanel', () => ({
     ),
 }))
 vi.mock('../GraphPanel', () => ({
-    default: ({ show }) => show ? <div data-testid="graph-panel" /> : <div />,
+    default: ({ show, preserveZoom }) => show ? <div data-testid="graph-panel" data-preserve-zoom={String(Boolean(preserveZoom))} /> : <div />,
 }))
 vi.mock('../SpikeTrainPanel', () => ({
     default: () => <div data-testid="spike-train-panel" />,
@@ -78,6 +78,13 @@ describe('Visualizer', () => {
     it('renders without crashing with a source prop', async () => {
         render(<Visualizer source="http://example.com/file.nwb" />)
         expect(screen.getByTestId('header-panel')).toBeInTheDocument()
+    })
+
+    it('passes preserveZoom to the graph panel', () => {
+        const { rerender } = render(<Visualizer source="http://example.com/file.nwb" />)
+        expect(screen.getByTestId('graph-panel')).toHaveAttribute('data-preserve-zoom', 'false')
+        rerender(<Visualizer source="http://example.com/file.nwb" preserveZoom={true} />)
+        expect(screen.getByTestId('graph-panel')).toHaveAttribute('data-preserve-zoom', 'true')
     })
 
     it('shows ErrorPanel when DataStore.initialize rejects', async () => {

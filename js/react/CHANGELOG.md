@@ -1,5 +1,11 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+
+- `preserveZoom` property: when `true`, the plots keep the user's zoom and pan when `source` or the selected signal changes (double-click a plot to reset it). Defaults to `false`, which keeps the previous behaviour.
+
 ## [2.2.0] - 2026-11-20
 
 ### Added

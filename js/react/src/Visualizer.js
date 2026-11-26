@@ -313,6 +313,7 @@ export default function Visualizer(props) {
                 data={signalData}
                 axisLabels={axisLabels}
                 show={showSignals}
+                preserveZoom={props.preserveZoom}
                 width={props.width}
                 height={props.height}
             />
@@ -320,6 +321,7 @@ export default function Visualizer(props) {
                 data={spikeData}
                 axisLabels={spikeTrainAxisLabels}
                 show={showSpikeTrains}
+                preserveZoom={props.preserveZoom}
                 width={props.width}
                 height={props.height}
             />

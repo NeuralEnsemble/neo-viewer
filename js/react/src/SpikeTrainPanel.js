@@ -17,6 +17,7 @@ export default function SpikeTrainPanel(props) {
                 data={data}
                 config={PLOT_CONFIG}
                 layout={{
+                    uirevision: props.preserveZoom ? "keep" : undefined,
                     margin: {
                         l: 50,
                         r: 50,
