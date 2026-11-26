@@ -17,6 +17,8 @@ export default function GraphPanel(props) {
                 data={data}
                 config={PLOT_CONFIG}
                 layout={{
+                    // While uirevision stays the same, Plotly keeps the user's zoom and pan when the data change
+                    uirevision: props.preserveZoom ? "keep" : undefined,
                     margin: {
                         l: 50,
                         r: 50,
